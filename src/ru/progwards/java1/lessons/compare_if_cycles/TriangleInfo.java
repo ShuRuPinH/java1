@@ -13,7 +13,7 @@ public class TriangleInfo {
 
     public static boolean isIsoscelesTriangle(int a, int b, int c){
         if (isTriangle(a, b, c)) {
-            if (a==b || c==a) return true;
+            if (a==b || c==a || b==c) return true;
             else return false;
         }
         else return false;
