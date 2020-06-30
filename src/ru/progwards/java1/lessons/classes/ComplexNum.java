@@ -27,6 +27,9 @@ public class ComplexNum {
     public ComplexNum mul(ComplexNum num){
         return new ComplexNum(a*num.a-b*num.b,b*num.a+a*num.b);//(a + bi) * (c + di) = (a*c - b*d) + (b*c + a*d)i
     }
+    public ComplexNum div(ComplexNum num){
+        return new ComplexNum((a*num.a+b*num.b)/(num.a*num.a + num.b*num.b),(b*num.a-a*num.b)/(num.a*num.a + num.b*num.b)); //(a + bi) / (c + di) = (a*c + b*d)/(c*c+d*d) + ((b*c - a*d)/(c*c+d*d))i
+    }
 
     //enter
 
@@ -35,7 +38,7 @@ public class ComplexNum {
         System.out.println(new ComplexNum(2,4).add(new ComplexNum(1,5)));
         System.out.println(new ComplexNum(2,4).sub(new ComplexNum(1,5)));
         System.out.println(new ComplexNum(7,4).mul(new ComplexNum(3,5)));
-
+        System.out.println(new ComplexNum(7,4).div(new ComplexNum(3,5)));
     }
 
 }
