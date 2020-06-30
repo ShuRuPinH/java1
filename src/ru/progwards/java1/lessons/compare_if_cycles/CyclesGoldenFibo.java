@@ -5,22 +5,13 @@ public class CyclesGoldenFibo {
     public static boolean containsDigit(int number, int digit){
         Integer num=number;
         Integer n=0;
-        int x=10;
+        int x=1;
 
-        while (num/x>0) {
-            int temp = x / 10;
-
-            n = (num - (num / x) * x);
-            if (temp > 0) {
-                n = n / temp;
-            }
+       while (num / x>0) {
+            n=num %(10*x);
+            n=n/x;
             x *= 10;
-            if (n == digit) return true;
-        }
-//           System.out.println( " x="+x+"        temp="+temp+ "    n="+n);
-
-        n=num/(x/10);
- //       System.out.println(" x="+x+"    n="+n);
+            if (n == digit) return true;  }
         if (n == digit)return true;
 
         return false;
@@ -58,7 +49,7 @@ public class CyclesGoldenFibo {
         return false;
     }
     public static void main(String[] args) {
-        System.out.println(containsDigit(123567897,5));
+        System.out.println(containsDigit(1,1));
         System.out.println(fiboNumber(6));
         System.out.println(isGoldenTriangle(3,3,5));
 
