@@ -32,10 +32,10 @@ public class Eratosthenes {
 
 
     public static void main(String[] args) {
-        Eratosthenes er= new Eratosthenes(500);
+        Eratosthenes er= new Eratosthenes(5000);
 
 
-        System.out.println(er.isSimple(25));
+        System.out.println(er.isSimple(5));
 
     }
 
