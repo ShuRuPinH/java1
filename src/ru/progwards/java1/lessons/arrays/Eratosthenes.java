@@ -15,7 +15,7 @@ public class Eratosthenes {
 
             for (int i=2; i<=sieve.length-1; i++){
                     for (int j=2; j<=sieve.length; j++){
-                        if (sieve[j]==false) break;
+
                         if (i*j <sieve.length) sieve[i*j]=false;
             }}
             sieve [0]=false;
@@ -32,10 +32,10 @@ public class Eratosthenes {
 
 
     public static void main(String[] args) {
-        Eratosthenes er= new Eratosthenes(5000000);
+        Eratosthenes er= new Eratosthenes(500);
 
 
-        System.out.println(er.isSimple(1));
+        System.out.println(er.isSimple(25));
 
     }
 
