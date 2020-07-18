@@ -19,10 +19,9 @@ public class Rect {
         Rect temp= new Rect();
         System.out.println("Hello World!");
         System.out.println(temp.arrayMax(ar));
-        int[] a1 = {12, 5, 0, 58, 36};
-        int[] a2 = Arrays.copyOf(a1, a1.length);
-        a2[2] = 0;
-        System.out.println(Arrays.equals(a1, a2));
+        boolean[] a1 = {true, false, false, true, false};
+
+
 
 
 

@@ -1,5 +1,5 @@
 package start;
-
+import java.util.Arrays;
 
 public class Test17 {
     String name;
@@ -16,6 +16,10 @@ public class Test17 {
     }
 
     public static void main(String[] args) {
+        
+        int a[]={};
+        int b[]={};
+
         Test17 test17 = new Test17("test17");
 
         Child child = new Child("1545");
@@ -28,7 +32,7 @@ public class Test17 {
 class Child extends Test17 {
     public Child (String name){
         super(name);
-
+ 
     }
     @Override
     void println(String str) {
