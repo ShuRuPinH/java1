@@ -9,7 +9,7 @@ public class Animal implements FoodCompare, CompareWeight {
     public boolean equals(Object anObject) {
 
         if (this == anObject) return true;
-        if (anObject == null || getClass().getSuperclass() != anObject.getClass().getSuperclass()) return false;
+        if (anObject == null || getClass() != anObject.getClass()) return false;
         Animal animal = (Animal) anObject;
         System.out.println("sds");
 
