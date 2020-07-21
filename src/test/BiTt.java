@@ -1,14 +1,36 @@
 package test;
 
-public class BiTt {
- static int ltEnd(byte value){
-     int result= value & 1;
-return result;
- }
+import java.util.Objects;
+
+class Rectangle {
+    private double a;
+    private double b;
+
+    public Rectangle(double a, double b) {
+        this.a = a;
+        this.b = b;
+    }
+
+    public double area() {
+
+        return a*b;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Rectangle rectangle = (Rectangle) o;
+        return Double.compare(this.area(), rectangle.area()) == 0;
+    }
+
+
+
 
     public static void main(String[] args) {
-        System.out.println(ltEnd((byte) 81));
-        System.out.println(ltEnd((byte) 1));
-        System.out.println(ltEnd((byte) 2));
+        Rectangle ab= new Rectangle(2,3);
+        Rectangle dc= new Rectangle(3,2);
+        System.out.println(ab.equals(dc));
     }
+
 }
