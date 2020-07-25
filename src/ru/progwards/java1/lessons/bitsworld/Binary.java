@@ -15,6 +15,6 @@ public class Binary {
     }
 
     public static void main(String[] args) {
-        System.out.println(new Binary((byte)128).toString());
+        System.out.println(new Binary((byte)126).toString());
     }
 }
