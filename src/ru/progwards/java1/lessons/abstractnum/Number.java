@@ -2,7 +2,7 @@ package ru.progwards.java1.lessons.abstractnum;
 
 
 
-abstract class Number {
+public class Number {
 Number num;
 
     public Number(Number num) {
@@ -13,10 +13,21 @@ Number num;
 
     }
 
-    public abstract Number mul(Number num);
-public abstract Number div(Number num);
-public abstract Number newNumber(String strNum);
-public abstract String toString();
+    public Number mul(Number num) {
+        return null;
+    }
+
+    public Number div(Number num) {
+        return null;
+    }
+
+    public Number newNumber(String strNum) {
+        return null;
+    }
+
+    public String toString() {
+        return null;
+    }
 
 
 }
