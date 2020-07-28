@@ -6,7 +6,7 @@ public class ByteRegister {
      Bit []bit8 =new Bit[8];
 
      public ByteRegister(){
-        Arrays.fill(bit8,0);
+        Arrays.fill(bit8,false);
     }
     public ByteRegister(byte value){
         byte temp=value;
@@ -43,7 +43,7 @@ public class ByteRegister {
     }
 
     public static void main(String[] args) {
-        ByteRegister test = new ByteRegister((byte) 21);
+        ByteRegister test = new ByteRegister((byte) 64);
         System.out.println(test.toString());
         System.out.println(test.toDecString());
     }
