@@ -6,7 +6,7 @@ public class ByteRegister {
      Bit []bit8 =new Bit[8];
 
      public ByteRegister(){
-        Arrays.fill(bit8,false);
+        Arrays.fill(bit8,new Bit(false));
     }
     public ByteRegister(byte value){
         byte temp=value;
