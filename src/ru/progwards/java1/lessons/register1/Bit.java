@@ -13,7 +13,7 @@ public class Bit {
 
     public String toString() {
         int st=0;
-        if (bit == true) st=1;
+        if (bit)  st=1;
         return Integer.toString(st);
     }
 

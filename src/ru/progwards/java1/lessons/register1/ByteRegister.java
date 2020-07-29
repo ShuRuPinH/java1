@@ -35,16 +35,21 @@ public class ByteRegister {
 
          for (byte i=0; i<=7; i++){
              int dd=0;
+             int p=1;
              if (bit8[i].bit) dd=1;
-             temp+=Math.pow(2,7-i)*dd;
+             for (byte j=0; j<7-i;j++) {
+                 p*=2;
+                }
+             temp+=p*dd;
 
          }
          return Integer.toString(temp);
     }
 
     public static void main(String[] args) {
-        ByteRegister test = new ByteRegister((byte) 64);
+        ByteRegister test = new ByteRegister((byte) 25);
         System.out.println(test.toString());
+        System.out.println("22");
         System.out.println(test.toDecString());
     }
 }
