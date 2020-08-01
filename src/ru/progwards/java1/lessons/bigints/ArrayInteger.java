@@ -38,8 +38,10 @@ public class ArrayInteger {
     boolean add(ArrayInteger num) {
         byte cnt=0;
         if (this.digits.length<num.digits.length) return false;
+        ArrayInteger aTemp= new ArrayInteger(this.digits.length);
+        aTemp.fromInt(num.toInt());
         for (int i=0; i< this.digits.length ; i++){
-            byte temp = (byte) (this.digits[i] +num.digits[i] +cnt);
+            byte temp = (byte) (this.digits[i] +aTemp.digits[i] +cnt);
             if (temp >= 10){
                 this.digits[i]= (byte) ( temp%10);
                 cnt=1;

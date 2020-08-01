@@ -10,7 +10,7 @@ public class BigAlgebra {
     static int n2 = 1;
 
 
-    BigDecimal fastPow(BigDecimal num, int pow) {
+   static BigDecimal fastPow(BigDecimal num, int pow) {
         int tt = pow;
         do {
             tBDpow = num;
@@ -47,7 +47,7 @@ public class BigAlgebra {
         return n2;
     }
 
-    BigInteger fibonacci(int n) {
+    static BigInteger fibonacci(int n) {
         BigInteger f1 = new BigInteger("0");
         BigInteger f2 = new BigInteger("1");
         BigInteger f;
