@@ -18,7 +18,7 @@ public class ArrayInteger {
         MathContext mathContext = new MathContext(5);
 
 
-        for (int i = digits.length - 1; i >= 0; i--) {
+        for (int i =0 ; i < digits.length ; i++) {
 
             digits[i] = temp.remainder(BigInteger.TEN).byteValue();
             temp = temp.divide(BigInteger.TEN);
