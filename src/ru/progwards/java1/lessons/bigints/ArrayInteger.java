@@ -1,6 +1,7 @@
 package ru.progwards.java1.lessons.bigints;
 
 import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.Arrays;
 
@@ -13,17 +14,26 @@ public class ArrayInteger {
 
 
     void fromInt(BigInteger value) {
-        MathContext mc = new MathContext(digits.length);
-        BigInteger temp = value;
-        MathContext mathContext = new MathContext(5);
 
 
-        for (int i =0 ; i < digits.length ; i++) {
+
+        String str= value.toString();
+
+        char[] ch = new char[digits.length];
+
+        for (int i = 0; i < ch.length; i++) {
+            ch[i] = str.charAt(i);
+            }
+        String bi= new String(ch);
+
+        BigInteger temp= new BigInteger(bi);
+        for (int i = digits.length-1 ; i >=0 ; i--) {
 
             digits[i] = temp.remainder(BigInteger.TEN).byteValue();
             temp = temp.divide(BigInteger.TEN);
 
         }
+
 
     }
 
@@ -58,7 +68,7 @@ public class ArrayInteger {
 
     }
 
-/*
+
     public static void main(String[] args) {
         ArrayInteger arr = new ArrayInteger(7);
         ArrayInteger arr2 = new ArrayInteger(7);
@@ -74,6 +84,6 @@ public class ArrayInteger {
         System.out.println(arr.add(arr2));
         System.out.println(Arrays.toString(arr.digits));
 
-    }*/
+    }
 
 }
