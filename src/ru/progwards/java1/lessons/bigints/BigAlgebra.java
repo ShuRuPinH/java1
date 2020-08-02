@@ -10,41 +10,24 @@ public class BigAlgebra {
     static int n2 = 1;
 
 
-   static BigDecimal fastPow(BigDecimal num, int pow) {
-        int tt = pow;
-        do {
-            tBDpow = num;
-            tempFunc(tt);
-            // System.out.println("tt="+tt);
-            tBDpowMain = tBDpowMain.multiply(tBDpow);
-            tBDpow = num;
-            tt -= n2;
-        } while (tt > 0);
-        //System.out.println("tt.end=" + tt);
-        if (tt < 0) {
-            for (byte i = 1; i <= Math.abs(tt); i++) {
-                tBDpowMain = tBDpowMain.divide(num);
+    static BigDecimal fastPow(BigDecimal num, int pow) {
+        String powstr = Integer.toBinaryString(pow);
+        BigDecimal temp = BigDecimal.ONE;
+
+        for (int i = 0; i < powstr.length() - 1; i++) {
+            switch (powstr.charAt(i)) {
+                case '1': temp = (temp.multiply(num)).multiply((temp.multiply(num)));
+                    break;
+                case '0': temp = temp.multiply(temp);
+                    break;
             }
         }
-        // System.out.println(tBDpowMain);
-        return tBDpowMain;
-    }
+        switch (powstr.charAt(powstr.length() - 1)) {
+            case '1':   return temp.multiply(num);
+            case '0':   return temp.multiply(BigDecimal.ONE);
+        }
 
-    static int tempFunc(int temp1) {
-        n2 = 1;
-        int count2 = 0;
-        while (temp1 > 0) {
-            n2 *= 2;
-            temp1 = temp1 / n2;
-            count2++;
-        }
-        for (byte i = 1; i <= count2; i++) {
-            tBDpow = tBDpow.multiply(tBDpow);
-            // System.out.println(tBDpow);
-        }
-        // System.out.println("n2=" + n2);
-        // System.out.println("count2=" + count2);
-        return n2;
+        return temp;
     }
 
     static BigInteger fibonacci(int n) {
@@ -61,13 +44,13 @@ public class BigAlgebra {
         return f;
     }
 
- /*   public static void main(String[] args) {
+    public static void main(String[] args) {
         BigAlgebra ba = new BigAlgebra();
-        System.out.println("pow:" +ba.fastPow(new  BigDecimal("3.2"), 2));
+        System.out.println("pow:" + ba.fastPow(new BigDecimal("15"), 6));
 
         System.out.println("fibo:" + ba.fibonacci(12));
 
-    }*/
+    }
 
 
 }
