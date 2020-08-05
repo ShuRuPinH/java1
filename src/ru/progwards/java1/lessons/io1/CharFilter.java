@@ -28,7 +28,7 @@ public class CharFilter {
 
         } catch (Exception e) {
 
-                System.out.println("err");
+                System.out.println(e);
             }
 
 
