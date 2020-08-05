@@ -4,9 +4,9 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class CharFilter {
-    public static void filterFile(String inFileName, String outFileName, String filter){
-        try {
+public class CharFilter  {
+    public static void filterFile(String inFileName, String outFileName, String filter) throws Exception{
+
             FileInputStream inStrm = new FileInputStream(inFileName);
             byte[] inBytes = inStrm.readAllBytes();
 
@@ -26,17 +26,12 @@ public class CharFilter {
             outStrm.write(strOut);
             outStrm.close();
 
-        } catch (Exception e) {
 
-                System.out.println(e);
-            }
 
 
         }
 
-    public static void main(String[] args) {
-        filterFile("file1.txt", "file2.txt", "yyr345t\n");
-    }
+
 
 
     }
