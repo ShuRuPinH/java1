@@ -12,11 +12,9 @@ public class IntRegister extends Register{
             Arrays.fill(arr,new Bit(false));
         }
         public IntRegister(int value){
-            ;
-            if (value<0){ arr[0]=new Bit(true);
-            value*=-1;}  else {arr[0]=new Bit((false));}
+
             int temp=value;
-            for (int i=31; i>0; i-- ){
+            for (int i=31; i>=0; i-- ){
                 temp = ( value & 0b1);
                 if (temp == 1) {
                     arr[i] = new Bit(true);
@@ -42,6 +40,7 @@ public class IntRegister extends Register{
             for (int i=1; i<=31; i++){
 
                 int p=0;
+                if (arr[0].bit) arr[i].bit = !arr[i].bit;
                 if (arr[i].bit) { p=1;
                 for (int j=0; j<31-i;j++) {
                     p*=2;
@@ -49,9 +48,13 @@ public class IntRegister extends Register{
                 temp+=p;
 
             }
-            if (arr[0].bit) temp*=-1;
+            if (arr[0].bit) temp+=1;
             return Integer.toString(temp);
         }
+
+    public Bit[] get(){
+        return arr;
+    }
 
         public static void main(String[] args) {
             IntRegister test = new IntRegister( -25);

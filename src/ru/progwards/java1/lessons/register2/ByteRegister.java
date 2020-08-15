@@ -7,9 +7,12 @@ public class ByteRegister extends Register {
 
     public ByteRegister(){
 
+
         Arrays.fill(arr,new Bit(false));
     }
     public ByteRegister(byte value){
+
+
 
         byte temp=value;
         for (int i=7; i>=0; i-- ){
@@ -22,6 +25,7 @@ public class ByteRegister extends Register {
             value>>=1;
         }
         //System.out.println(Arrays.toString(arr));
+
     }
 
     public String toString(){
@@ -35,21 +39,27 @@ public class ByteRegister extends Register {
     public String toDecString(){
         int temp=0;
 
-        for (byte i=0; i<=7; i++){
+        for (byte i=1; i<=7; i++){
             int dd=0;
             int p=1;
+            if (arr[0].bit) arr[i].bit = !arr[i].bit;
             if (arr[i].bit) dd=1;
             for (byte j=0; j<7-i;j++) {
                 p*=2;
             }
             temp+=p*dd;
 
+
         }
+        if (arr[0].bit) temp+=1;
         return Integer.toString(temp);
+    }
+    public Bit[] get(){
+        return arr;
     }
 
     public static void main(String[] args) {
-        ByteRegister test = new ByteRegister((byte) 25);
+        ByteRegister test = new ByteRegister((byte) -25);
         System.out.println(test.toString());
         System.out.println("22");
         System.out.println(test.toDecString());

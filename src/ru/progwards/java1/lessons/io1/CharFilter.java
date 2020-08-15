@@ -52,8 +52,11 @@ public class CharFilter {
 
     }
 
-    public static void main(String[] args) throws IOException {
-        filterFile("file1.txt", "file2.txt", "yyr345t\n");
+    public static void main(String[] args)  {
+        try {filterFile("file1.txt", "file2.txt", "yyr345t\n");}
+        catch (Exception e){
+            return;
+        }
     }
 
 

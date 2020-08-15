@@ -1,5 +1,6 @@
 package ru.progwards.java1.lessons.arrays;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class DIntArray {
@@ -57,7 +58,7 @@ public class DIntArray {
         test.atDelete(6);
    //     System.out.println("end="+test.prnt());
 
-        System.out.println(test.at(5));
+        System.out.println(Arrays.toString(test.mas));
     }
 
 }

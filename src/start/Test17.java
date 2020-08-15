@@ -43,6 +43,32 @@ public class Test17 {
 
         return ii;
     }
+    public String test(String filename)  {
+
+        try {
+            filename.charAt(1);
+
+        } catch (Exception e) {
+           return  (new IOException() +" File not found").toString();
+
+        }
+        return "File processing";
+    }
+
+    public void test(int n){
+        try {
+            n=0;
+
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            throw e;
+        }
+        finally {
+            System.out.println("finally executed");
+        }
+
+    }
 
 
     public static void main(String[] args) throws Exception {
@@ -52,13 +78,7 @@ public class Test17 {
         double d=0;
         double r=0;
 
-        for (int l=2; l<=10 ;l++){
-            d=d+85;
-            System.out.println(" d="+d);
-            r=d/l;
-            System.out.println("i="+l+"      r="+r);
-        }
-
+        System.out.println(tt.test("jkj"));
 
 
     }

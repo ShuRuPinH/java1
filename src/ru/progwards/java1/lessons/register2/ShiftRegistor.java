@@ -1,29 +1,43 @@
 package ru.progwards.java1.lessons.register2;
 
+import java.io.IOException;
+
 public class ShiftRegistor {
 
 
 
         public static void left(Register value){
-            for (int i=1;i<value.arr.length;i++) {
-                value.arr[i].bit=value.arr[i+1].bit;
+            for (int i=1;i<value.get().length-1;i++) {
+                value.get()[i]=value.get()[i+1];
             }
-            value.arr[value.arr.length-1].bit=false;
+            value.get()[value.get().length-1].bit=false;
         }
 
         public static void right(Register value){
-            System.out.println(value.arr.length);
-            for (int i=value.arr.length; i>1; i--) {
-               // value.arr[i-1].bit=value.arr[i-2].bit;
+
+            for (int i=value.get().length-1; i>1; i--) {
+               value.get()[i]=value.get()[i-1];
             }
 
         }
 
+
         public static void main(String[] args) {
-            IntRegister br1=new IntRegister(128);
-            System.out.println(br1.arr.length);
-            System.out.println(br1.toString());
+            ByteRegister br1=new ByteRegister((byte) -12);
+            IntRegister ir2=new IntRegister(-11);
+
+
+            System.out.println("br="+br1.toString());
+            System.out.println("ir="+ir2.toString());
             right(br1);
+            System.out.println(br1.toString());
+            left(br1);
+            left(br1);
+            System.out.println(br1.toString());
+
+            Counter.inc(ir2);
+            Counter.inc(ir2);
+            System.out.println(ir2.toString());
 
         }
 

@@ -2,8 +2,12 @@ package ru.progwards.java1.lessons.register1;
 
 public class Summator {
 
+
+
     public static boolean add(ByteRegister value1, ByteRegister value2){
         boolean v1=false,v2=false;
+
+
         for (byte i=7; i>=0;i--){
             if (value1.bit8[i].bit && value2.bit8[i].bit) {
                if (v1)  value1.bit8[i].bit=true;
