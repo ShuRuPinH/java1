@@ -21,7 +21,7 @@ public class Censor {
 
     }
 
-    public static void censorFile(String inoutFileName, String[] obscene) throws CensorException {
+    public static void censorFile(String inoutFileName, String[] obscene) {
         try (RandomAccessFile raf = new RandomAccessFile(inoutFileName, "rw")) {
             long pos;
             long way=0;
@@ -55,7 +55,7 @@ public class Censor {
             try {
                 throw new CensorException(inoutFileName, e);
             } catch (CensorException censorException) {
-                throw  censorException;
+                return;
             }
         }
 

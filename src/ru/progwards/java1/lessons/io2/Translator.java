@@ -51,7 +51,7 @@ public class Translator {
                             up=false;
                  }
                         sent.append(word);
-                        if(count<sentence.length()) sent.append(tmpch);
+                        if(isAlphabetic(tmpch)==false) sent.append(tmpch);
                         word.delete(0,word.length());
 
                 }
@@ -98,7 +98,7 @@ public class Translator {
         } catch (Exception exception) {
             System.out.println("error");
         }
-        String str = "make love not war not Not";
+        String str = "make love not war not Not.";
 
         System.out.println(trans.translate(str));
 
