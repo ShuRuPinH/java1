@@ -10,7 +10,8 @@ public class PhoneNumber {
             tel.append(ch);
         }
           if (tel.charAt(0) == '8'){
-            tel.replace(0,0,"7");
+
+            tel.replace(0,1,"7");
         }
         tel.insert(0,'+');
         tel.insert(2,'(');
@@ -40,5 +41,5 @@ public class PhoneNumber {
 - отформатировать под выходной шаблон
  */
 public static void main(String[] args) {
-    System.out.println(format(null));
+    System.out.println(format("8(845)7138364"));
 }}

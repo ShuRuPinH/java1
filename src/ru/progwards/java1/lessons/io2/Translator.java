@@ -18,6 +18,7 @@ public class Translator {
     public String translate(String sentence){
         StringBuilder word = new StringBuilder(2);
         boolean up =false;
+        sentence+=" ";
         StringBuilder sent = new StringBuilder();
 
         for (char tmpch: sentence.toCharArray()){
@@ -51,6 +52,7 @@ public class Translator {
                 sent.append(tmpch);
             }}
 
+
         return sent.toString();
     }
 
@@ -75,8 +77,8 @@ public class Translator {
 при наличии слов "hello", "world" в inLang и "привет", "мир" в outLang
  */
     public static void main(String[] args) {
-        String[] inLang={"я","люблю","тебя","сильно"};
-        String[] outLang={"i","love","you","strong"};
+        String[] inLang={"make", "love", "not", "war"};
+        String[] outLang={"твори", "любовь", "не", "войну"};
 
         Translator trans= null;
         try {
@@ -84,7 +86,7 @@ public class Translator {
         } catch (Exception exception) {
             System.out.println("error");
         }
-        String str = "Я Сильно тебя люблю!";
+        String str = "make love not war!";
 
         System.out.println(trans.translate(str));
 
