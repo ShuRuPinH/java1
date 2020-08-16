@@ -1,5 +1,7 @@
 package ru.progwards.java1.lessons.io2;
 
+import java.util.Arrays;
+
 import static java.lang.Character.*;
 
 public class Translator {
@@ -18,16 +20,21 @@ public class Translator {
     public String translate(String sentence){
         StringBuilder word = new StringBuilder(2);
         boolean up =false;
-                StringBuilder sent = new StringBuilder();
+        StringBuilder sent = new StringBuilder();
+        int count=0;
 
         for (char tmpch: sentence.toCharArray()){
-
+            count++;
+            boolean wrd = true;
             if (Character.isAlphabetic(tmpch)){
                 word.append(tmpch);
-                if (tmpch==sentence.toCharArray()[sentence.length()-1])continue;
+                wrd=false;
+               if (count == sentence.length()){
 
-            }
-            else if (word.length()!=0) {
+                   wrd=true;
+
+            }}
+            if (word.length()!=0 && wrd ) {
                 if (isUpperCase(word.charAt(0))) { up=true;}
                     word.setCharAt(0,Character.toLowerCase(word.charAt(0)));
                     for (int i=0; i<inLang.length; i++){
@@ -44,13 +51,18 @@ public class Translator {
                             up=false;
                  }
                         sent.append(word);
-                        sent.append(tmpch);
+                        if(count<sentence.length()) sent.append(tmpch);
                         word.delete(0,word.length());
 
                 }
-            else {
+            else if (wrd) {
                 sent.append(tmpch);
-            }}
+            }
+
+        }
+
+
+
 
 
         return sent.toString();
@@ -86,7 +98,7 @@ public class Translator {
         } catch (Exception exception) {
             System.out.println("error");
         }
-        String str = "make love not war!";
+        String str = "make love not war not Not";
 
         System.out.println(trans.translate(str));
 

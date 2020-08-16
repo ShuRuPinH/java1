@@ -21,7 +21,7 @@ public class Censor {
 
     }
 
-    public static void censorFile(String inoutFileName, String[] obscene)  {
+    public static void censorFile(String inoutFileName, String[] obscene) throws CensorException {
         try (RandomAccessFile raf = new RandomAccessFile(inoutFileName, "rw")) {
             long pos;
             long way=0;
@@ -55,7 +55,7 @@ public class Censor {
             try {
                 throw new CensorException(inoutFileName, e);
             } catch (CensorException censorException) {
-                censorException.printStackTrace();
+                throw  censorException;
             }
         }
 
@@ -83,7 +83,7 @@ obscene = {"Java", "Oracle", "Sun", "Microsystems"}
         String[] obscene = {"Java", "Oracle", "Sun", "Microsystems", "Go"};
 
 
-            censorFile("file10.txt", null);
+           //censorFile(null, null);
 
     }
 
