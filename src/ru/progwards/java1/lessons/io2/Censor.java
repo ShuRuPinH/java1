@@ -9,7 +9,7 @@ public class Censor {
         public Exception e;
 
         public CensorException(String fileName, Exception e) {
-
+            if (fileName ==null) fileName="null";
             this.fileName = fileName;
             this.e = e;
         }
@@ -83,7 +83,7 @@ obscene = {"Java", "Oracle", "Sun", "Microsystems"}
         String[] obscene = {"Java", "Oracle", "Sun", "Microsystems", "Go"};
 
 
-            censorFile("file10.txt", obscene);
+            censorFile("file10.txt", null);
 
     }
 

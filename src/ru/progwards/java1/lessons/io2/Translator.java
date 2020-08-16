@@ -9,7 +9,7 @@ public class Translator {
     public Translator(String[] inLang, String[] outLang)  {
         if (inLang == null || outLang ==null){
             inLang = new String[] {"error null"};
-            inLang = new String[]{"error null"};
+            outLang = new String[]{"error null"};
             System.out.println("error null");
         }
         this.inLang = inLang;
@@ -24,7 +24,7 @@ public class Translator {
 
             if (Character.isAlphabetic(tmpch)){
                 word.append(tmpch);
-                if (tmpch==sentence.toCharArray()[sentence.length()-1])sent.append(word);
+                if (tmpch==sentence.toCharArray()[sentence.length()-1])continue;
 
             }
             else if (word.length()!=0) {
@@ -77,8 +77,8 @@ public class Translator {
 при наличии слов "hello", "world" в inLang и "привет", "мир" в outLang
  */
     public static void main(String[] args) {
-        String[] outLang={"make", "love", "not", "war"};
-        String[] inLang={"твори", "любовь", "не", "войну"};
+        String[] inLang={"make", "love", "not", "war"};
+        String[] outLang={"mkk", "lvvv", "nn", "www"};
 
         Translator trans= null;
         try {
