@@ -2,7 +2,7 @@ package ru.progwards.java1.lessons.io2;
 
 public class PhoneNumber {
 
-    public static String format(String phone){
+    public static String format(String phone) throws Exception {
          StringBuilder tel= new StringBuilder();
             try{
             for(char ch: phone.toCharArray())
@@ -21,7 +21,7 @@ public class PhoneNumber {
 
 
         } catch (Exception e) {
-            System.out.println("Error, \"null\" or wrong tel:");
+            throw e;
         }
         return tel.toString();
     }
@@ -42,5 +42,9 @@ public class PhoneNumber {
 - отформатировать под выходной шаблон
  */
 public static void main(String[] args) {
-    System.out.println(format("8(845)72138364"));
+    try {
+        System.out.println(format("7 239 139 64 6511"));
+    } catch (Exception exception) {
+        exception.printStackTrace();
+    }
 }}

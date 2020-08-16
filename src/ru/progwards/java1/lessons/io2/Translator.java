@@ -18,13 +18,13 @@ public class Translator {
     public String translate(String sentence){
         StringBuilder word = new StringBuilder(2);
         boolean up =false;
-        sentence+=" ";
-        StringBuilder sent = new StringBuilder();
+                StringBuilder sent = new StringBuilder();
 
         for (char tmpch: sentence.toCharArray()){
 
             if (Character.isAlphabetic(tmpch)){
                 word.append(tmpch);
+                if (tmpch==sentence.toCharArray()[sentence.length()-1])sent.append(word);
 
             }
             else if (word.length()!=0) {
@@ -39,7 +39,7 @@ public class Translator {
                          break;
                      }}
                         if (up) {
-                            char temp =toUpperCase(word.charAt(0));
+
                             word.setCharAt(0,Character.toUpperCase(word.charAt(0)));
                             up=false;
                  }
@@ -77,8 +77,8 @@ public class Translator {
 при наличии слов "hello", "world" в inLang и "привет", "мир" в outLang
  */
     public static void main(String[] args) {
-        String[] inLang={"make", "love", "not", "war"};
-        String[] outLang={"твори", "любовь", "не", "войну"};
+        String[] outLang={"make", "love", "not", "war"};
+        String[] inLang={"твори", "любовь", "не", "войну"};
 
         Translator trans= null;
         try {

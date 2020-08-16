@@ -21,7 +21,7 @@ public class Censor {
 
     }
 
-    public static void censorFile(String inoutFileName, String[] obscene) throws CensorException {
+    public static void censorFile(String inoutFileName, String[] obscene)  {
         try (RandomAccessFile raf = new RandomAccessFile(inoutFileName, "rw")) {
             long pos;
             long way=0;
@@ -31,7 +31,7 @@ public class Censor {
                 raf.seek(way);
                 String temp = new String(raf.readLine().getBytes());
                 pos=raf.getFilePointer();
-                System.out.println(raf.getFilePointer());
+           //     System.out.println(raf.getFilePointer());
                 long tmp=way;
                 way+=raf.getFilePointer();
 
@@ -52,7 +52,11 @@ public class Censor {
             }
 
         } catch (Exception e) {
-            throw new CensorException(inoutFileName, e);
+            try {
+                throw new CensorException(inoutFileName, e);
+            } catch (CensorException censorException) {
+                censorException.printStackTrace();
+            }
         }
 
     }
@@ -79,11 +83,9 @@ obscene = {"Java", "Oracle", "Sun", "Microsystems"}
         String[] obscene = {"Java", "Oracle", "Sun", "Microsystems", "Go"};
 
 
-        try {
             censorFile("file10.txt", obscene);
-        } catch (CensorException e) {
-            System.out.println(e.toString());
-        }
 
     }
+
+
 }
