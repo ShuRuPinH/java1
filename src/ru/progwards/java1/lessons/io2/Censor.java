@@ -20,9 +20,9 @@ public class Censor {
         }
 
         @Override
-        public String getMessage() {
+        public String toString() {
             return
-                    fileName+" : "+super.getMessage() ;
+                    fileName+":"+super.getMessage() ;
         }
 
     }
@@ -93,7 +93,7 @@ obscene = {"Java", "Oracle", "Sun", "Microsystems"}
         try {
             censorFile("null", null);
         } catch (Exception exception) {
-            exception.printStackTrace();
+            System.out.println(exception.toString());
         }
 
     }
