@@ -5,23 +5,28 @@ import java.io.*;
 
 public class Censor {
     public static class CensorException extends Throwable {
-        public String fileName;
-        public Exception e;
+        public String fileName="";
+        public Throwable e;
+        public String er="";
 
-        public CensorException(String fileName, Exception e) {
-            if (fileName ==null) fileName="null";
+        public CensorException(String fileName, Throwable e) {
+
             this.fileName = fileName;
             this.e = e;
+            this.er=e.getMessage();
+
         }
 
         @Override
         public String getMessage() {
-            return (fileName + ":" + e);
+            return
+                    fileName+" : "+er ;
         }
 
     }
 
-    public static void censorFile(String inoutFileName, String[] obscene) {
+    public static void censorFile(String inoutFileName, String[] obscene) throws CensorException {
+        if (obscene==null) throw new CensorException(inoutFileName, new NullPointerException());
         try (RandomAccessFile raf = new RandomAccessFile(inoutFileName, "rw")) {
             long pos;
             long way=0;
@@ -51,15 +56,14 @@ public class Censor {
                 }
             }
 
-        } catch (Exception e) {
-            try {
+        } catch (Throwable e) {
+
                 throw new CensorException(inoutFileName, e);
-            } catch (CensorException censorException) {
-                return;
+
             }
         }
 
-    }
+
 
     /*
     Задача 3. Класс Censor
@@ -83,7 +87,11 @@ obscene = {"Java", "Oracle", "Sun", "Microsystems"}
         String[] obscene = {"Java", "Oracle", "Sun", "Microsystems", "Go"};
 
 
-           //censorFile(null, null);
+        try {
+            censorFile("null", null);
+        } catch (CensorException e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 
