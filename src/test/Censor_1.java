@@ -1,4 +1,4 @@
-package ru.progwards.java1.lessons.io2;
+package test;
 
 import java.io.*;
 

@@ -4,7 +4,7 @@ import java.io.*;
 
 
 public class Censor {
-    private static class CensorException extends Throwable {
+    public static class CensorException extends Throwable {
         public String fileName;
         public Exception e;
 

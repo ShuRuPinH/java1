@@ -9,6 +9,7 @@ public class PhoneNumber {
         if( Character.isDigit(ch)){
             tel.append(ch);
         }
+                if (tel.length()>11) throw new Exception();
           if (tel.charAt(0) == '8'){
 
             tel.replace(0,1,"7");
@@ -41,5 +42,5 @@ public class PhoneNumber {
 - отформатировать под выходной шаблон
  */
 public static void main(String[] args) {
-    System.out.println(format("8(845)7138364"));
+    System.out.println(format("8(845)72138364"));
 }}
