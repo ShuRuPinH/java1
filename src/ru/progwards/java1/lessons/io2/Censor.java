@@ -4,34 +4,34 @@ import java.io.*;
 
 
 public class Censor {
-    public static class CensorException extends Throwable {
-        public String fileName="";
-        public Throwable e;
-        public String er="";
 
-        public CensorException(String fileName, Throwable e) {
+    public static class CensorException extends Exception {
+        public String fileName="";
+        public CensorException(){
+
+        }
+
+        public CensorException(String fileName) {
 
             this.fileName = fileName;
-            this.e = e;
-            this.er=e.getMessage();
+
+
 
         }
 
         @Override
         public String getMessage() {
             return
-                    fileName+" : "+er ;
+                    fileName+" : "+super.getMessage() ;
         }
 
     }
 
-    public static void censorFile(String inoutFileName, String[] obscene)  {
-        if (obscene==null) try {
-            throw new CensorException(inoutFileName, new NullPointerException());
-        } catch (CensorException e) {
-            e.printStackTrace();
-        }
+    public static void censorFile(String inoutFileName, String[] obscene) throws Exception {
+
         try (RandomAccessFile raf = new RandomAccessFile(inoutFileName, "rw")) {
+            if (obscene==null)
+            throw new CensorException(inoutFileName);
             long pos;
             long way=0;
 
@@ -60,13 +60,8 @@ public class Censor {
                 }
             }
 
-        } catch (Throwable e) {
-
-            try {
-                throw new CensorException(inoutFileName, e);
-            } catch (CensorException censorException) {
-                censorException.printStackTrace();
-            }
+        } catch (Exception e) {
+                throw new CensorException(inoutFileName);
 
         }
         }
@@ -95,7 +90,11 @@ obscene = {"Java", "Oracle", "Sun", "Microsystems"}
         String[] obscene = {"Java", "Oracle", "Sun", "Microsystems", "Go"};
 
 
-        censorFile("null", null);
+        try {
+            censorFile("null", null);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
 
     }
 
