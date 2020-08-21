@@ -91,7 +91,7 @@ obscene = {"Java", "Oracle", "Sun", "Microsystems"}
 
 
         try {
-            censorFile("null", null);
+            censorFile("file10.txt", obscene);
         } catch (Exception exception) {
             System.out.println(exception.toString());
         }
