@@ -3,13 +3,10 @@ package ru.progwards.java1.lessons.collections;
 
 import java.util.*;
 
-/*
-    Сделать итератор по одномерному массиву, реализовать методы hasNext() и next(). Шаблон пустого итератора:
 
-*/
 public class ArrayIterator<T> implements Iterator<T> {
-    int cursor = 0;       // index of next element to return
-    int lastRet = -1; // index of last element returned; -1 if no such
+    int cursor = 0;
+    int lastRet = -1;
 
     private T[] array;
 
@@ -40,7 +37,7 @@ public class ArrayIterator<T> implements Iterator<T> {
     }
 
 
-///////////////
+
 
     public static void main(String[] args) {
         String[] ll = new String[10];

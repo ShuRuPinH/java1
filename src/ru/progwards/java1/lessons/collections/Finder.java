@@ -3,13 +3,7 @@ package ru.progwards.java1.lessons.collections;
 import java.util.*;
 
 public class Finder {
-    /*
-    Задача 2, класс Finder
 
-2.1 Реализовать метод
-public static Collection<Integer> findMinSumPair(Collection<Integer> numbers) - найти 2 соседних числа в коллекции сумма
- которых минимальна, вернуть коллекцию, содержащую индексы этих чисел
-*/
     public static Collection<Integer> findMinSumPair(Collection<Integer> numbers) {
         ArrayList<Integer> arl = new ArrayList<>(numbers);
         Integer tempsum = 0;
@@ -32,11 +26,6 @@ public static Collection<Integer> findMinSumPair(Collection<Integer> numbers) - 
         return res;
     }
 
-    /*
-2.2 Реализовать метод
-public static Collection<Integer> findLocalMax(Collection<Integer> numbers) - найти локальные максимумы - числа, которые
- больше соседа справа и слева. Первый и последний элемент коллекции не может являться локальным  максимумом,
-  вернуть коллекцию, содержащую значения этих максимумов*/
     public static Collection<Integer> findLocalMax(Collection<Integer> numbers) {
         ArrayList<Integer> arl = new ArrayList<>(numbers);
 
@@ -58,12 +47,6 @@ public static Collection<Integer> findLocalMax(Collection<Integer> numbers) - на
         return res;
     }
 
-
-    /*
-    2.3 Реализовать метод
-    public static boolean findSequence(Collection<Integer> numbers) - проверить, содержит ли коллекция все числа от 1 до size(),
-     порядок может быть произвольный
-    */
     public static boolean findSequence(Collection<Integer> numbers) {
         ArrayList<Integer> arl = new ArrayList<>(numbers);
 
@@ -86,14 +69,7 @@ public static Collection<Integer> findLocalMax(Collection<Integer> numbers) - на
     }
 
 
-    /*
-2.4 Реализовать метод
 
-public static String findSimilar(Collection<String> names) - найдите максимальное количество повторяющихся подряд элементов.
-Результат вернуть в виде строки <элемент>:<количество>, например Василий:5.
-При равенстве максимального количества у разных повторяющихся элементов, вернуть результат для элемента,
-повторяющаяся последовательность которого началась с наименьшего индекса.
-     */
 
     public static String findSimilar(Collection<String> names){
         List <String> arl = new ArrayList(names);
