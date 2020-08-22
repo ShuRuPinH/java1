@@ -16,7 +16,7 @@ public class MatrixIterator <T> implements Iterator<T> {
         MatrixIterator(T[][] array2D) {
             this.array2D=array2D;
         for (int i=0; i< array2D.length; i++) {
-            for (int j=0; j< array2D[i].length;i++) {
+            for (int j=0; j< array2D[i].length;j++) {
                 array.add(array2D[i][j]);
             }
 
