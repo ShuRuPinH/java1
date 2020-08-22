@@ -15,13 +15,16 @@ public class Finder {
             if (itr.hasNext()==false)break;
             Integer temp2 = itr.next();
             int ind2 = itr.previousIndex();
+           // System.out.println("int 1,2:"+temp1+","+temp2+"      ind 1,2:"+ind1+","+ind2);
 
             if (temp1 + temp2 < tempsum || tempsum == 0) {
                 tempsum = temp1 + temp2;
+
                 res.clear();
                 res.add(ind1);
                 res.add(ind2);
             }
+            itr.previous();
         }
         return res;
     }
@@ -86,13 +89,13 @@ public class Finder {
         System.out.println(findSequence(ll));
 
 
-        List <String> ls= new ArrayList();
+        List <Integer> ls= new ArrayList();
         boolean i =true;
         while (i){
 
             try {
                 System.out.println("arr string:");
-                String t=in.nextLine();
+                Integer t=in.nextInt();
 
                 if (t.equals("stop")){
                     i=false;break;
@@ -102,7 +105,7 @@ public class Finder {
 
                 break;
             }}
-        System.out.println(findSimilar(ls));
+        System.out.println(findMinSumPair(ls));
 
     }
-}
+}//60,87,72,34,29,-99,-26,-5,89,8,-47
