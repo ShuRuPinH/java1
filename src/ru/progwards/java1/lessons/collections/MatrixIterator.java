@@ -35,7 +35,7 @@ public class MatrixIterator <T> implements Iterator<T> {
 
             int i = cursor;
             if (i >= array.size())
-                throw new NoSuchElementException();
+                return null;
             cursor = i + 1;
             return (T) array.get(lastRet = i);
 
@@ -59,12 +59,7 @@ public class MatrixIterator <T> implements Iterator<T> {
 
 
 
-            ru.progwards.java1.lessons.collections.ArrayIterator<String> ai = new ru.progwards.java1.lessons.collections.ArrayIterator<String>(ll);
 
-            for (int i = 0; i <= 10; i++) {
-                System.out.println("i="+i+"     "+ ai.hasNext()+"  ="+ai.next()+ "   "+ ai.hasNext());
-
-            }
 
         }
 

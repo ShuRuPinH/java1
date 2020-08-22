@@ -12,7 +12,7 @@ public class Finder {
         for (ListIterator<Integer> itr = arl.listIterator(); itr.hasNext(); ) {
             Integer temp1 = itr.next();
             int ind1 = itr.previousIndex();
-
+            if (itr.hasNext()==false)break;
             Integer temp2 = itr.next();
             int ind2 = itr.previousIndex();
 
@@ -49,23 +49,11 @@ public class Finder {
 
     public static boolean findSequence(Collection<Integer> numbers) {
         ArrayList<Integer> arl = new ArrayList<>(numbers);
-
-
-        boolean test = true;
-        for (ListIterator<Integer> itr = arl.listIterator(); itr.hasNext(); ) {
-            Integer temp = itr.next();
-
-            for (int i = 1; i <= numbers.size(); i++) {
-                if (temp == i) {
-                    test = true;
-                    break;
-                }
-                test = false;
-            }
-            if (test == false) break;
-
+        for (int i = 1; i <= numbers.size(); i++) {
+          arl.add(i);
         }
-        return test;
+
+        return numbers.containsAll(arl);
     }
 
 

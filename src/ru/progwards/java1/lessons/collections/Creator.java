@@ -27,9 +27,10 @@ public class Creator {
         List <Integer> col= new LinkedList();
         ListIterator lsi= col.listIterator();
         for (int i=0; i<n; i++){
-            lsi.add(lsi.nextIndex());
-            lsi.add((lsi.nextIndex())*(lsi.nextIndex()));
-            lsi.add((lsi.nextIndex())*(lsi.nextIndex())*(lsi.nextIndex()));
+            int ind=lsi.nextIndex();
+            lsi.add(ind);
+            lsi.add((ind)*(ind));
+            lsi.add((ind)*(ind)*(ind));
             }
         return col;
     }
