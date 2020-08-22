@@ -70,7 +70,7 @@ public class Finder {
 
         for (ListIterator<String> itr = arl.listIterator(); itr.hasNext(); ) {
             String t = itr.next();
-          if(t.equals(temp)) count++; else count=1;
+          if(t.equals(temp) || t.equals("stop")) count++; else count=1;
           if (count>maxCount){maxCount=count; maxTemp=temp;}
         temp=t;
 
