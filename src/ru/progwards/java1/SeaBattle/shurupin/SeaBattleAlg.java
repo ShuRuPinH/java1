@@ -1,7 +1,6 @@
 package ru.progwards.java1.SeaBattle.shurupin;
 
 
-import org.checkerframework.checker.units.qual.A;
 import ru.progwards.java1.SeaBattle.SeaBattle;
 import ru.progwards.java1.SeaBattle.SeaBattle.FireResult;
 
