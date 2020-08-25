@@ -237,7 +237,7 @@ public int vicpoint=0;
         int res=0;
         if (y < 0 || x < 0 || y > 9 || x > 9) return -1;
         if (pole[y][x] != 0) {
-            System.out.println(x+","+y+" //בטעמו ןמכו/"+vicpoint+"/  pole="+pole[y][x]);
+            System.out.println(x + "," + y + " /*** Hitting place ***  / shots:" + vicpoint + "/  pole=" + pole[y][x]);
             return -1;
         }
 
@@ -253,7 +253,7 @@ public int vicpoint=0;
                 pole[y][x] = 2;
                 ship.add(new int[]{y, x});
                 vicpoint++;
-                System.out.println("גûחמג החמם טח פאונ הוסענ");
+                System.out.println("call DZONE from DESTROYED");
 
                 dzone();
 
