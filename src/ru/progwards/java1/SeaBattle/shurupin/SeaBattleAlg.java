@@ -11,31 +11,7 @@ import java.util.*;
 public class SeaBattleAlg {
 public int vicpoint=0;
     public SeaBattle seaBattle;
-    // Тестовое поле создаётся конструктором
-    //     SeaBattle seaBattle = new SeaBattle(true);
-    //
-    // Обычное поле создаётся конструктором по умолчанию:
-    //     SeaBattle seaBattle = new SeaBattle();
-    //     SeaBattle seaBattle = new SeaBattle(false);
-    //
-    // Посомтреть результаты стрельбы можно в любой момент,
-    // выведя объект класса SeaBattle на консоль. Например так:
-    //     System.out.println(seaBattle);
-    //
-    //
-    // Вид тестового поля:
-    //
-    //           0 1 2 3 4 5 6 7 8 9    координата x
-    //         0|.|.|.|.|.|.|.|X|.|.|
-    //         1|.|.|.|.|.|X|.|.|.|.|
-    //         2|X|X|.|.|.|.|.|.|.|.|
-    //         3|.|.|.|.|.|.|.|X|X|X|
-    //         4|.|.|.|.|X|.|.|.|.|.|
-    //         5|.|.|.|.|X|.|.|Х|.|.|
-    //         6|.|.|.|.|.|.|.|Х|.|X|
-    //         7|X|.|X|.|.|.|.|Х|.|X|
-    //         8|X|.|.|.|.|.|.|X|.|.|
-    //         9|X|.|.|.|X|.|.|.|.|.|
+
 
     List ship = new ArrayList();
     int[][] pole = new int[10][10];
@@ -43,8 +19,7 @@ public int vicpoint=0;
 
     public void battleAlgorithm(SeaBattle seaBattle) {
         this.seaBattle = seaBattle;
-        // пример алгоритма:
-        // стрельба по всем квадратам поля полным перебором
+
         boolean on=true;
         fire(0,0);
         fire(9,9);
@@ -113,7 +88,7 @@ public int vicpoint=0;
                next();
         }
 
-        ////////////  проверка  полей ////
+        ////////////  checking  ////
         if (y+1<10 && pole[y+1][x]==1){
 
             System.out.println("kil1");kill(x, y+1);
@@ -313,7 +288,7 @@ public int vicpoint=0;
             }}
     }
 
-    // функция для отладки
+    // main
     public static void main(String[] args) {
         System.out.println("Sea battle");
         SeaBattle seaBattle = new SeaBattle();
