@@ -33,6 +33,7 @@ public class DIntArray {
         mas=temp;
     }
     public int at(int pos){
+
         return mas[pos];
     }
 
@@ -50,6 +51,8 @@ public class DIntArray {
         test.add(3);
         test.add(4);
         test.add(5);
+
+        int [] fd= new int[3];
 
    //     System.out.println(test.prnt());
         test.atInsert(2,8);
