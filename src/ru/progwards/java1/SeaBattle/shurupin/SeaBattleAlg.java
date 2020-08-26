@@ -1,29 +1,36 @@
 package ru.progwards.java1.SeaBattle.shurupin;
 
-
+import ru.progwards.java1.SeaBattle.SeaBattle.FireResult;
 import ru.progwards.java1.SeaBattle.SeaBattle;
 import java.util.*;
 
 public class SeaBattleAlg {
-public int vicpoint=0;
+    public int vicpoint;
     public SeaBattle seaBattle;
 
-    int stcnt = 0;
+    int stcnt;
 
-    List ship = new ArrayList();
-    int[][] pole = new int[10][10];
-     int shots=0;
+
+    int[][] pole;
+    int shots;
+
 
     public void battleAlgorithm(SeaBattle seaBattle) {
+        vicpoint = 0;
+        stcnt = 0;
+        pole = new int[10][10];
+        shots = 0;
+
         this.seaBattle = seaBattle;
 
-        boolean on=true;
-        fire(0,0);
+
+        boolean on = true;
+    /*    fire(0,0);
         fire(9,9);
         fire(0,9);
-        fire(9,0);
+        fire(9,0);*/
 
-        while ( on) {
+        while (on) {
 
 
 
@@ -217,7 +224,7 @@ void kill(int x, int y) {
 
             case DESTROYED:
                 pole[y][x] = 2;
-                ship.add(new int[]{y, x});
+
                 vicpoint++;
                 //        System.out.println("call DZONE from DESTROYED");
 
@@ -226,7 +233,7 @@ void kill(int x, int y) {
                 return  2;
             case HIT:
                 pole[y][x] = 1;
-                ship.add(new int[]{y, x});
+
                 kill(x, y);
                 return 1;
             default: res=-1;
@@ -247,20 +254,46 @@ void kill(int x, int y) {
     }
 
 
-    void next (){
+    void next() {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
-                if (pole[j][i] == 0) fire(i,j);
-            }}
+                if (pole[j][i] == 0) fire(i, j);
+            }
+        }
+
+    }
+
+    void next3() {
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (pole[j][i] == 0) fire(i, j);
+            }
+        }
 
     }
 
     // main
     public static void main(String[] args) {
-        System.out.println("Sea battle");
-        SeaBattle seaBattle = new SeaBattle();
+
+/*        int score=0;
+        for (int i =1; i<=1000; i++){
+            SeaBattle seaBattle = new SeaBattle();
         new SeaBattleAlg().battleAlgorithm(seaBattle);
-        System.out.println(seaBattle.getResult());
+        score+= seaBattle.getResult();
     }
+        System.out.println("Sea battle score ="+score/1000);*/
+
+        System.out.println("Sea battle");
+        double res = 0;
+        SeaBattleAlg alg = new SeaBattleAlg();
+        for (int i = 0; i < 1000; i++) {
+            SeaBattle seaBattle = new SeaBattle();
+            alg.battleAlgorithm(seaBattle);
+            res += seaBattle.getResult();
+        }
+        System.out.println(res / 1000);
+    }
+
+
 }
 
