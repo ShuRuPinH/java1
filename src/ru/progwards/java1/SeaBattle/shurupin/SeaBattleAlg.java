@@ -119,8 +119,8 @@ void kill(int x, int y) {
     void dzone(int x, int y) {
 
 
-        System.out.println("************* start of deadline ********** /ship size =" + ship.size() + " /*********");
-        toScr(pole);
+        //   System.out.println("************* start of deadline ********** /ship size =" + ship.size() + " /*********");
+        //  toScr(pole);
 
         mark(x, y);
 
@@ -162,15 +162,15 @@ void kill(int x, int y) {
             }
         }
 
-        toScr(pole);
-        System.out.println("************* end of deadline *******************");
+        //    toScr(pole);
+        //    System.out.println("************* end of deadline *******************");
 
 
     }
 
     ////////////////////////////////////////////////
     void mark(int x, int y) {
-        System.out.println("************* working MARK of deadline ********start****** x=" + x + "* y=" + y + "****");
+        //     System.out.println("************* working MARK of deadline ********start****** x=" + x + "* y=" + y + "****");
         int ty = x;
         int tx = y;
         int decty = ty - 1;
@@ -194,8 +194,8 @@ void kill(int x, int y) {
         pole[inctx][incty] = 8;
 
 
-        toScr(pole);
-        System.out.println("************* working MARK of deadline *********end**********");
+        //   toScr(pole);
+        //   System.out.println("************* working MARK of deadline *********end**********");
     }
 //*************///!!!!!!!!!!!///FIRE//////!!!!!!!!!!!!!!!///*********************///
     public Integer fire(int x, int y) {
@@ -203,14 +203,14 @@ void kill(int x, int y) {
         int res=0;
         if (y < 0 || x < 0 || y > 9 || x > 9) return -1;
         if (pole[y][x] != 0) {
-            System.out.println(x + "," + y + " /*** Hitting place ***  / deads:" + vicpoint + "/  pole=" + pole[y][x]);
-            toScr(pole);
+            //   System.out.println(x + "," + y + " /*** Hitting place ***  / deads:" + vicpoint + "/  pole=" + pole[y][x]);
+            //   toScr(pole);
             return -1;
         }
 
         SeaBattle.FireResult fireResult = seaBattle.fire(x, y);
         shots++;
-        System.out.println(x + "<x,y>" + y + "- shot#" + shots + " -" + fireResult);
+        //    System.out.println(x + "<x,y>" + y + "- shot#" + shots + " -" + fireResult);
         switch (fireResult) {
             case MISS:
                 pole[y][x] = 8;
@@ -220,7 +220,7 @@ void kill(int x, int y) {
                 pole[y][x] = 2;
                 ship.add(new int[]{y, x});
                 vicpoint++;
-                System.out.println("call DZONE from DESTROYED");
+                //        System.out.println("call DZONE from DESTROYED");
 
                 dzone(x, y);
 
