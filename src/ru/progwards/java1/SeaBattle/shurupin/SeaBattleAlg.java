@@ -2,9 +2,6 @@ package ru.progwards.java1.SeaBattle.shurupin;
 
 
 import ru.progwards.java1.SeaBattle.SeaBattle;
-import ru.progwards.java1.SeaBattle.SeaBattle.FireResult;
-
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class SeaBattleAlg {
@@ -78,14 +75,16 @@ void kill(int x, int y) {
     switch (fire(x, y + 1)) {
         case 1:
             //    System.out.println("case 1   ----KILL ");
-            fire(x,y+2);
+            fire(x, y + 2);
         case 2:
             //    System.out.println("case 1   ----KILL ");
 
 
         case 8: //System.out.println("case 3    ----KILL");
-            fire(x+1, y);
+            fire(x + 1, y);
         case -1:// System.out.println("case 4   ----KILL");
+            next();
+        default:
             next();
     }
 
@@ -200,7 +199,7 @@ void kill(int x, int y) {
 //*************///!!!!!!!!!!!///FIRE//////!!!!!!!!!!!!!!!///*********************///
     public Integer fire(int x, int y) {
         if (vicpoint==10) return -1;
-        int res=0;
+        int res = -1;
         if (y < 0 || x < 0 || y > 9 || x > 9) return -1;
         if (pole[y][x] != 0) {
             //   System.out.println(x + "," + y + " /*** Hitting place ***  / deads:" + vicpoint + "/  pole=" + pole[y][x]);
