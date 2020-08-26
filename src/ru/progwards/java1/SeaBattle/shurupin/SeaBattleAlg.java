@@ -298,11 +298,11 @@ public int vicpoint=0;
     }
 
     // main
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
         System.out.println("Sea battle");
         SeaBattle seaBattle = new SeaBattle();
         new SeaBattleAlg().battleAlgorithm(seaBattle);
         System.out.println(seaBattle.getResult());
-    }
+    }*/
 }
 
