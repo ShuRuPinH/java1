@@ -1,9 +1,6 @@
 package test;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 public class Collection {
 
@@ -41,7 +38,7 @@ public class Collection {
             if (list.get( i)>sum) fltr.add(list.get( i));
         }
         list.removeAll(fltr);
-        return  list;
+        return list;
     }
 
     /*
@@ -50,15 +47,27 @@ public class Collection {
      которое кратно 3 на значение его индекса.
 
      */
-public void iterator3(ListIterator<Integer> iterator){
-    for (ListIterator<Integer> it = iterator; it.hasNext(); ) {
-        Integer i = iterator.next();
-        if (i%3==0 && i!=0){
-        it.set(iterator.previousIndex());
+
+    public Set<Integer> a2set(int[] a) {
+
+        Set<Integer> res = new HashSet();
+        for (int aa : a) {
+            res.add(aa);
         }
 
+        return res;
     }
-}
+
+
+    public void iterator3(ListIterator<Integer> iterator) {
+        for (ListIterator<Integer> it = iterator; it.hasNext(); ) {
+            Integer i = iterator.next();
+            if (i % 3 == 0 && i != 0) {
+                it.set(iterator.previousIndex());
+            }
+
+        }
+    }
 
     public static void main(String[] args) {
         Collection test = new Collection();
@@ -66,6 +75,8 @@ public void iterator3(ListIterator<Integer> iterator){
         for (int i = 0; i < 10; i++) {
             ll.add(i -1);
         }
+
+
         System.out.println(ll.toString());
         test.iterator3(ll.listIterator());
         System.out.println(ll.toString());
