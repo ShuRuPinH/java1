@@ -25,23 +25,16 @@ public class SeaBattleAlg {
         boolean on = true;
 
 
-        for (int i = 0; i < 10; i++) {
-            fire(i, i);
-            fire(i, 9 - i);
-        }
-        for (int i = 3; i < 70; i += 11) {
-            fire(i / 10, i % 10);
-            fire(i % 10, i / 10);
-        }
+
         for (int i = 3; i < 31; i += 9) {
             fire(i / 10, i % 10);
 
         }
-        for (int i = 6; i < 61; i += 9) {
+        for (int i = 7; i < 71; i += 9) {
             fire(i / 10, i % 10);
 
         }
-        for (int i = 39; i < 94; i += 9) {
+        for (int i = 29; i < 93; i += 9) {
             fire(i / 10, i % 10);
 
         }
@@ -49,12 +42,41 @@ public class SeaBattleAlg {
             fire(i / 10, i % 10);
 
         }
-        for (int i = 6; i < 40; i += 11) {
+        for (int i = 1; i < 11; i += 9) {
+            fire(i / 10, i % 10);
+
+        }
+
+        for (int i = 5; i < 51; i += 9) {
+            fire(i / 10, i % 10);
+
+        }
+        for (int i = 0; i < 10; i++) {
+            fire(i, i);
+            fire(i, 9 - i);
+        }
+        for (int i = 9; i < 91; i += 9) {
+            fire(i / 10, i % 10);
+
+        }
+        for (int i = 49; i < 95; i += 9) {
+            fire(i / 10, i % 10);
+
+        }
+        for (int i = 89; i < 99; i += 9) {
+            fire(i / 10, i % 10);
+
+        }
+   /*     for (int i = 6; i < 40; i += 11) {
             fire(i / 10, i % 10);
             fire(i % 10, i / 10);
 
         }
 
+        for (int i = 3; i < 70; i += 11) {
+            fire(i / 10, i % 10);
+            fire(i % 10, i / 10);
+        }*/
 /*
 
 
@@ -83,7 +105,7 @@ void kill(int x, int y) {
 
     //   toScr(pole);
     /// corners
-/*    if (y == 9 && x == 9) {
+    if (y == 9 && x == 9) {
         if (fire(x - 1, y) != 1)
             fire(x, y - 1);
     }
@@ -97,7 +119,7 @@ void kill(int x, int y) {
     if (y == 9 && x == 0) {
 
         if (fire(x, y - 1) != 1) fire(x + 1, y);
-    }*/
+    }
     /////sides///
     if (y == 0) {
         if (smplfire(x + 1, y) == 8)
@@ -257,6 +279,8 @@ void kill(int x, int y) {
         for (int[] sh : ship) {
             mark(sh[0], sh[1]);
         }
+        if (ship.size() == 4) stcnt = 2;
+
         ship.clear();
 
 
@@ -353,7 +377,7 @@ void kill(int x, int y) {
                 }
                 else sndfire(x, y, ad);*/
             case 2:
-                next4();//    System.out.println("case 1   ----KILL ");
+                return;//    System.out.println("case 1   ----KILL ");
 
 
             case 8: //System.out.println("case 3    ----KILL");
@@ -465,20 +489,20 @@ void kill(int x, int y) {
 
     void next() {
         if (vicpoint != 10) {
-            int c = 0;
+
             for (int i = 0; i < 10; i++) {
 
                 for (int j = 0; j < 10; j++) {
                     if (pole[j][i] == 0) {
-                        System.out.println("!!!!!!!! c=" + c + "  !!!NEXT " + i + ":" + j + "  NEXT!!!!!!!!!!!!");
+
 
                         fire(i, j);
-                        stcnt = 0;
+
                     }
                 }
             }
         } else {
-            System.out.println("next" + "       shot=" + shots + "      vic=" + vicpoint);
+
             return;
         }
 
@@ -486,20 +510,7 @@ void kill(int x, int y) {
 
     void next4() {
         if (vicpoint == 10) return;
-        while (steppos < 95) {
-            steppos = steppos % 100;
-            steppos += 4;
-
-
-            if (pole[(steppos / 10)][(steppos % 10)] == 0) {
-
-                System.out.println("!!!!!!!!!!!NEXT 4 " + (steppos / 10) + ":" + (steppos % 10) + "  NEXT 4 !!!!!!!!!!!!");
-
-                fire((steppos / 10), (steppos % 10));
-                break;
-            } else next();
-            next();
-        }
+        //   fire((int)(Math.random()*10),(int)Math.random()*10);
         next();
     }
 
