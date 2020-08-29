@@ -25,22 +25,43 @@ public class SeaBattleAlg {
         boolean on = true;
 
 
+        for (int i = 0; i < 10; i++) {
+            fire(i, i);
+            fire(i, 9 - i);
+        }
+        for (int i = 3; i < 70; i += 11) {
+            fire(i / 10, i % 10);
+            fire(i % 10, i / 10);
+        }
+        for (int i = 3; i < 31; i += 9) {
+            fire(i / 10, i % 10);
+
+        }
+        for (int i = 6; i < 61; i += 9) {
+            fire(i / 10, i % 10);
+
+        }
+        for (int i = 39; i < 94; i += 9) {
+            fire(i / 10, i % 10);
+
+        }
+        for (int i = 69; i < 97; i += 9) {
+            fire(i / 10, i % 10);
+
+        }
+        for (int i = 6; i < 40; i += 11) {
+            fire(i / 10, i % 10);
+            fire(i % 10, i / 10);
+
+        }
 
 /*
-        for (int i=0; i<10; i++){
-            fire(i,i);
-            fire(i,9-i);
-        }
-        for (int i=3; i<70; i+=11){
-            fire(i/10,i%10);
-            fire(i%10,i/10);
-        }
-        for (int i=6; i<40; i+=11){
-            fire(i/10,i%10);
-            fire(i%10,i/10);
-        }
-*/
 
+
+        fire(4,4);   fire(5,5);
+        fire(4,5);   fire(5,4);
+
+*/
 
         while (on) {
 
@@ -58,9 +79,11 @@ public class SeaBattleAlg {
 /////////////KILL////////////////////
 void kill(int x, int y) {
     System.out.println("kill   " + x + ":" + y + "    vinpoint=" + vicpoint + "      shots:" + shots);
+    if (vicpoint == 10) return;
+
     //   toScr(pole);
     /// corners
-    if (y == 9 && x == 9) {
+/*    if (y == 9 && x == 9) {
         if (fire(x - 1, y) != 1)
             fire(x, y - 1);
     }
@@ -74,70 +97,113 @@ void kill(int x, int y) {
     if (y == 9 && x == 0) {
 
         if (fire(x, y - 1) != 1) fire(x + 1, y);
-    }
-
+    }*/
     /////sides///
     if (y == 0) {
-        if (fire(x + 1, y) == 8)
+        if (smplfire(x + 1, y) == 8)
             fire(x + 1, y);
     }
     if (y == 9) {
-        if (fire(x + 1, y) == 8)
+        if (smplfire(x + 1, y) == 8)
             fire(x + 1, y);
     }
     if (x == 0) {
-        if (fire(x, y + 1) == 8)
+        if (smplfire(x, y + 1) == 8)
             fire(x, y - 1);
     }
     if (x == 9) {
-        if (fire(x, y + 1) == 8)
+        if (smplfire(x, y + 1) == 8)
             fire(x, y - 1);
     }
-// TODO:  selecting way  .....  наводка и в отдельный метод........
-    switch (fire(x, y + 1)) {
-        case 1:
-            //    System.out.println("case 1   ----KILL ");
-            fire(x, y + 2);
-        case 2:
-            next4();//    System.out.println("case 1   ----KILL ");
 
+///////////////////
+    if (x - 1 > 0 && pole[y][x - 1] == 1 && (x - 2) > 0 && pole[y][x - 2] == 0) {
 
-        case 8: //System.out.println("case 3    ----KILL");
-            fire(x + 1, y);
-        case -1:// System.out.println("case 4   ----KILL");
-            next4();
-        case 11:
-            return;
-        default:
-            next();
+        System.out.println("kill      hit      #1");
+
+        sndfire(x - 1, y, 1);
+
+    }
+    if (y + 1 < 10 && pole[y + 1][x] == 1 && (y + 2) < 10 && pole[y + 2][x] == 0) {
+
+        System.out.println("kill      hit      #2");
+
+        sndfire(x, y + 1, 2);
+
+    }
+    if (x + 1 < 10 && pole[y][x + 1] == 1 && (x + 2) < 10 && pole[y][x + 2] == 0) {
+
+        System.out.println("kill      hit     #3");
+
+        sndfire(x + 1, y, 3);
+    }
+    if (y - 1 > 0 && pole[y - 1][x] == 1 && (y - 2) > 0 && pole[y - 2][x] == 0) {
+
+        System.out.println("kill      hit      #4");
+
+        sndfire(x, y - 1, 4);
+
     }
 
-    //todo//////////  checking  ////
+    /////////// r hit
+
+    if (x - 1 > 0 && pole[y][x - 1] == 1 && (x - 2) > 0 && pole[y][x - 2] == 8) {
+
+        System.out.println("kill     R hit      #1");
+
+        sndfire(x, y, 3);
+
+    }
+    if (y + 1 < 10 && pole[y + 1][x] == 1 && (y + 2) < 10 && pole[y + 2][x] == 8) {
+
+        System.out.println("kill     R hit      #2");
+
+        sndfire(x, y, 4);
+
+    }
+    if (x + 1 < 10 && pole[y][x + 1] == 1 && (x + 2) < 10 && pole[y][x + 2] == 8) {
+
+        System.out.println("kill     R hit     #3");
+
+        sndfire(x, y, 1);
+    }
+    if (y - 1 > 0 && pole[y - 1][x] == 1 && (y - 2) > 0 && pole[y - 2][x] == 8) {
+
+        System.out.println("kill     R hit      #4");
+
+        sndfire(x, y, 2);
+
+    }
+
+
+    if (x - 1 > 0 && pole[y][x - 1] == 0) {
+
+        System.out.println("kill            #1");
+
+        sndfire(x, y, 1);
+
+    }
     if (y + 1 < 10 && pole[y + 1][x] == 0) {
-        stcnt++;
-        System.out.println("kil1");
-        if (stcnt < 2) rfire(x, y + 1);
-        else next4();
-    } else if (y - 1 > 0 && pole[y - 1][x] == 0) {
-        stcnt++;
-        System.out.println("kil2");
-        if (stcnt < 2) rfire(x, y - 1);
-        else next4();
-    } else if (x + 1 < 10 && pole[y][x + 1] == 0) {
-        stcnt++;
-        System.out.println("kil3");
-        if (stcnt < 2)
 
-            rfire(x + 1, y);
-        else next4();
-    } else if (x - 1 > 0 && pole[y][x - 1] == 0) {
-        stcnt++;
-        System.out.println("kil4");
-        if (stcnt < 2)
+        System.out.println("kill            #2");
 
-            rfire(x - 1, y);
-        else next4();
+        sndfire(x, y, 2);
+
     }
+    if (x + 1 < 10 && pole[y][x + 1] == 0) {
+
+        System.out.println("kill            #3");
+
+        sndfire(x, y, 3);
+    }
+    if (y - 1 > 0 && pole[y - 1][x] == 0) {
+
+        System.out.println("kill            #4");
+
+        sndfire(x, y, 4);
+
+    }
+
 
 }
 
@@ -253,19 +319,45 @@ void kill(int x, int y) {
 
     }
 
-///          ROUND FIRE
+///          ROUND FIRE   ///// гарантийный простел 4х палубника
 
-    void rfire(int x, int y) {
-        switch (fire(x, y)) {
+    void sndfire(int x, int y, int dir) {
+        int a = 0, b = 0, ad = 0;
+        switch (dir) {
             case 1:
-                //    System.out.println("case 1   ----KILL ");
-                kill(x, y);
+                a = -1;
+                ad = 3;
+                break;
+            case 2:
+                b = 1;
+                ad = 4;
+                break;
+            case 3:
+                a = 1;
+                ad = 1;
+                break;
+            case 4:
+                b = -1;
+                ad = 2;
+                break;
+            default:
+                next();
+        }
+
+        switch (smplfire(x + a, y + b)) {
+            case 1:
+                kill(x + a, y + b);
+
+                /*   if ((smplfire(x + 2 * a, y + 2 * b)) == 1){
+                    fire(x + 3 * a, y + 3 * b);
+                }
+                else sndfire(x, y, ad);*/
             case 2:
                 next4();//    System.out.println("case 1   ----KILL ");
 
 
             case 8: //System.out.println("case 3    ----KILL");
-                next4();
+                kill(x, y);
             case -1:// System.out.println("case 4   ----KILL");
                 next4();
             case 11:
@@ -311,13 +403,55 @@ void kill(int x, int y) {
                 markhit(x, y);
                 kill(x, y);
                 return 1;
-            default: res=-1;
+            default:
+                res = -1;
 
         }
 
         return res;
     }
 
+    ////////////////////////////////////
+    public Integer smplfire(int x, int y) {
+        if (vicpoint == 10) return -1;
+        int res = -1;
+        if (y < 0 || x < 0 || y > 9 || x > 9) return -1;
+        if (pole[y][x] != 0) {
+            System.out.println(x + "," + y + " /*** Hitting place ***  / deads:" + vicpoint + "shots:" + shots + "/  pole=" + pole[y][x]);
+            //   toScr(pole);
+            return -1;
+        }
+
+        SeaBattle.FireResult fireResult = seaBattle.fire(x, y);
+        shots++;
+        //    System.out.println(x + "<x,y>" + y + "- shot#" + shots + " -" + fireResult);
+        switch (fireResult) {
+            case MISS:
+                pole[y][x] = 8;
+                return 8;
+
+            case DESTROYED:
+                pole[y][x] = 2;
+
+                vicpoint++;
+                if (vicpoint == 10) return 11;
+                //        System.out.println("call DZONE from DESTROYED");
+
+                dzone(x, y);
+
+                return 2;
+            case HIT:
+                pole[y][x] = 1;
+                markhit(x, y);
+
+                return 1;
+            default:
+                res = -1;
+
+        }
+
+        return res;
+    }
 
     void toScr(int[][] pl) {
         for (int i = 0; i < 10; i++) {
@@ -330,28 +464,42 @@ void kill(int x, int y) {
 
 
     void next() {
-        if (vicpoint == 10) return;
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                if (pole[j][i] == 0) fire(i, j);
+        if (vicpoint != 10) {
+            int c = 0;
+            for (int i = 0; i < 10; i++) {
+
+                for (int j = 0; j < 10; j++) {
+                    if (pole[j][i] == 0) {
+                        System.out.println("!!!!!!!! c=" + c + "  !!!NEXT " + i + ":" + j + "  NEXT!!!!!!!!!!!!");
+
+                        fire(i, j);
+                        stcnt = 0;
+                    }
+                }
             }
+        } else {
+            System.out.println("next" + "       shot=" + shots + "      vic=" + vicpoint);
+            return;
         }
-        System.out.println("next" + "       shot=" + shots + "      vic=" + vicpoint);
+
     }
 
     void next4() {
-/*        if (vicpoint==10) return;
-        while (steppos < 96) {
+        if (vicpoint == 10) return;
+        while (steppos < 95) {
             steppos = steppos % 100;
             steppos += 4;
 
 
             if (pole[(steppos / 10)][(steppos % 10)] == 0) {
+
+                System.out.println("!!!!!!!!!!!NEXT 4 " + (steppos / 10) + ":" + (steppos % 10) + "  NEXT 4 !!!!!!!!!!!!");
+
                 fire((steppos / 10), (steppos % 10));
                 break;
-            } else next4();
-            System.out.println("next4");
-        }*/
+            } else next();
+            next();
+        }
         next();
     }
 
@@ -359,13 +507,11 @@ void kill(int x, int y) {
     // main
     public static void main(String[] args) {
 
-/*        int score=0;
-        for (int i =1; i<=1000; i++){
-            SeaBattle seaBattle = new SeaBattle();
+
+/*            SeaBattle seaBattle = new SeaBattle();
         new SeaBattleAlg().battleAlgorithm(seaBattle);
-        score+= seaBattle.getResult();
-    }
-        System.out.println("Sea battle score ="+score/1000);*/
+
+        System.out.println("Sea battle score ="+seaBattle.getResult());*/
 
         System.out.println("Sea battle");
         double res = 0;
@@ -376,6 +522,8 @@ void kill(int x, int y) {
             res += seaBattle.getResult();
         }
         System.out.println(res / 1000);
+
+
     }
 
 
