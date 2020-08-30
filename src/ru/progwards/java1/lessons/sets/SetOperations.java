@@ -24,9 +24,9 @@ public class SetOperations {
         Set<Integer> inter = intersection(set1, set2);
         Set<Integer> s1 = set1;
         Set<Integer> s2 = set2;
-        s1.removeAll(inter);
-        s2.removeAll(inter);
         s1.addAll(s2);
+        s1.removeAll(inter);
+
         return s1;
     }
 
