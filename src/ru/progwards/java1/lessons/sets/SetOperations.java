@@ -21,8 +21,9 @@ public class SetOperations {
     }
 
     public static Set<Integer> symDifference(Set<Integer> set1, Set<Integer> set2) {
-        set1.removeAll(intersection(set1, set2));
-        set2.removeAll(intersection(set1, set2));
+        Set<Integer> inter = intersection(set1, set2);
+        set1.removeAll(inter);
+        set2.removeAll(inter);
         set1.addAll(set2);
         return set1;
     }

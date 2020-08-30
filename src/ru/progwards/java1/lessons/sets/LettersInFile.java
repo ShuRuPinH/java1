@@ -1,6 +1,7 @@
 package ru.progwards.java1.lessons.sets;
 
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -25,14 +26,17 @@ public class LettersInFile {
  Все возникающие исключения, по работе с потоками, пробросить выше.
  */
     public static String process(String fileName) throws Exception {
+        File file = new File(fileName);
+        try (Scanner scanner = new Scanner(file)) {
+            while (scanner.hasNextLine()) {
+                String str = new String(scanner.nextLine().getBytes(), "UTF-8");
+                System.out.println(str);
 
-        try (RandomAccessFile raf = new RandomAccessFile(fileName, "r")) {
-
-            for (long i = 0; i < raf.length(); i++) {
-                raf.seek(i);
-                Character tch = (char) raf.readByte();
-                miner.add(tch);
+                for (char ch : str.toCharArray()) {
+                    miner.add(ch);
+                }
             }
+
 
             miner.retainAll(words);
             for (char i : miner) {
