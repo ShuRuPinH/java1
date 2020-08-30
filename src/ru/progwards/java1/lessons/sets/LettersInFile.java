@@ -1,6 +1,5 @@
 package ru.progwards.java1.lessons.sets;
 
-import org.checkerframework.checker.units.qual.A;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
