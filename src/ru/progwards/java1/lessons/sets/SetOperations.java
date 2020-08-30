@@ -20,12 +20,14 @@ public class SetOperations {
         return set1;
     }
 
-    public static Set<Integer> symDifference(Set<Integer> set1, Set<Integer> set2) {
+    public static Set<Integer> symDifference(final Set<Integer> set1, final Set<Integer> set2) {
         Set<Integer> inter = intersection(set1, set2);
-        set1.removeAll(inter);
-        set2.removeAll(inter);
-        set1.addAll(set2);
-        return set1;
+        Set<Integer> s1 = set1;
+        Set<Integer> s2 = set2;
+        s1.removeAll(inter);
+        s2.removeAll(inter);
+        s1.addAll(s2);
+        return s1;
     }
 
 
