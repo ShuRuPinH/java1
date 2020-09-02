@@ -2,14 +2,15 @@ package ru.progwards.java1.lessons.queues;
 
 
 import java.util.*;
+import java.util.concurrent.Callable;
 
 public class CollectionsSort {
 
     public static void mySort(Collection<Integer> data) {
         List<Integer> dataL = new ArrayList<>(data);
 
-        for (int i = 0; i <= dataL.size() - 1; i++) {
-            for (int j = i + 1; j <= dataL.size() - 1; j++) {
+        for (int i = 0; i <= data.size() - 1; i++) {
+            for (int j = i + 1; j <= data.size() - 1; j++) {
                 if (dataL.get(i) > dataL.get(j)) {
                     int temp = dataL.get(j);
                     dataL.set(j, dataL.get(i));
@@ -17,6 +18,8 @@ public class CollectionsSort {
                 }
             }
         }
+        data.clear();
+        data.addAll(dataL);
     }
 
     public static void minSort(Collection<Integer> data) {
@@ -55,24 +58,26 @@ public class CollectionsSort {
 
         int time = 1;
 
+        start = System.currentTimeMillis();
         mySort(test);
         final int myTime = (int) (System.currentTimeMillis() - start);
         temp.add(myTime);
 
         //   res.offer(new PriorityString("mySort", myTime));
 
+        start = System.currentTimeMillis();
         minSort(test);
         int minTime = (int) (System.currentTimeMillis() - start);
         temp.add(minTime);
 
         //   res.offer(new PriorityString("minSort", minTime));
-
+        start = System.currentTimeMillis();
         collSort(test);
         int collTime = (int) (System.currentTimeMillis() - start);
         temp.add(collTime);
         //    res.offer(new PriorityString("colSort", collTime));
 
-        //    System.out.println(res);
+        System.out.println("my=" + myTime + "     min=" + minTime + "      col=" + collTime);
 
         for (Integer i : temp) {
             if (i == myTime) {
@@ -128,7 +133,18 @@ public class CollectionsSort {
     }*/
 
     public static void main(String[] args) {
+        Collection<Integer> cal = new ArrayList<>();
 
+        cal.add(37);
+        cal.add(52);
+        cal.add(92);
+        cal.add(77);
+        cal.add(49);
+        cal.add(34);
+
+
+        mySort(cal);
+        System.out.println(cal);
 
         for (int i = 0; i < 6; i++) {
             System.out.println(compareSort());
