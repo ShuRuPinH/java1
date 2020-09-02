@@ -25,7 +25,7 @@ public class OrderQueue {
 
         @Override
         public int compareTo(PrioOrders o) {
-            return Integer.compare(priority, o.priority);
+            return Integer.compare(priority, o.priority) == 0 ? Integer.compare(ord.getNum(), o.ord.getNum()) : Integer.compare(priority, o.priority);
         }
 
         @Override
