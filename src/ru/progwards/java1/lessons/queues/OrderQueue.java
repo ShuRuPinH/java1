@@ -35,11 +35,9 @@ public class OrderQueue {
     }
 
     public Order get() {
-        try {
-            return list.poll().ord;
-        } catch (Exception e) {
-            return null;
-        }
+
+        return list.isEmpty() ? null : list.poll().ord;
+
     }
 /*
 
