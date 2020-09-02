@@ -11,17 +11,7 @@ public class Calculate {
         return ccc.pop();
     }
 
-    /*
-    3.7 public static double calculation1(), возвращающую результат вычислени€ следующей формулы:
 
-2.2*(3+12.1), использу€ класс StackCalc
-
-
-3.8 public static double calculation2(), возвращающую результат вычислени€ следующей формулы:
-
-(737.22+24)/(55.6-12.1)+(19-3.33)*(87+2*(13.001-9.2)), использу€ класс StackCalc
-
-     */
     static double calculation2() {
         StackCalc c = new StackCalc();
         c.push(13.001);
