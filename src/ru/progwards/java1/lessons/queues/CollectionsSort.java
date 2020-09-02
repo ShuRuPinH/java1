@@ -44,49 +44,66 @@ public class CollectionsSort {
     public static Collection<String> compareSort() {
 
 
-        Collection<Integer> mm = new ArrayList<>();
-        PriorityQueue<PriorityString> res = new PriorityQueue<>();
+        Collection<Integer> test = new ArrayList<>();
+        Set<Integer> temp = new TreeSet<>();
+        Collection<String> res = new ArrayList<>();
+
+
+        //    PriorityQueue<PriorityString> res = new PriorityQueue<>();
 
 
         final int ELEM_COUNT = 10_000;
         long start = System.currentTimeMillis();
-        for (int i = 0; i < ELEM_COUNT; i++) mm.add((int) (Math.random() * 100));
+        for (int i = 0; i < ELEM_COUNT; i++) test.add((int) (Math.random() * 100));
         System.out.println("Making Collectz: " + (System.currentTimeMillis() - start));
 
         int time = 1;
-/*
-по логике элементы должны раставляться  согласно величине приоритета (наименьшим временем вычисления), но
-получаеся что  первым встает элемент с высшим приоритето, а оастльные  просто по очереди добавления
- */
-        mySort(mm);
-        int myTime = (int) (System.currentTimeMillis() - start);
-        res.offer(new PriorityString("minSort", myTime));
 
-        minSort(mm);
+        mySort(test);
+        final int myTime = (int) (System.currentTimeMillis() - start);
+        temp.add(myTime);
+
+        //   res.offer(new PriorityString("mySort", myTime));
+
+        minSort(test);
         int minTime = (int) (System.currentTimeMillis() - start);
-        res.offer(new PriorityString("minSort", minTime));
-///  Изменим время на грантировано  больше чем у  последнего
-        minSort(mm);
-        int minTimet = (int) (System.currentTimeMillis() - start);
-        res.offer(new PriorityString("minSort *TEST*", minTimet + 200));
+        temp.add(minTime);
 
-        collSort(mm);
+        //   res.offer(new PriorityString("minSort", minTime));
+
+        collSort(test);
         int collTime = (int) (System.currentTimeMillis() - start);
-        res.offer(new PriorityString("colSort", collTime));
+        temp.add(collTime);
+        //    res.offer(new PriorityString("colSort", collTime));
 
-        System.out.println(res);
-        return null;
+        //    System.out.println(res);
+
+        for (Integer i : temp) {
+            if (i == myTime) {
+                res.add("mySort");
+                //   temp.remove(i);
+                continue;
+            } else if (i == collTime && i == minTime) {
+                res.add("collSort");
+                res.add("minSort");
+                break;
+            } else if (i == collTime) {
+                res.add("collSort");
+            } else if (i == minTime) {
+                res.add("minSort");
+                //      temp.remove(i);
+                continue;
+            }
+        }
+        return res;
     }
-/*
-
-РЕЗУЛЬТАТ СОРТИРОВКИ :
-[166 minSort, 629 minSort, 888 minSort *TEST*, 689 colSort]
 
 
 
- */
 
-    static class PriorityString implements Comparable<PriorityString> {
+
+
+/*    static class PriorityString implements Comparable<PriorityString> {
         private String str;
         private int priority;
 
@@ -100,11 +117,11 @@ public class CollectionsSort {
             System.out.println("pr=" + priority);
             System.out.println("o.pr=" + o.priority);
             return Integer.compare(this.priority, o.priority);
-       /*     if (priority == o.priority){
+       *//*     if (priority == o.priority){
 
                o.priority+= Byte.compare((byte)str.toCharArray()[0],(byte)o.str.toCharArray()[0]);
                 System.out.println("comp="+Byte.compare((byte)str.toCharArray()[0],(byte)o.str.toCharArray()[0]));
-            }*/
+            }*//*
 
         }
 
@@ -112,13 +129,13 @@ public class CollectionsSort {
         public String toString() {
             return priority + " " + str;
         }
-    }
+    }*/
 
     public static void main(String[] args) {
 
 
         for (int i = 0; i < 6; i++) {
-            compareSort();
+            System.out.println(compareSort());
         }
 
 
