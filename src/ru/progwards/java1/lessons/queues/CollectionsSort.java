@@ -24,29 +24,27 @@ public class CollectionsSort {
 
     public static void minSort(Collection<Integer> data) {
         Collection<Integer> nnew = new ArrayList<>();
-        while (!data.isEmpty()) {
-            Integer minT = Collections.min(data);
-            data.remove(minT);
-            nnew.add(minT);
-            int k = 5;
-        }
+            while (!data.isEmpty()) {
+                Integer minT = Collections.min(data);
+                data.remove(minT);
+                nnew.add(minT);
+
+
+            }
         data.clear();
         data.addAll(nnew);
 
 
     }
 
-    static void collSort(Collection<Integer> data) {
-        List<Integer> nnew = new ArrayList<>(data);
-        Collections.sort(nnew);
-        data.clear();
-        data.addAll(nnew);
+    public static void collSort(Collection<Integer> data) {
+        Collections.sort((List) data);
     }
 
     public static Collection<String> compareSort() {
 
 
-        Collection<Integer> test = new ArrayList<>();
+        final Collection<Integer> test = new ArrayList<>();
         Set<Integer> temp = new TreeSet<>();
         Collection<String> res = new ArrayList<>();
 
@@ -140,14 +138,15 @@ public class CollectionsSort {
 
         cal.add(37);
         cal.add(52);
-        cal.add(92);
+        cal.add(02);
         cal.add(77);
         cal.add(49);
         cal.add(34);
 
 
-        mySort(cal);
-        System.out.println(cal);
+        collSort(cal);
+        System.out.println("       coll               =" + cal);
+
 
         for (int i = 0; i < 6; i++) {
             System.out.println(compareSort());
