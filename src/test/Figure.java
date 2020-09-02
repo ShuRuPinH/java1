@@ -41,6 +41,7 @@ class Round extends Figure {
 
     String figDetect(Figure fig) {
 
+        if (fig == null) return "Неизвестная фигура";
 
         if (new Round(2).getClass().equals(fig.getClass())) {
 
