@@ -30,14 +30,17 @@ public class CollectionsSort {
             nnew.add(minT);
             int k = 5;
         }
+        data.clear();
         data.addAll(nnew);
 
 
     }
 
     static void collSort(Collection<Integer> data) {
-
-        Collections.sort(new ArrayList(data));
+        List<Integer> nnew = new ArrayList<>(data);
+        Collections.sort(nnew);
+        data.clear();
+        data.addAll(nnew);
     }
 
     public static Collection<String> compareSort() {

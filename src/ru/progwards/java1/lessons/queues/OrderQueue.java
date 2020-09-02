@@ -35,7 +35,7 @@ public class OrderQueue {
     }
 
     public Order get() {
-        return list.size() > 0 ? list.poll().ord : new Order(0);
+        return list.size() > 0 ? list.poll().ord : null;
     }
 /*
 
