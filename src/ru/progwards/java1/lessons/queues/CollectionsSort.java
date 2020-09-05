@@ -41,10 +41,81 @@ public class CollectionsSort {
         Collections.sort((List) data);
     }
 
+    static class CompMetod {
+        String name;
+        long time;
+
+        public CompMetod(String name, long time) {
+            this.name = name;
+            this.time = time;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public long getTime() {
+            return time;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        static class TimeComparator implements Comparator<CompMetod> {
+            @Override
+            public int compare(CompMetod o1, CompMetod o2) {
+                return Long.compare(o1.getTime(), o2.getTime());
+            }
+        }
+
+        static class NameComparator implements Comparator<CompMetod> {
+            @Override
+            public int compare(CompMetod o1, CompMetod o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        }
+    }
+
     public static Collection<String> compareSort() {
 
+        ArrayList<String> arrayList = new ArrayList<>();    //  для возврата
+        Collection<Integer> list1 = fillFull(1_000);
+        Collections.shuffle((List<?>) list1);
 
+
+        Comparator<CompMetod> metСomp = new CompMetod.TimeComparator().thenComparing(new CompMetod.NameComparator());
+        TreeSet<CompMetod> metСoll = new TreeSet<CompMetod>(metСomp);
+
+        long start0 = System.currentTimeMillis();
+        mySort(list1);
+        long start1 = System.currentTimeMillis();
+        metСoll.add(new CompMetod("mySort", start1 - start0));
+
+        start0 = System.currentTimeMillis();
+        minSort(list1);
+        start1 = System.currentTimeMillis();
+        metСoll.add(new CompMetod("minSort", start1 - start0));
+
+        start0 = System.currentTimeMillis();
+        collSort(list1);
+        start1 = System.currentTimeMillis();
+        metСoll.add(new CompMetod("collSort", start1 - start0));
+
+        for (CompMetod mets : metСoll) {
+            arrayList.add(mets.getName());
+        }
+        System.out.println(arrayList);
+        return arrayList;
+    }
+
+    private static Collection<Integer> fillFull(int i) {
         final Collection<Integer> test = new ArrayList<>();
+        for (int j = 0; j < i; j++) test.add((int) (Math.random() * 100));
+        return test;
+    }
+
+       /*
         Set<Integer> temp = new TreeSet<>();
         Collection<String> res = new ArrayList<>();
 
@@ -54,7 +125,7 @@ public class CollectionsSort {
 
         final int ELEM_COUNT = 10_000;
         long start = System.currentTimeMillis();
-        for (int i = 0; i < ELEM_COUNT; i++) test.add((int) (Math.random() * 100));
+
         System.out.println("Making Collectz: " + (System.currentTimeMillis() - start));
 
         int time = 1;
@@ -98,7 +169,7 @@ public class CollectionsSort {
             }
         }
         return res;
-    }
+    }*/
 
 
 
@@ -154,6 +225,7 @@ public class CollectionsSort {
 
 
     }
+
 
 }
 
