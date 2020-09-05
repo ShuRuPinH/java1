@@ -25,7 +25,8 @@ public class SalesInfo {
                 else continue;
                 if (wordScn.hasNextInt()) wordScn.next();
                 else continue;
-                if (wordScn.hasNextDouble()) {
+                if (wordScn.hasNextDouble()) wordScn.next();
+                if (!wordScn.hasNext()) {
                     fileSts.add(temp);
                     count++;
                 } else continue;

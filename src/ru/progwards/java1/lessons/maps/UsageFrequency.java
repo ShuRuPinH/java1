@@ -50,7 +50,7 @@ public class UsageFrequency {
             try (Scanner scnWord = new Scanner(arString).useDelimiter(" ")) {
                 while (scnWord.hasNext()) {
                     String tmp = scnWord.next();
-                    if (!Character.isLetterOrDigit(tmp.charAt(0))) continue;
+                    if (!Character.isLetterOrDigit(tmp.charAt(0)) || tmp.length() == 1) continue;
 
                     if (map.containsKey(tmp)) {
                         map.put(tmp, 1 + map.get(tmp));

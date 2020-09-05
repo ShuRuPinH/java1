@@ -8,6 +8,10 @@ public class FiboMapCache {
     private Map<Integer, BigDecimal> fiboCache = new HashMap<>();
     boolean swch;
 
+    public FiboMapCache() {
+        swch = false;
+    }
+
     public FiboMapCache(boolean cacheOn) {
         swch = cacheOn;
     }
