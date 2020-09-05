@@ -19,9 +19,9 @@ public class FiboMapCache {
     public BigDecimal fiboNumber(int n) {
 
         BigDecimal temp = new BigDecimal(0);
-        if (swch && fiboCache.containsKey(n)) {
-            if (fiboCache.get(n) != null)
-                temp = fiboCache.get(n);
+        if (swch && fiboCache.containsKey((Integer) n)) {
+
+            temp = fiboCache.get(n);
         } else {
 
             int f1 = 0;
@@ -79,6 +79,7 @@ public class FiboMapCache {
         start = System.currentTimeMillis();
         for (int i = 1; i <= 1000; i++) {
             cashON.fiboNumber(i);
+
         }
         long timeON = System.currentTimeMillis() - start;
 
@@ -91,6 +92,8 @@ public class FiboMapCache {
 
         System.out.println("fiboNumber cacheOn=true время выполнения " + timeON);
         System.out.println("fiboNumber cacheOn=falce время выполнения " + timeOFF);
+
+
     }
 
     public static void main(String[] args) {
