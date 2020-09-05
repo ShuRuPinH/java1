@@ -21,7 +21,15 @@ public class UsageFrequency {
         else return;
         try (Scanner scn = new Scanner(file)) {
             while (scn.hasNextLine()) {
-                fileSrgs.add(new String(scn.nextLine().getBytes(), "UTF-8"));
+                String temp = new String(scn.nextLine().getBytes(), "UTF-8");
+                String tt = "";
+                for (char ch : temp.toCharArray()) {
+                    if (Character.isLetterOrDigit(ch)) tt += ch;
+                    else tt += " ";
+
+                }
+                System.out.println(tt);
+                fileSrgs.add(tt);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -47,10 +55,10 @@ public class UsageFrequency {
     public Map<String, Integer> getWords() {
         Map<String, Integer> map = new HashMap<>();
         for (String arString : fileSrgs) {
-            try (Scanner scnWord = new Scanner(arString).useDelimiter(" ")) {
+            try (Scanner scnWord = new Scanner(arString).useDelimiter("\\s* ")) {
                 while (scnWord.hasNext()) {
                     String tmp = scnWord.next();
-                    if (!Character.isLetterOrDigit(tmp.charAt(0)) || tmp.length() == 1) continue;
+                    if (!Character.isLetterOrDigit(tmp.charAt(0))) continue;
 
                     if (map.containsKey(tmp)) {
                         map.put(tmp, 1 + map.get(tmp));

@@ -17,9 +17,11 @@ public class FiboMapCache {
     }
 
     public BigDecimal fiboNumber(int n) {
-        BigDecimal temp = BigDecimal.valueOf(0);
+
+        BigDecimal temp = new BigDecimal(0);
         if (swch && fiboCache.containsKey(n)) {
-            temp = fiboCache.get(n);
+            if (fiboCache.get(n) != null)
+                temp = fiboCache.get(n);
         } else {
 
             int f1 = 0;
