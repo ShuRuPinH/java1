@@ -370,7 +370,7 @@ void kill(int x, int y) {
 
         switch (smplfire(x + a, y + b)) {
             case 1:
-                kill(x + a, y + b);
+                kill(x, y);
 
                 /*   if ((smplfire(x + 2 * a, y + 2 * b)) == 1){
                     fire(x + 3 * a, y + 3 * b);
