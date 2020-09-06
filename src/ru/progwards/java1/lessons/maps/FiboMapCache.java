@@ -26,7 +26,7 @@ public class FiboMapCache {
 
         } else {
             temp = BigDecimal.valueOf(Fibo(n));
-            fiboCache.put(n, temp);
+           if (fiboCache != null) fiboCache.put(n, temp);
         }
         return temp;
     }
