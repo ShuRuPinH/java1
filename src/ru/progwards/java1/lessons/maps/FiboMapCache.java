@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FiboMapCache {
-    Map<Integer, BigDecimal> fiboCache = new HashMap<>();
+    Map<Integer, BigDecimal> fiboCache;
     boolean swch;
 
     public FiboMapCache() {
@@ -14,6 +14,7 @@ public class FiboMapCache {
 
     public FiboMapCache(boolean cacheOn) {
         swch = cacheOn;
+        fiboCache = new HashMap<>();
     }
 
     public Map<Integer, BigDecimal> getFiboCache() {
@@ -30,19 +31,19 @@ public class FiboMapCache {
             temp = fiboCache.get(n);
 
         } else {
-            temp = BigDecimal.valueOf(Fibo(n));
+            temp = (Fibo(n));
             fiboCache.put(n, temp);
         }
         return temp;
     }
 
-    public int Fibo(int n) {
-        int f1 = 0;
-        int f2 = 1;
-        int f;
+    public BigDecimal Fibo(int n) {
+        BigDecimal f1 = new BigDecimal(0);
+        BigDecimal f2 = new BigDecimal(1);
+        BigDecimal f;
         int i = 1;
         do {
-            f = f1 + f2;
+            f = f1.add(f2);
             //     System.out.println("f(" + swch + ")=" + f);
             f1 = f2;
             f2 = f;
@@ -87,10 +88,12 @@ public class FiboMapCache {
         FiboMapCache cashOFF = new FiboMapCache(false);
         long start = 0;
 
+        cashON.clearCahe();
+
         start = System.currentTimeMillis();
         for (int i = 1; i <= 1000; i++) {
             cashON.fiboNumber(i);
-            //  System.out.println("on  " + i + ":" + cashON.fiboNumber(i));
+            System.out.println("on  " + i + ":" + cashON.fiboNumber(i));
 
         }
         long timeON = System.currentTimeMillis() - start;
@@ -98,7 +101,7 @@ public class FiboMapCache {
         start = System.currentTimeMillis();
         for (int i = 1; i <= 1000; i++) {
             cashOFF.fiboNumber(i);
-            //  System.out.println("off " + i + ":" + cashOFF.fiboNumber(i));
+            System.out.println("off " + i + ":" + cashOFF.fiboNumber(i));
         }
         long timeOFF = System.currentTimeMillis() - start;
 
