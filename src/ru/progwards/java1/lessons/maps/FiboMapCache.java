@@ -16,17 +16,22 @@ public class FiboMapCache {
         swch = cacheOn;
     }
 
-    public BigDecimal fiboNumber(int n) {
+    public Map<Integer, BigDecimal> getFiboCache() {
+        return fiboCache;
+    }
 
+    public BigDecimal fiboNumber(int n) {
+        if (fiboCache == null)
+            fiboCache = new HashMap<>();
         BigDecimal temp = new BigDecimal(0);
 
-        if (swch && fiboCache != null && fiboCache.containsKey(n)) {
+        if (swch && fiboCache.containsKey(n)) {
 
             temp = fiboCache.get(n);
 
         } else {
             temp = BigDecimal.valueOf(Fibo(n));
-           if (fiboCache != null) fiboCache.put(n, temp);
+            fiboCache.put(n, temp);
         }
         return temp;
     }
