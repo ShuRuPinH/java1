@@ -20,30 +20,40 @@ public class FiboMapCache {
 
         BigDecimal temp = new BigDecimal(0);
 
-        if (swch && !fiboCache.isEmpty() && fiboCache.containsKey(n)) {
+        if (swch && !fiboCache.isEmpty()) {
 
+            if (fiboCache.containsKey(n))
+                temp = fiboCache.get(n);
+            else {
+                temp = BigDecimal.valueOf(Fibo(n));
+                fiboCache.put(n, temp);
 
-            temp = fiboCache.get(n);
+            }
 
         } else {
-
-            int f1 = 0;
-            int f2 = 1;
-            int f;
-            int i = 1;
-            do {
-                f = f1 + f2;
-           //     System.out.println("f(" + swch + ")=" + f);
-                f1 = f2;
-                f2 = f;
-                i++;
-            } while (i < n);
-            temp = BigDecimal.valueOf(f);
+            temp = BigDecimal.valueOf(Fibo(n));
             fiboCache.put(n, temp);
+
 
         }
         return temp;
     }
+
+    public int Fibo(int n) {
+        int f1 = 0;
+        int f2 = 1;
+        int f;
+        int i = 1;
+        do {
+            f = f1 + f2;
+            //     System.out.println("f(" + swch + ")=" + f);
+            f1 = f2;
+            f2 = f;
+            i++;
+        } while (i < n);
+        return f;
+    }
+
 
     public void clearCahe() {
         fiboCache = null;
