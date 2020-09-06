@@ -30,7 +30,7 @@ public class FiboMapCache {
             int i = 1;
             do {
                 f = f1 + f2;
-                System.out.println("f(" + swch + ")=" + f);
+           //     System.out.println("f(" + swch + ")=" + f);
                 f1 = f2;
                 f2 = f;
                 i++;
@@ -78,16 +78,17 @@ public class FiboMapCache {
         long start = 0;
 
         start = System.currentTimeMillis();
-        for (int i = 1; i <= 10; i++) {
-
-            System.out.println("on  " + i + ":" + cashON.fiboNumber(i));
+        for (int i = 1; i <= 1000; i++) {
+            cashON.fiboNumber(i);
+            //  System.out.println("on  " + i + ":" + cashON.fiboNumber(i));
 
         }
         long timeON = System.currentTimeMillis() - start;
 
         start = System.currentTimeMillis();
-        for (int i = 1; i <= 10; i++) {
-            System.out.println("off " + i + ":" + cashOFF.fiboNumber(i));
+        for (int i = 1; i <= 1000; i++) {
+            cashOFF.fiboNumber(i);
+            //  System.out.println("off " + i + ":" + cashOFF.fiboNumber(i));
         }
         long timeOFF = System.currentTimeMillis() - start;
 
