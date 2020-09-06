@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FiboMapCache {
-    Map<Integer, BigDecimal> fiboCache = new HashMap<>();
+    Map<Integer, BigDecimal> fiboCache;
     boolean swch;
 
     public FiboMapCache() {
@@ -17,7 +17,7 @@ public class FiboMapCache {
     }
 
     public BigDecimal fiboNumber(int n) {
-
+        fiboCache = new HashMap<>();
         BigDecimal temp = new BigDecimal(0);
 
         if (swch && !fiboCache.isEmpty()) {
