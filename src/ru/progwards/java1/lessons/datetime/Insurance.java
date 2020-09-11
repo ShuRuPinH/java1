@@ -70,7 +70,7 @@ public class Insurance {
 
     public boolean checkValid(ZonedDateTime dateTime) {
         if (duration == null) return true;
-        ZonedDateTime end = start.plusSeconds(duration.toSeconds());
+        ZonedDateTime end = start.plusNanos(duration.toNanos());
 
         if (dateTime.isAfter(start) && dateTime.isBefore(end)) return true;
         return false;
