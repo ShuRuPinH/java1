@@ -1,7 +1,4 @@
 package ru.progwards.java1.lessons.datetime;
-
-import test.MapTest;
-
 import java.time.Duration;
 import java.time.Instant;
 import java.util.*;

@@ -1,7 +1,7 @@
 package ru.progwards.java1.lessons.datetime;
 
 import java.time.Instant;
-import java.util.Date;
+
 import java.util.Random;
 
 public class UserSession {
