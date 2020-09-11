@@ -4,6 +4,7 @@
     <file url="file://$PROJECT_DIR$/file1.txt" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/file2.txt" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/ru/progwards/java1/SeaBattle/shurupin/SeaBattleAlg.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/ru/progwards/java1/lessons/datetime/Insurance.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/ru/progwards/java1/lessons/maps/FiboMapCache.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/ru/progwards/java1/lessons/maps/SalesInfo.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/ru/progwards/java1/lessons/maps/UsageFrequency.java" charset="UTF-8" />
@@ -14,9 +15,10 @@
     <file url="file://$PROJECT_DIR$/src/ru/progwards/java1/lessons/queues/StackCalc.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/ru/progwards/java1/lessons/sets/LettersInFile.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/ru/progwards/java1/lessons/sets/ProductAnalytics.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/BBbot.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/test/Collection.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/test/Figure.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/test/MapTest.java" charset="UTF-8" />
-    <file url="PROJECT" charset="windows-1251" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
