@@ -69,18 +69,10 @@ public class Insurance {
     }
 
     public boolean checkValid(ZonedDateTime dateTime) {
-        if (duration == null) return false;
-        Duration temp = Duration.between(start, dateTime);
-        int rs = duration.compareTo(temp);
-        switch (rs) {
-            case 1:
-                return true;
-            case -1:
-                return false;
-            case 0:
-                return false;
-            default:
-        }
+        if (duration == null) return true;
+        ZonedDateTime end = start.plusSeconds(duration.toSeconds());
+
+        if (dateTime.isAfter(start) && dateTime.isBefore(end)) return true;
         return false;
     }
 
