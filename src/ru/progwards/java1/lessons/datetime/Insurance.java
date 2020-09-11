@@ -69,7 +69,7 @@ public class Insurance {
     }
 
     public boolean checkValid(ZonedDateTime dateTime) {
-        if (duration == null) return true;
+        if (duration == null) return false;
         Duration temp = Duration.between(start, dateTime);
         int rs = duration.compareTo(temp);
         switch (rs) {
@@ -94,6 +94,8 @@ public class Insurance {
         Insurance inS = new Insurance("2019-12-03", FormatStyle.SHORT);
         Insurance inL = new Insurance("2019-12-03T10:15:30", FormatStyle.LONG);
         Insurance inF = new Insurance("2019-12-03T10:15:30+01:00[Europe/Paris]", FormatStyle.FULL);
+
+        System.out.println(inS.toString());
 
         inS.setDuration("PT100H", FormatStyle.FULL);
         inL.setDuration("0000-10-03T10:15:30", FormatStyle.LONG);
