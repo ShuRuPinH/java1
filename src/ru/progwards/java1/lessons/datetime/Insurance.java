@@ -78,7 +78,7 @@ public class Insurance {
             case -1:
                 return false;
             case 0:
-                return true;
+                return false;
             default:
         }
         return false;
@@ -95,7 +95,7 @@ public class Insurance {
         Insurance inL = new Insurance("2019-12-03T10:15:30", FormatStyle.LONG);
         Insurance inF = new Insurance("2019-12-03T10:15:30+01:00[Europe/Paris]", FormatStyle.FULL);
 
-        inS.setDuration("PT8760H", FormatStyle.FULL);
+        inS.setDuration("PT100H", FormatStyle.FULL);
         inL.setDuration("0000-10-03T10:15:30", FormatStyle.LONG);
         inF.setDuration("12960000000", FormatStyle.SHORT);
         System.out.println(inF.duration.toString());
