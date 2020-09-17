@@ -16,20 +16,23 @@ public class FindDuplicates {
         List<Path> full = walker(pp);
         List<List<String>> res = new ArrayList();
 
+
         for (Path x : full) {
             Path xP = x.getFileName();
             Set<String> temp = new HashSet<>();
 
-            Iterator<Path> iterator = full.listIterator();
+            Iterator<Path> iterator = full.iterator();
             while (iterator.hasNext()) {
                 Path y = iterator.next();
                 Path yP = y.getFileName();
+                System.out.println(y.toString());
                 if (xP.equals(yP)) {
                     try {
-                        if (Files.size(xP) == Files.size(yP)
-                                && Files.getLastModifiedTime(xP).equals(Files.getLastModifiedTime(yP))
-                                && Files.readAllLines(xP).equals(Files.readAllLines(yP))) {
-                            System.out.println("полное соотвествие" + x + " " + y);
+                        if (x.equals(y)) continue;
+                        if (Files.size(x) == Files.size(y)
+                                && Files.getLastModifiedTime(x).equals(Files.getLastModifiedTime(y))
+                                && Files.readString(x).equals(Files.readString(y))) {
+                            System.out.println("полное соотвествие  " + x + " == " + y);
                             temp.add(x.toAbsolutePath().toString());
                             temp.add(y.toAbsolutePath().toString());
                             full.remove(y);
@@ -78,4 +81,9 @@ public class FindDuplicates {
     размеру и по содержимому. Сигнатура метода public List<List<String>> findDuplicates(String startPath),
     результат - список, содержащий списки строк с именами и полными путями совпадающих файлов.
      */
+
+    public static void main(String[] args) {
+        FindDuplicates test = new FindDuplicates();
+        test.findDuplicates("src");
+    }
 }
