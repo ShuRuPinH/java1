@@ -30,20 +30,14 @@ public class FilesSelect {
         PathMatcher pathMatcher = FileSystems.getDefault().getPathMatcher("glob:**/*.txt");
         try {
             Files.walkFileTree(start, new SimpleFileVisitor<Path>() {
-                String word = "";
+
 
                 @Override
                 public FileVisitResult visitFile(Path path, BasicFileAttributes attrs) {
                     if (pathMatcher.matches(start.relativize(path)))
-                        word = check(path);
-                    if (word.length() != 0) {
-                        maker(word, path);
-
-                    } else return FileVisitResult.CONTINUE;
-                    ;
-
-
+                     check(path);
                     return FileVisitResult.CONTINUE;
+
                 }
 
                 @Override
@@ -59,7 +53,7 @@ public class FilesSelect {
 
     }
 
-    public static String check(Path chek) {
+    public static void check(Path chek) {
         try {
             String ch = Files.readString(chek);
             Scanner sc = new Scanner(ch);
@@ -70,7 +64,7 @@ public class FilesSelect {
                 while (iterator.hasNext()) {
                     String key = iterator.next();
                     if (key.contains(tmp)) {
-                        return key;
+                        maker(key, chek);
                     }
                 }
 
@@ -79,9 +73,9 @@ public class FilesSelect {
 
 
         } catch (IOException e) {
-            return "";
+
         }
-        return "";
+
     }
 
 
