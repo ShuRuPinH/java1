@@ -30,7 +30,7 @@ public class FilesSelect {
         PathMatcher pathMatcher = FileSystems.getDefault().getPathMatcher("glob:**/*.txt");
         try {
             Files.walkFileTree(start, new SimpleFileVisitor<Path>() {
-                String word;
+                String word = "";
 
                 @Override
                 public FileVisitResult visitFile(Path path, BasicFileAttributes attrs) {

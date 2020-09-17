@@ -13,7 +13,7 @@ import static java.nio.file.Files.getLastModifiedTime;
 import static java.nio.file.Files.isDirectory;
 
 public class OrderProcessor {
-    Path pathMain;
+    Path pathMain = Paths.get("");
     LocalDate time;
     int count = 0;
     List<Order> ordersLL = new ArrayList<>();

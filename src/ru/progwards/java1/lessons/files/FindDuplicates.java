@@ -31,7 +31,7 @@ public class FindDuplicates {
                                 && Files.readAllLines(xP).equals(Files.readAllLines(yP))) {
                             temp.add(x.toAbsolutePath().toString());
                             temp.add(y.toAbsolutePath().toString());
-                            full.remove(y);
+                         //   full.remove(y);
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
