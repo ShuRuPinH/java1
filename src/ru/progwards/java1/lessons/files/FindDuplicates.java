@@ -29,6 +29,7 @@ public class FindDuplicates {
                         if (Files.size(xP) == Files.size(yP)
                                 && Files.getLastModifiedTime(xP).equals(Files.getLastModifiedTime(yP))
                                 && Files.readAllLines(xP).equals(Files.readAllLines(yP))) {
+                            System.out.println("полное соотвествие" + x + " " + y);
                             temp.add(x.toAbsolutePath().toString());
                             temp.add(y.toAbsolutePath().toString());
                             full.remove(y);

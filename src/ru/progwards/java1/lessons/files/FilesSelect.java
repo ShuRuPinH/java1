@@ -69,10 +69,12 @@ public class FilesSelect {
                 }
 
             }
-            sc.close();
 
 
         } catch (IOException e) {
+
+
+        } finally {
 
         }
 

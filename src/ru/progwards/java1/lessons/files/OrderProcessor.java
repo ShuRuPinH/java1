@@ -36,6 +36,7 @@ public class OrderProcessor {
         String pathStr = "glob:**/" + shopId + "-??????-????.csv";
 
         PathMatcher pathMatcher = FileSystems.getDefault().getPathMatcher(pathStr);
+        System.out.println("pathMathcer:" + pathStr + "          pathMain:" + pathMain + "                  shopId" + shopId);
         try {
             Files.walkFileTree(pathMain, new SimpleFileVisitor<Path>() {
                 @Override
@@ -46,6 +47,7 @@ public class OrderProcessor {
                         try {
                             instTime = Files.getLastModifiedTime(path).toInstant();
                             time = LocalDate.ofInstant(instTime, ZoneId.systemDefault());
+                            System.out.println("time:" + time);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
