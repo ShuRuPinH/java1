@@ -75,6 +75,7 @@ public class FilesSelect {
                 }
 
             }
+            sc.close();
 
 
         } catch (IOException e) {
@@ -88,7 +89,8 @@ public class FilesSelect {
         Path out = Paths.get(outFolder).resolve(wrd);
         try {
             if (Files.exists(out) == false) Files.createDirectory(out);
-            Files.copy(mak, out.resolve(mak.getFileName()));
+            else Files.copy(mak, out.resolve(mak.getFileName()));
+
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -29,7 +29,7 @@ public class OrderProcessor {
         При наличии хотя бы одной ошибке в формате файла, файл полностью игнорируется, т.е. Не поступает в обработку.
         Метод возвращает количество файлов с ошибками. При этом, если в классе содержалась информация, ее надо удалить*/
     public int loadOrders(LocalDate start, LocalDate finish, String shopId) {
-
+        if (shopId == null) shopId = "";
         if (start == null) start.of(2007, 12, 03);
         if (finish == null) finish.of(3000, 12, 12);
         String pathStr = "glob:**/" + shopId + "-??????-????.csv";
@@ -119,6 +119,8 @@ public class OrderProcessor {
             temp.setPrice(Double.parseDouble(scan.next()));
 
             lItm.add(temp);
+            scan.close();
+
         }
         lItm.sort(null);
         ord.setItems(lItm);
