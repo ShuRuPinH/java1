@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.nio.file.*;
 
 import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.attribute.FileTime;
+import java.time.Instant;
 import java.util.*;
 
 public class FindDuplicates {
@@ -14,7 +16,7 @@ public class FindDuplicates {
         Path pp = Paths.get(startPath);
 
         List<Path> full = walker(pp);
-        List<List<String>> res = new ArrayList();
+        Set<List<String>> res = new HashSet<>();
 
 
         for (Path x : full) {
@@ -23,31 +25,42 @@ public class FindDuplicates {
 
             Iterator<Path> iterator = full.iterator();
             while (iterator.hasNext()) {
+
+
                 Path y = iterator.next();
+                if (x.equals(y)) {
+                    System.out.println("skip");
+                    continue;
+                }
+
                 Path yP = y.getFileName();
                 System.out.println(y.toString());
                 if (xP.equals(yP)) {
                     try {
-                        if (x.equals(y)) continue;
+                        if (x.equals(y)) {
+                            System.out.println("skip");
+                            continue;
+                        }
                         if (Files.size(x) == Files.size(y)
                                 && Files.getLastModifiedTime(x).equals(Files.getLastModifiedTime(y))
                                 && Files.readString(x).equals(Files.readString(y))) {
                             System.out.println("полное соотвествие  " + x + " == " + y);
                             temp.add(x.toAbsolutePath().toString());
                             temp.add(y.toAbsolutePath().toString());
-                            full.remove(y);
+
+
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
             }
-            res.add(new ArrayList<>(temp));
+            if (!temp.isEmpty()) res.add(new ArrayList<>(temp));
 
         }
 
-
-        return res;
+        List ress = new ArrayList(res);
+        return ress;
     }
 
     public static List<Path> walker(Path start) {
@@ -84,6 +97,17 @@ public class FindDuplicates {
 
     public static void main(String[] args) {
         FindDuplicates test = new FindDuplicates();
-        test.findDuplicates("src");
+        Path p1 = Paths.get("src/start/file2.txt");
+        Path p2 = Paths.get("src/file2.txt");
+
+        try {
+            Files.setLastModifiedTime(p1, FileTime.from(Instant.EPOCH));
+            Files.setLastModifiedTime(p2, FileTime.from(Instant.EPOCH));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ;
+
+        System.out.println(test.findDuplicates("src"));
     }
 }

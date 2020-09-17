@@ -27,7 +27,7 @@ public class FilesSelect {
 
     public static void walker(Path start) {
 
-        PathMatcher pathMatcher = FileSystems.getDefault().getPathMatcher("glob:**/*.txt");
+        PathMatcher pathMatcher = FileSystems.getDefault().getPathMatcher("glob:**.txt");
         try {
             Files.walkFileTree(start, new SimpleFileVisitor<Path>() {
 
@@ -54,7 +54,7 @@ public class FilesSelect {
     }
 
     public static void check(Path chek) {
-
+        System.out.println("     path:" + chek);
         try {
             String ch = Files.readString(chek);
             Scanner sc = new Scanner(ch);
@@ -65,7 +65,7 @@ public class FilesSelect {
                 while (iterator.hasNext()) {
                     String key = iterator.next();
                     if (key.contains(tmp)) {
-                        System.out.println("key :" + key + "     path:" + chek);
+                        System.out.println("key :" + key);
                         maker(key, chek);
                     }
                 }
