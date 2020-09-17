@@ -64,6 +64,7 @@ public class FilesSelect {
                 while (iterator.hasNext()) {
                     String key = iterator.next();
                     if (key.contains(tmp)) {
+                        System.out.println("key :" + key + "     path:" + chek);
                         maker(key, chek);
                     }
                 }

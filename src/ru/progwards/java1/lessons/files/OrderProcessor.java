@@ -30,7 +30,7 @@ public class OrderProcessor {
         Метод возвращает количество файлов с ошибками. При этом, если в классе содержалась информация, ее надо удалить*/
     public int loadOrders(LocalDate start, LocalDate finish, String shopId) {
         if (pathMain == null) pathMain = Paths.get("");
-        if (shopId == null) shopId = "";
+        if (shopId == null) shopId = "???";
         if (start == null) start.of(2007, 12, 03);
         if (finish == null) finish.of(3000, 12, 12);
         String pathStr = "glob:**/" + shopId + "-??????-????.csv";
