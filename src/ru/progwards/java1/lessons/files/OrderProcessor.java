@@ -49,7 +49,7 @@ public class OrderProcessor {
                             time = LocalDate.ofInstant(instTime, ZoneId.systemDefault());
                             System.out.println("time:" + time);
                         } catch (IOException e) {
-                            e.printStackTrace();
+                                                        e.printStackTrace();
                         }
                     }
                     if (time.isAfter(start) && time.isBefore(finish) || time.equals(start) || time.equals(finish)) {
@@ -72,8 +72,8 @@ public class OrderProcessor {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        pathMain = null;
-        time = null;
+       /* pathMain = null;
+        time = null;*/
         int res = count;
         count = 0;
         return res;

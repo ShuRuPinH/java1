@@ -54,6 +54,7 @@ public class FilesSelect {
     }
 
     public static void check(Path chek) {
+
         try {
             String ch = Files.readString(chek);
             Scanner sc = new Scanner(ch);
@@ -71,9 +72,10 @@ public class FilesSelect {
 
             }
 
+            sc.close();
 
         } catch (IOException e) {
-
+            System.out.println(chek + "     - error");
 
         } finally {
 
