@@ -13,14 +13,14 @@ import static java.nio.file.Files.getLastModifiedTime;
 import static java.nio.file.Files.isDirectory;
 
 public class OrderProcessor {
-    Path pathMain;
+    String pathMain;
     LocalDate time;
     int count = 0;
     List<Order> ordersLL = new ArrayList<>();
 
     //3.3 конструктор public OrderProcessor(String startPath) - инициализирует класс, с указанием начальной папки для хранения файлов
     public OrderProcessor(String startPath) {
-        this.pathMain = Paths.get(startPath);
+        this.pathMain = startPath;
     }
 
     /*    3.4 метод public int loadOrders(LocalDate start, LocalDate finish, String shopId) - загружает заказы за указанный диапазон дат,
@@ -29,7 +29,7 @@ public class OrderProcessor {
         При наличии хотя бы одной ошибке в формате файла, файл полностью игнорируется, т.е. Не поступает в обработку.
         Метод возвращает количество файлов с ошибками. При этом, если в классе содержалась информация, ее надо удалить*/
     public int loadOrders(LocalDate start, LocalDate finish, String shopId) {
-        if (pathMain == null) pathMain = Paths.get("");
+
         if (shopId == null) shopId = "???";
         if (start == null) start.of(2007, 12, 03);
         if (finish == null) finish.of(3000, 12, 12);
@@ -38,18 +38,18 @@ public class OrderProcessor {
         PathMatcher pathMatcher = FileSystems.getDefault().getPathMatcher(pathStr);
         System.out.println("pathMathcer:" + pathStr + "          pathMain:" + pathMain + "                  shopId" + shopId);
         try {
-            Files.walkFileTree(pathMain, new SimpleFileVisitor<Path>() {
+            Files.walkFileTree(Paths.get(pathMain), new SimpleFileVisitor<Path>() {
                 @Override
                 public FileVisitResult visitFile(Path path, BasicFileAttributes attrs) {
                     Instant instTime = Instant.EPOCH;
 
-                    if (pathMatcher.matches(pathMain.relativize(path))) {
+                    if (pathMatcher.matches(Paths.get(pathMain).relativize(path))) {
                         try {
                             instTime = Files.getLastModifiedTime(path).toInstant();
                             time = LocalDate.ofInstant(instTime, ZoneId.systemDefault());
                             System.out.println("time:" + time);
                         } catch (IOException e) {
-                                                        e.printStackTrace();
+                            e.printStackTrace();
                         }
                     }
                     if (time.isAfter(start) && time.isBefore(finish) || time.equals(start) || time.equals(finish)) {

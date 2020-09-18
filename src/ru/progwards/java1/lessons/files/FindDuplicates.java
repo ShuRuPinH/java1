@@ -29,16 +29,16 @@ public class FindDuplicates {
 
                 Path y = iterator.next();
                 if (x.equals(y)) {
-                    System.out.println("skip");
+
                     continue;
                 }
 
                 Path yP = y.getFileName();
-                System.out.println(y.toString());
+
                 if (xP.equals(yP)) {
                     try {
                         if (x.equals(y)) {
-                            System.out.println("skip");
+
                             continue;
                         }
                         if (Files.size(x) == Files.size(y)
