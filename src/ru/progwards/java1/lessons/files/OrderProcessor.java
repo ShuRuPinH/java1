@@ -104,14 +104,17 @@ public class OrderProcessor {
     Книжка “Сказки Пушкина”, 1, 300
     */
     static Order extractor(Path pth, Instant tim) {
-        System.out.println("ЭКСТРАКТОР");
+        System.out.println("ЭКСТРАКТОР" + "   pth:" + pth + "    tim:" + tim);
         Order ord = new Order();
         List<OrderItem> lItm = new ArrayList<>();
-        List<String> lString;
+        List<String> lString = null;
 
         String nameFile = pth.getFileName().toString();
+        System.out.println("парсинг названия :" + nameFile);
         ord.setShopId(nameFile.substring(0, 2));
+
         ord.setOrderId(nameFile.substring(4, 9));
+
         ord.setCustomerId(nameFile.substring(11, 14));
         ord.setDatetime(LocalDateTime.ofInstant(tim, ZoneId.systemDefault()));
 
@@ -120,7 +123,7 @@ public class OrderProcessor {
 
 
         } catch (IOException e) {
-            return null;
+            System.out.println("@@@@@@@@@           extractor error");
         }
         Iterator iter = lString.iterator();
         while (iter.hasNext()) {
@@ -130,7 +133,7 @@ public class OrderProcessor {
             temp.setGoogsName(scan.next());
             temp.setCount(Integer.parseInt(scan.next()));
             temp.setPrice(Double.parseDouble(scan.next()));
-
+            System.out.println(""temp.toString());
             lItm.add(temp);
             scan.close();
 
