@@ -61,13 +61,14 @@ public class OrderProcessor {
 
                     }
 
-
+                    System.out.println("выход из удачного волкера");
                     return FileVisitResult.CONTINUE;
                 }
 
                 @Override
                 public FileVisitResult visitFileFailed(Path file, IOException e) {
                     count++;
+                    System.out.println("выход из НЕудачного волкера");
                     return FileVisitResult.CONTINUE;
                 }
 
@@ -81,6 +82,7 @@ public class OrderProcessor {
         time = null;*/
         int res = count;
         count = 0;
+        System.out.println("КОНЕЦ волкера");
         return res;
     }
 
@@ -100,6 +102,7 @@ public class OrderProcessor {
     Книжка “Сказки Пушкина”, 1, 300
     */
     static Order extractor(Path pth, Instant tim) {
+        System.out.println("ЭКСТРАКТОР");
         Order ord = new Order();
         List<OrderItem> lItm = new ArrayList<>();
         List<String> lString;
