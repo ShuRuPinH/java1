@@ -31,13 +31,15 @@ public class OrderProcessor {
     public int loadOrders(LocalDate start, LocalDate finish, String shopId) {
 
         if (shopId == null) shopId = "???";
-        if (start == null) start.of(2008, 12, 03);
-        if (finish == null) finish.of(3000, 12, 12);
+        if (start == null) start = LocalDate.of(2008, 12, 03);
+        if (finish == null) finish = LocalDate.of(3000, 12, 12);
         String pathStr = "glob:**/" + shopId + "-??????-????.csv";
 
         PathMatcher pathMatcher = FileSystems.getDefault().getPathMatcher(pathStr);
         System.out.println("pathMathcer:" + pathStr + "          pathMain:" + pathMain + "                  shopId" + shopId);
         try {
+            LocalDate finalStart = start;
+            LocalDate finalFinish = finish;
             Files.walkFileTree(Paths.get(pathMain), new SimpleFileVisitor<Path>() {
                 @Override
                 public FileVisitResult visitFile(Path path, BasicFileAttributes attrs) {
@@ -49,7 +51,7 @@ public class OrderProcessor {
                             instTime = Files.getLastModifiedTime(path).toInstant();
                             time = LocalDate.ofInstant(instTime, ZoneId.systemDefault());
                             System.out.println("time:" + time);
-                            if (time.isAfter(start) && time.isBefore(finish) || time.equals(start) || time.equals(finish)) {
+                            if (time.isAfter(finalStart) && time.isBefore(finalFinish) || time.equals(finalStart) || time.equals(finalFinish)) {
                                 ordersLL.add(extractor(path, instTime));
                             }
                         } catch (IOException e) {
