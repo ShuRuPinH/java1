@@ -31,7 +31,7 @@ public class OrderProcessor {
     public int loadOrders(LocalDate start, LocalDate finish, String shopId) {
 
         if (shopId == null) shopId = "???";
-        if (start == null) start.of(2007, 12, 03);
+        if (start == null) start.of(2008, 12, 03);
         if (finish == null) finish.of(3000, 12, 12);
         String pathStr = "glob:**/" + shopId + "-??????-????.csv";
 
@@ -49,7 +49,9 @@ public class OrderProcessor {
                             time = LocalDate.ofInstant(instTime, ZoneId.systemDefault());
                             System.out.println("time:" + time);
                         } catch (IOException e) {
-                            e.printStackTrace();
+
+                            System.out.println("instan time");
+                            //e.printStackTrace();
                         }
                     }
                     if (time.isAfter(start) && time.isBefore(finish) || time.equals(start) || time.equals(finish)) {
@@ -70,7 +72,8 @@ public class OrderProcessor {
 
             });
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Walker --");
+            // e.printStackTrace();
         }
        /* pathMain = null;
         time = null;*/
