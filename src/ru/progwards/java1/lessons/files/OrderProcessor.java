@@ -127,18 +127,20 @@ public class OrderProcessor {
             System.out.println("@@@@@@@@@           extractor error");
         }
         System.out.println(" перед итератором");
-        Iterator iter = lString.iterator();
+        Iterator<String> iter = lString.iterator();
         System.out.println("0");
         while (iter.hasNext()) {
             System.out.println("1");
             OrderItem temp = new OrderItem();
             System.out.println("2");
-            Scanner scan = new Scanner(String.valueOf(iter.next()));
+            Scanner scan = new Scanner(iter.next());
             System.out.println("3");
             scan.useDelimiter(",");
             System.out.println("4");
             temp.setGoogsName(scan.next());
+            System.out.println("5");
             temp.setCount(Integer.parseInt(scan.next()));
+            System.out.println("6");
             temp.setPrice(Double.parseDouble(scan.next()));
             System.out.println("******** OredrItem:" + temp.toString());
             lItm.add(temp);
