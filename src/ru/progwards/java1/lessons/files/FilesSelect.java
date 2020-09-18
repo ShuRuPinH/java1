@@ -92,6 +92,7 @@ public class FilesSelect {
             if (Files.exists(out) == false) {
                 System.out.println("false /createDirectory/        out=" + out);
                 System.out.println(Files.createDirectory(out));
+                Files.copy(mak, out.resolve(mak.getFileName()));
             } else
                 Files.copy(mak, out.resolve(mak.getFileName()));
 
