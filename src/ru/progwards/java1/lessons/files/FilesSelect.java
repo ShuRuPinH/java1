@@ -66,7 +66,7 @@ public class FilesSelect {
                 while (iterator.hasNext()) {
                     String key = iterator.next();
                     if (key.contains(tmp)) {
-                        System.out.println("key  :" + key);
+                     //   System.out.println("key  :" + key);
                         maker(key, chek);
                     }
                 }
@@ -86,11 +86,11 @@ public class FilesSelect {
 
 
     public static void maker(String wrd, Path mak) {
-        System.out.println("wrd:" + wrd + "     mak:" + mak);
+        //   System.out.println("wrd:" + wrd + "     mak:" + mak);
         Path out = Paths.get(outFolder).resolve(wrd);
         try {
             if (Files.exists(out) == false) {
-                System.out.println("false /createDirectory/        out=" + out);
+                //   System.out.println("false /createDirectory/        out=" + out);
                 System.out.println(Files.createDirectory(out));
                 Files.copy(mak, out.resolve(mak.getFileName()));
             } else

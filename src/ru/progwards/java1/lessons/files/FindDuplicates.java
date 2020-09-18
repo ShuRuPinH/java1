@@ -44,7 +44,7 @@ public class FindDuplicates {
                         if (Files.size(x) == Files.size(y)
                                 && Files.getLastModifiedTime(x).equals(Files.getLastModifiedTime(y))
                                 && Files.readString(x).equals(Files.readString(y))) {
-                            System.out.println("полное соотвествие  " + x + " == " + y);
+                          //  System.out.println("полное соотвествие  " + x + " == " + y);
                             temp.add(x.toAbsolutePath().toString());
                             temp.add(y.toAbsolutePath().toString());
 

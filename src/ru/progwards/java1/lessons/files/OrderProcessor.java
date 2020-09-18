@@ -133,12 +133,12 @@ public class OrderProcessor {
             temp.setGoogsName(scan.next());
             temp.setCount(Integer.parseInt(scan.next()));
             temp.setPrice(Double.parseDouble(scan.next()));
-            System.out.println("" + temp.toString());
+            System.out.println("******** OredrItem:" + temp.toString());
             lItm.add(temp);
             scan.close();
 
         }
-        lItm.sort(null);
+        //lItm.sort(null);
         ord.setItems(lItm);
         return ord;
 
