@@ -135,7 +135,7 @@ public class OrderProcessor {
             System.out.println("2");
             Scanner scan = new Scanner(iter.next());
             System.out.println("3");
-            scan.useDelimiter(",");
+            scan.useDelimiter("\\s*,\\s*");
             System.out.println("4");
             temp.setGoogsName(scan.next());
             System.out.println("5");
