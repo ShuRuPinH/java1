@@ -1,5 +1,6 @@
 package ru.progwards.java1.lessons.files;
 
+import javax.sound.midi.Soundbank;
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
@@ -90,7 +91,7 @@ public class FilesSelect {
         try {
             if (Files.exists(out) == false) {
                 System.out.println("false /createDirectory/        out=" + out);
-                Files.createDirectory(out);
+                System.out.println(Files.createDirectory(out));
             } else
                 Files.copy(mak, out.resolve(mak.getFileName()));
 
