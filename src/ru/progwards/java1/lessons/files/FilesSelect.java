@@ -88,9 +88,11 @@ public class FilesSelect {
         System.out.println("wrd:" + wrd + "     mak:" + mak);
         Path out = Paths.get(outFolder).resolve(wrd);
         try {
-            //if (Files.exists(out) == false) Files.createDirectory(out);
-            // else
-            Files.copy(mak, out.resolve(mak.getFileName()));
+            if (Files.exists(out) == false) {
+                System.out.println("false /createDirectory/        out=" + out);
+                Files.createDirectory(out);
+            } else
+                Files.copy(mak, out.resolve(mak.getFileName()));
 
 
         } catch (IOException e) {
