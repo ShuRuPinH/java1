@@ -41,23 +41,25 @@ public class OrderProcessor {
             Files.walkFileTree(Paths.get(pathMain), new SimpleFileVisitor<Path>() {
                 @Override
                 public FileVisitResult visitFile(Path path, BasicFileAttributes attrs) {
-                    Instant instTime = Instant.EPOCH;
+                    Instant instTime;
 
                     if (pathMatcher.matches(Paths.get(pathMain).relativize(path))) {
                         try {
+                            System.out.println("path:" + path);
                             instTime = Files.getLastModifiedTime(path).toInstant();
                             time = LocalDate.ofInstant(instTime, ZoneId.systemDefault());
                             System.out.println("time:" + time);
+                            if (time.isAfter(start) && time.isBefore(finish) || time.equals(start) || time.equals(finish)) {
+                                ordersLL.add(extractor(path, instTime));
+                            }
                         } catch (IOException e) {
 
                             System.out.println("instan time");
                             //e.printStackTrace();
                         }
+
+
                     }
-                    if (time.isAfter(start) && time.isBefore(finish) || time.equals(start) || time.equals(finish)) {
-                        ordersLL.add(extractor(path, instTime));
-                    }
-                    ;
 
 
                     return FileVisitResult.CONTINUE;
