@@ -117,14 +117,16 @@ public class OrderProcessor {
 
         ord.setCustomerId(nameFile.substring(11, 14));
         ord.setDatetime(LocalDateTime.ofInstant(tim, ZoneId.systemDefault()));
-
+        System.out.println(" перед файла в строку");
         try {
             lString = Files.readAllLines(pth);
+
 
 
         } catch (IOException e) {
             System.out.println("@@@@@@@@@           extractor error");
         }
+        System.out.println(" перед итератором");
         Iterator iter = lString.iterator();
         while (iter.hasNext()) {
             OrderItem temp = new OrderItem();
@@ -138,8 +140,10 @@ public class OrderProcessor {
             scan.close();
 
         }
+        System.out.println("после итератора");
         //lItm.sort(null);
         ord.setItems(lItm);
+        System.out.println("**********************  ENd  *****************************");
         return ord;
 
     }
