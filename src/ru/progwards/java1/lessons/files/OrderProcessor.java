@@ -62,14 +62,14 @@ public class OrderProcessor {
                         }
 
 
-                    } else count++;
+                    }// else count++;
                     System.out.println("выход из удачного волкера");
                     return FileVisitResult.CONTINUE;
                 }
 
                 @Override
                 public FileVisitResult visitFileFailed(Path file, IOException e) {
-                    count++;
+                    // count++;
                     System.out.println("выход из НЕудачного волкера");
                     return FileVisitResult.CONTINUE;
                 }
