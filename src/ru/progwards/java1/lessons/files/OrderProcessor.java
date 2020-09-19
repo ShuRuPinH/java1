@@ -82,10 +82,9 @@ public class OrderProcessor {
         }
        /* pathMain = null;
         time = null;*/
-        int res = count;
-        count = 0;
+
         System.out.println("КОНЕЦ волкера");
-        return res;
+        return count;
     }
 
     /*
@@ -138,10 +137,13 @@ public class OrderProcessor {
             scan.useDelimiter("\\s*,\\s*");
             System.out.println("4");
             if (scan.hasNext()) temp.setGoogsName(scan.next());
+            else continue;
             System.out.println("5");
-            if (scan.hasNext()) temp.setCount(Integer.parseInt(scan.next()));
+            if (scan.hasNextInt()) temp.setCount(Integer.parseInt(scan.next()));
+            else continue;
             System.out.println("6");
-            if (scan.hasNext()) temp.setPrice(Double.parseDouble(scan.next()));
+            if (scan.hasNextDouble()) temp.setPrice(Double.parseDouble(scan.next()));
+            else continue;
             System.out.println("******** OredrItem:" + temp);
             lItm.add(temp);
             scan.close();
