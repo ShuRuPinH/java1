@@ -60,5 +60,9 @@ public class Order {
         return sum;
     }
 
+    public void setSum() {
+        this.getSum();
+    }
+
 
 }
