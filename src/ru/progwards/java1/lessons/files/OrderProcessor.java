@@ -51,7 +51,7 @@ public class OrderProcessor {
                             instTime = Files.getLastModifiedTime(path).toInstant();
                             time = LocalDate.ofInstant(instTime, ZoneId.systemDefault());
                             System.out.println("time:" + time);
-                            if (time.isAfter(finalStart) && time.isBefore(finalFinish) || time.equals(finalStart) || time.equals(finalFinish)) {
+                            if (time.isAfter(finalStart) && time.isBefore(finalFinish)/* || time.equals(finalStart) || time.equals(finalFinish)*/) {
                                 ordersLL.add(extractor(path, instTime));
                             }
                         } catch (IOException e) {
