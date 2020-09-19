@@ -51,7 +51,7 @@ public class OrderProcessor {
                             instTime = Files.getLastModifiedTime(path).toInstant();
                             time = LocalDate.ofInstant(instTime, ZoneId.systemDefault());
                             System.out.println("time:" + time);
-                            if (time.isAfter(finalStart) && time.isBefore(finalFinish)/* || time.equals(finalStart) || time.equals(finalFinish)*/) {
+                            if (time.isAfter(finalStart) && time.isBefore(finalFinish) || time.equals(finalStart) || time.equals(finalFinish)) {
                                 ordersLL.add(extractor(path, instTime));
                             }
                         } catch (IOException e) {
@@ -136,13 +136,25 @@ public class OrderProcessor {
             scan.useDelimiter("\\s*,\\s*");
             System.out.println("4");
             if (scan.hasNext()) temp.setGoogsName(scan.next());
-            else continue;
+            else {
+                scan.close();
+                continue;
+            }
+
             System.out.println("5");
             if (scan.hasNextInt()) temp.setCount(Integer.parseInt(scan.next()));
-            else continue;
+            else {
+                scan.close();
+                continue;
+            }
+
             System.out.println("6");
             if (scan.hasNextDouble()) temp.setPrice(Double.parseDouble(scan.next()));
-            else continue;
+            else {
+                scan.close();
+                continue;
+            }
+
             System.out.println("******** OredrItem:" + temp);
             lItm.add(temp);
             scan.close();

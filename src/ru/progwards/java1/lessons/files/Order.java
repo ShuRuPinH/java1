@@ -53,15 +53,14 @@ public class Order {
     }
 
     public double getSum() {
-        for (OrderItem oI : items) {
-            sum += oI.count * oI.price;
-        }
-
         return sum;
     }
 
     public void setSum() {
-        this.getSum();
+        for (OrderItem oI : items) {
+            sum += oI.count * oI.price;
+        }
+
     }
 
 
