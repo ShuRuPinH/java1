@@ -137,12 +137,12 @@ public class OrderProcessor {
             System.out.println("3");
             scan.useDelimiter("\\s*,\\s*");
             System.out.println("4");
-            temp.setGoogsName(scan.next());
+            if (scan.hasNext()) temp.setGoogsName(scan.next());
             System.out.println("5");
-            temp.setCount(Integer.parseInt(scan.next()));
+            if (scan.hasNext()) temp.setCount(Integer.parseInt(scan.next()));
             System.out.println("6");
-            temp.setPrice(Double.parseDouble(scan.next()));
-            System.out.println("******** OredrItem:" + temp.toString());
+            if (scan.hasNext()) temp.setPrice(Double.parseDouble(scan.next()));
+            System.out.println("******** OredrItem:" + temp);
             lItm.add(temp);
             scan.close();
 
