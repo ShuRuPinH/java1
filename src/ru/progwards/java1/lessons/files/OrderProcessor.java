@@ -163,7 +163,7 @@ public class OrderProcessor {
         System.out.println("после итератора");
         //lItm.sort(null);
         ord.setItems(lItm);
-        ord.getSum();
+        ord.setSum();
         System.out.println("**********************  ENd  *****************************");
         return ord;
 
