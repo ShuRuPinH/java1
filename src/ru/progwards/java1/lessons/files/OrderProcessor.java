@@ -52,7 +52,8 @@ public class OrderProcessor {
                             time = LocalDate.ofInstant(instTime, ZoneId.systemDefault());
                             System.out.println("time:" + time);
                             if (time.isAfter(finalStart) && time.isBefore(finalFinish) || time.equals(finalStart) || time.equals(finalFinish)) {
-                                ordersLL.add(extractor(path, instTime));
+                                Order temp = extractor(path, instTime);
+                                if (temp != null) ordersLL.add(temp);
                             }
                         } catch (IOException e) {
 
@@ -138,21 +139,21 @@ public class OrderProcessor {
             if (scan.hasNext()) temp.setGoogsName(scan.next());
             else {
                 scan.close();
-                continue;
+                return null;
             }
 
             System.out.println("5");
             if (scan.hasNextInt()) temp.setCount(Integer.parseInt(scan.next()));
             else {
                 scan.close();
-                continue;
+                return null;
             }
 
             System.out.println("6");
             if (scan.hasNextDouble()) temp.setPrice(Double.parseDouble(scan.next()));
             else {
                 scan.close();
-                continue;
+                return null;
             }
 
             System.out.println("******** OredrItem:" + temp);
