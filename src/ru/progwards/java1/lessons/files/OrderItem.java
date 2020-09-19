@@ -1,5 +1,7 @@
 package ru.progwards.java1.lessons.files;
 
+import java.util.List;
+
 public class OrderItem implements Comparable {
 
     public String googsName;//- наименование товара

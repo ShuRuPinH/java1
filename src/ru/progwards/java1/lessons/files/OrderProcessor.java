@@ -105,7 +105,7 @@ public class OrderProcessor {
     static Order extractor(Path pth, Instant tim) {
         System.out.println("ЭКСТРАКТОР" + "   pth:" + pth + "    tim:" + tim);
         Order ord = new Order();
-        List<OrderItem> lItm = new ArrayList<>();
+        List<OrderItem> lItm = new LinkedList<>();
         List<String> lString = null;
 
         String nameFile = pth.getFileName().toString();
@@ -157,12 +157,13 @@ public class OrderProcessor {
             }
 
             System.out.println("******** OredrItem:" + temp);
+
             lItm.add(temp);
             scan.close();
 
         }
         System.out.println("после итератора");
-        //lItm.sort(null);
+        lItm.sort(null);
         ord.setItems(lItm);
         ord.setSum();
         System.out.println("**********************  ENd  *****************************");
