@@ -61,8 +61,7 @@ public class OrderProcessor {
                         }
 
 
-                    }
-
+                    } else count++;
                     System.out.println("выход из удачного волкера");
                     return FileVisitResult.CONTINUE;
                 }
@@ -110,11 +109,11 @@ public class OrderProcessor {
 
         String nameFile = pth.getFileName().toString();
         System.out.println("парсинг названия :" + nameFile);
-        ord.setShopId(nameFile.substring(0, 2));
+        ord.setShopId(nameFile.substring(0, 3));
 
-        ord.setOrderId(nameFile.substring(4, 9));
+        ord.setOrderId(nameFile.substring(4, 10));
 
-        ord.setCustomerId(nameFile.substring(11, 14));
+        ord.setCustomerId(nameFile.substring(11, 15));
         ord.setDatetime(LocalDateTime.ofInstant(tim, ZoneId.systemDefault()));
         System.out.println(" перед файла в строку");
         try {
