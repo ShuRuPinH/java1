@@ -54,7 +54,7 @@ public class Order {
 
     public double getSum() {
         for (OrderItem oI : items) {
-            sum += oI.count + oI.price;
+            sum += oI.count * oI.price;
         }
 
         return sum;
