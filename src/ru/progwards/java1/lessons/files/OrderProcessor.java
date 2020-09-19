@@ -54,6 +54,7 @@ public class OrderProcessor {
                             if (time.isAfter(finalStart) && time.isBefore(finalFinish) || time.equals(finalStart) || time.equals(finalFinish)) {
                                 Order temp = extractor(path, instTime);
                                 if (temp != null) ordersLL.add(temp);
+                                else count++;
                             }
                         } catch (IOException e) {
 
@@ -62,7 +63,7 @@ public class OrderProcessor {
                         }
 
 
-                    }// else count++;
+                    }
                     System.out.println("выход из удачного волкера");
                     return FileVisitResult.CONTINUE;
                 }
