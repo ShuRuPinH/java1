@@ -1,6 +1,7 @@
 package test;
 
 import java.util.Comparator;
+import java.util.StringTokenizer;
 import java.util.TreeSet;
 
 public class sets {
@@ -26,8 +27,36 @@ public class sets {
         }
     }
 
+
+    String swapWords(String sentance) {
+        StringTokenizer tok = new StringTokenizer(sentance, " .,-!\n");
+
+        int n = tok.countTokens();
+        String[] strarr = new String[n];
+        int r = 0b0;
+        for (int i = 0; i < n; i++) {
+            if (r == 0) {
+                if (i + 1 == n) {
+                    strarr[i] = tok.nextToken();
+                    continue;
+                }
+                strarr[i + 1] = tok.nextToken();
+            } else strarr[i - 1] = tok.nextToken();
+            r = ~r;
+        }
+        String res = strarr[0];
+        for (int i = 1; i < n; i++) {
+            res = res + " " + strarr[i];
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
-        float fl = 1.22278f;
+        sets rrrr = new sets();
+
+        //   0      1       2            3       4     5    6      7       8
+        System.out.println(rrrr.swapWords("Убитых словом, добивают молчанием. jhjhjh  (c) Уильям 787878 Шекспир."));
+        System.out.format("|%04d|%#x|%###,###.###|", 2, 15, 3.25);
 
     }
 }

@@ -17,9 +17,12 @@ public class BigAlgebra {
     }
 
     public static void main(String[] args) {
-        BigAlgebra cadabra = new BigAlgebra();
-        System.out.println(cadabra.fastPow(BigDecimal.valueOf(3), 2).intValue() == 9); // true
-        System.out.println(cadabra.fastPow(BigDecimal.valueOf(2), 1).intValue() == 2);  // true
-        System.out.println(cadabra.fastPow(BigDecimal.valueOf(2), 2).intValue() == 4); // true
+        int r = 0b00;
+        for (int i = 0; i < 10; i++) {
+            r = ~r;
+            System.out.println("r=" + r + "       " + Math.abs(r - 1));
+
+
+        }
     }
 }

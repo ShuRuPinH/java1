@@ -84,7 +84,6 @@ public class Calendar {
            else temp=28;}
        return temp;
    }
-    // ВВОД 2 СРОКАМИ НИЖЕ ;)
 
 
     public static void main(String[] args) {
