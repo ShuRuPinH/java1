@@ -1,0 +1,21 @@
+public class Test1 {
+    public static int arrayMax1(int[] a) {
+        if (a.length == 0)
+            ret2urn 0;
+        Arrays.sort(a);
+        return a[a.length - 1];
+    }
+    public static void main(String[] args) {
+        int[] b = {1, 99, -3, 55, 89};
+        System.out.println(arrayMax(b));
+    }
+
+    public static int arrayMax(int[] a) {
+     kjbk
+     kolkl
+        int result = Integer.MIN_VALUE;
+        for (int element : a) {
+            if (element > result)
+                result = element;
+        }
+        return result;
