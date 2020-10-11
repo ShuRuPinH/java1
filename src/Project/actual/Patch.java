@@ -47,6 +47,8 @@ public class Patch {
 
     List patcher() {
         int line;
+        boolean frsLinAnk = false;
+
 
         int start[];
         int[] end;
@@ -58,6 +60,7 @@ public class Patch {
                     if (edtTrio(i).equals(patchTrio(j))) {
                         //    ANCHOR   S T A *****************************************************
                         if (patchGetter(j - 1).startsWith("STA")) {
+                            frsLinAnk = true;
                             if (!res.contains(extract(edtTrio(i))))
                                 res.add(extract(edtTrio(i))); //***************start*************
                             start = new int[]{i + 3, j + 3};
@@ -117,8 +120,13 @@ public class Patch {
                         }
                         //    ANCHOR   E N 1 *****************************************************
                         if (patchGetter(j - 1).startsWith("EN1")) {
+                            frsLinAnk = true;
                             for (int k = 1; k <= j - 2; k++) {
                                 String temp = patchGetter(k);
+                                if (patchGetter(k).startsWith("DEL")) {
+
+
+                                }
                                 if (temp.startsWith("AD1")) res.add(temp.substring(3));  ///////*********
                             }
                             if (!res.contains(extract(edtTrio(i))))
@@ -156,7 +164,7 @@ public class Patch {
  */
                     }
                 }
-                res.add(edtGetter(i)); //******************lines*****************
+                if (frsLinAnk) res.add(edtGetter(i)); //******************lines*****************
 
 
             }
@@ -243,7 +251,7 @@ public class Patch {
 
     //////////////////////
     public static void main(String[] args) {
-        Patch test = new Patch("file1e.txt", "file1.txt2020-10-07.patch");
+        Patch test = new Patch("file1e.txt", "file1.txt2020-10-11.patch");
         test.patcher();
         test.write();
         for (Object x : test.res
