@@ -52,39 +52,41 @@ public class Patch {
 
         int start[];
         int[] end;
+        int mainI;
 
         try {
-            for (int i = 1; i <= edtList.size() - 2; i++) {
-                line = i;
-                for (int j = 1; j <= patchList.size() - 2; j++) {
-                    if (edtTrio(i).equals(patchTrio(j))) {
-                        //    ANCHOR   S T A *****************************************************
-                        if (patchGetter(j - 1).startsWith("STA")) {
-                            frsLinAnk = true;
-                            if (!res.contains(extract(edtTrio(i))))
-                                res.add(extract(edtTrio(i))); //***************start*************
-                            start = new int[]{i + 3, j + 3};
-                            System.out.println(Arrays.toString(start));
-                            do {
-                                j++;
-                            } while (!patchGetter(j).startsWith("END"));
-                            System.out.println(j);
-                            do {
-                                i++;
-                                if (i >= edtList.size()) {
-                                    System.out.println("ANCHORS ERROR");
+            for (mainI = 1; mainI <= edtList.size(); mainI++) {
+                line = mainI;
+                if (mainI <= edtList.size() - 2) {
+                    for (int j = 1; j <= patchList.size() - 2; j++) {
+                        if (edtTrio(mainI).equals(patchTrio(j))) {
+                            //    ANCHOR   S T A *****************************************************
+                            if (patchGetter(j - 1).startsWith("STA")) {
+                                frsLinAnk = true;
+                                if (!res.contains(extract(edtTrio(mainI))))
+                                    res.add(extract(edtTrio(mainI))); //***************start*************
+                                start = new int[]{mainI + 3, j + 3};
+                                System.out.println(Arrays.toString(start));
+                                do {
+                                    j++;
+                                } while (!patchGetter(j).startsWith("END"));
+                                System.out.println(j);
+                                do {
+                                    mainI++;
+                                    if (mainI >= edtList.size()) {
+                                        System.out.println("ANCHORS ERROR");
+                                        return res;
+                                    }
+                                } while (!edtTrio(mainI).equals(patchTrio(j + 1)));
+                                end = new int[]{mainI - 1, j - 1};
+                                System.out.println(Arrays.toString(end));
+                                if (end[0] - start[0] + 1 > end[1] - start[1]) {
+                                    System.out.println(" ERROR : The same part have been edited. ADDED:\""
+                                            + edtGetter(start[0] + (end[1] - start[1])) + "\" or more..");
+                                    res.add(" ERROR : The same part have been edited. ADDED:\""
+                                            + edtGetter(start[0] + (end[1] - start[1])) + "\" or more..");
                                     return res;
                                 }
-                            } while (!edtTrio(i).equals(patchTrio(j + 1)));
-                            end = new int[]{i - 1, j - 1};
-                            System.out.println(Arrays.toString(end));
-                            if (end[0] - start[0] + 1 > end[1] - start[1]) {
-                                System.out.println(" ERROR : The same part have been edited. ADDED:\""
-                                        + edtGetter(start[0] + (end[1] - start[1])) + "\" or more..");
-                                res.add(" ERROR : The same part have been edited. ADDED:\""
-                                        + edtGetter(start[0] + (end[1] - start[1])) + "\" or more..");
-                                return res;
-                            }
                     /*
                     нашли строки для изменений, удаляем, добавляем записываем
                     строки в наче, в конце    +       проверка
@@ -113,6 +115,7 @@ public class Patch {
                                 if (patchGetter(k).startsWith("ADD")) {
                                     String temp = patchGetter(k).substring(3);
                                     res.add(temp); //***************ADD
+
                                 }
 
                             }
@@ -129,21 +132,21 @@ public class Patch {
                                 }
                                 if (temp.startsWith("AD1")) res.add(temp.substring(3));  ///////*********
                             }
-                            if (!res.contains(extract(edtTrio(i))))
-                                res.add((extract(edtTrio(i)))); //**************************
+                            if (!res.contains(extract(edtTrio(mainI))))
+                                res.add((extract(edtTrio(mainI)))); //**************************
 
                         }
 
                         //    ANCHOR   S T e *****************************************************
                         if (patchGetter(j - 1).startsWith("STe")) {
-                            if (!res.contains(edtTrio(i))) res.add(extract(edtTrio(i)));
+                            if (!res.contains(edtTrio(mainI))) res.add(extract(edtTrio(mainI)));
                             for (int k = j + 3; k <= patchList.size(); k++) {
                                 String temp = patchGetter(k);
                                 if (temp.startsWith("ADe")) res.add(temp.substring(3));
                                 if (temp.startsWith("DEe")) {  ///удраление
                                     boolean isDel = false;
                                     String tempp = patchGetter(k).substring(3);
-                                    for (int l = i + 2; l <= edtList.size(); l++) {
+                                    for (int l = mainI + 2; l <= edtList.size(); l++) {
 
                                         String edtString = edtGetter(l);
                                         //  System.out.println(edtString);
@@ -162,9 +165,11 @@ public class Patch {
 /*
 нужно сделать проверку последних строк в едт и  2
  */
+                        }
                     }
                 }
-                if (frsLinAnk) res.add(edtGetter(i)); //******************lines*****************
+
+                if (frsLinAnk) res.add(edtGetter(mainI)); //******************lines*****************
 
 
             }
