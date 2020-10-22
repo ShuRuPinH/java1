@@ -104,9 +104,9 @@ public class Patch {
                                             //   res.add(edtString);//*************** edt lines*****************
                                         else isDel = true;
                                     }
-                                    if (!isDel) {
-                                        System.out.println(" ERROR : The same part have been edited. MISSING:" + temp + "\" or more..");
-                                        res.add(" ERROR : The same part have been edited. MISSING:" + temp + "\" or more..");
+                                    if (!isDel && temp.length() > 0) {
+                                        System.out.println(" ERROR : The same part have been edited. MISSING: \"" + temp + "\" or more..");
+                                        res.add(" ERROR : The same part have been edited. MISSING: \"" + temp + "\" or more..");
                                         return res;
                                     }
                                 }
@@ -256,14 +256,34 @@ public class Patch {
 
     //////////////////////
     public static void main(String[] args) {
-        Patch test = new Patch("file1e.txt", "file1.txt2020-10-11.patch");
+
+        String path1e = "";
+        String pathP = "";
+
+        System.out.println("** Input 1st file (2nd programer edition) path:");
+        try (Scanner in = new Scanner(System.in);) {
+            if (in.hasNext()) {
+                path1e = in.next();
+            }
+
+            System.out.println("** Input PATCH file (*.patch) path:");
+            if (in.hasNext()) {
+                pathP = in.next();
+            }
+
+        } catch (Exception e) {
+            System.out.println("SCANER ERROR");
+        }
+
+
+        Patch test = new Patch(path1e, pathP);
         test.patcher();
         test.write();
-        for (Object x : test.res
+  /*      for (Object x : test.res
         ) {
             System.out.println(x);
 
-        }
+        }*/
 
     }
 }

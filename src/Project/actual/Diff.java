@@ -224,8 +224,26 @@ class Diff {
 ///////////////////////// M A I N ///////////////////////////////////////////////////
 
     public static void main(String[] args) {
-        System.out.println("*********************** START MAIN *********************************");
-        Diff test = new Diff("file1.txt", "file2.txt", false);
+        String path1 = "";
+        String path2 = "";
+
+        System.out.println("** Input 1st file (original) path:");
+        try (Scanner in = new Scanner(System.in);) {
+            if (in.hasNext()) {
+                path1 = in.next();
+            }
+
+            System.out.println("** Input 2nd file (1st programer edition) path:");
+            if (in.hasNext()) {
+                path2 = in.next();
+            }
+
+        } catch (Exception e) {
+            System.out.println("SCANER ERROR");
+        }
+
+
+        Diff test = new Diff(path1, path2, false);
         test.writer();
 
 
