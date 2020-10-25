@@ -22,4 +22,4 @@ Patch.java      | Применяет изменения 1ой редакции �
 
 
 ### ПРИМЕР РАБОТА УТИЛИТЫ
-![screenshot of sample](http://easy4you.ru/pic/1stEXM.png)
+![1st example](http://easy4you.ru/pic/1stEXM.png)
