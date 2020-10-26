@@ -1,0 +1,21 @@
+*** PATCHFILE: origin.txt2020-10-26.patch AT 26.10.2020 10:44:58
+*** FROM:C:\Users\shuru\IdeaProjects\First\t\origin.txt
+*** AND:C:\Users\shuru\IdeaProjects\First\t\file1.txt
+***    CHANGES: 0- deleted lines; 0- added lines.
+AD1Добавлена строка в начало №01
+EN1
+1 строка
+2 строка
+3 строка
+STA
+7 строка
+8 строка
+9 строка
+DEL10 строка
+ADDновая с каки-то текстом 1
+ADDновая с каки-то текстом 2
+ADDновая с каки-то текстом 3
+END
+11 строка
+12 строка
+13 строка
