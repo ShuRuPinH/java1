@@ -71,7 +71,7 @@ public class Patch {
                                 if (!res.contains(extract(edtTrio(mainI))))
                                     res.add(extract(edtTrio(mainI))); //***************start*************
                                 start = new int[]{mainI + 3, j + 3};
-                                System.out.println(Arrays.toString(start));
+                                System.out.println("start[]:" + Arrays.toString(start));
                                 do {
                                     j++;
                                 } while (!patchGetter(j).startsWith("END"));
@@ -84,7 +84,7 @@ public class Patch {
                                     }
                                 } while (!edtTrio(mainI).equals(patchTrio(j + 1)));
                                 end = new int[]{mainI - 1, j - 1};
-                                System.out.println(Arrays.toString(end));
+                                System.out.println("end[]:" + Arrays.toString(end));
                                 if (end[0] - start[0] + 1 > end[1] - start[1]) {
                                     System.out.println(" ERROR : The same part have been edited. ADDED:\""
                                             + edtGetter(start[0] + (end[1] - start[1])) + "\" or more..");
@@ -123,6 +123,28 @@ public class Patch {
 
                                     }
 
+
+                                }
+
+                                //// CHECKER SAME ZONE CHANGES
+                                List<String> listDel = new ArrayList();
+                                for (int k = start[1]; k <= end[1]; k++) {
+
+
+                                    if (patchGetter(k).startsWith("DEL")) {
+                                        String temp = patchGetter(k).substring(3);
+                                        listDel.add(temp);
+                                    }
+
+                                }
+                                for (int t = start[0]; t <= end[0]; t++) {
+                                    if (!listDel.contains(edtGetter(t))) {
+                                        System.out.println(" ERROR : The same part have been edited. ADDED:\""
+                                                + edtGetter(t) + "\" or more..");
+                                        res.add(" ERROR : The same part have been edited. ADDED:\""
+                                                + edtGetter(t) + "\" or more..");
+                                        return res;
+                                    }
                                 }
 
                             }
