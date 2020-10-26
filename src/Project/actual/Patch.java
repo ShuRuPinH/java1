@@ -129,6 +129,11 @@ public class Patch {
                             //    ANCHOR   E N 1 *****************************************************
                             if (patchGetter(j - 1).startsWith("EN1")) {
                                 frsLinAnk = true;
+                                if (mainI > 1) {
+                                    System.out.println(" ERROR : The same part have been edited. MISSING 1st line.");
+                                    res.add(" ERROR : The same part have been edited. MISSING 1st line");
+                                    return res;
+                                }
                                 for (int k = 1; k <= j - 2; k++) {
                                     String temp = patchGetter(k);
                                     if (patchGetter(k).startsWith("DEL")) {

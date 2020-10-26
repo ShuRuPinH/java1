@@ -209,7 +209,7 @@ class Diff {
         try {
             Files.writeString(ptch, "*** PATCHFILE: " + ptch + " AT " + dtf.format(LocalDateTime.now()) + "\n"
                     + "*** FROM:" + org.toAbsolutePath() + "\n" + "*** AND:" + exm.toAbsolutePath() + "\n", StandardOpenOption.APPEND);
-            Files.writeString(ptch, "***    CHANGES: " + de + "- deleted lines; " + ad + "- added lines.", StandardOpenOption.APPEND);
+            Files.writeString(ptch, "***    CHANGES: " + de + "- deleted lines; " + ad + "- added lines.\n", StandardOpenOption.APPEND);
             for (Object x : complDiff()) {
                 if (((String) x).startsWith("AD") || ((String) x).startsWith("\nAD")) ad++;
                 if (((String) x).startsWith("DE") || ((String) x).startsWith("\nDE")) de++;
