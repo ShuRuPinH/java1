@@ -49,6 +49,11 @@ public class Patch {
         int line;
         boolean frsLinAnk = false;
 
+        if (test() != null) {
+            System.out.println("ANCHOR TEST FAILED - not found: " + test());
+            res.add("ANCHOR TEST FAILED  -  not found:" + test());
+            return res;
+        }
 
         int start[];
         int[] end;
@@ -91,77 +96,77 @@ public class Patch {
                     нашли строки для изменений, удаляем, добавляем записываем
                     строки в наче, в конце    +       проверка
                      */
-                            for (int k = start[1]; k <= end[1]; k++) {
-                                ///// DEL case
+                                for (int k = start[1]; k <= end[1]; k++) {
+                                    ///// DEL case
 
-                                if (patchGetter(k).startsWith("DEL")) {
-                                    boolean isDel = false;
-                                    String temp = patchGetter(k).substring(3);
-                                    for (int l = start[0]; l <= end[0]; l++) {
-                                        String edtString = edtGetter(l);
-                                        //  System.out.println(edtString);
-                                        if (!temp.equals(edtString)) ;
-                                            //   res.add(edtString);//*************** edt lines*****************
-                                        else isDel = true;
+                                    if (patchGetter(k).startsWith("DEL")) {
+                                        boolean isDel = false;
+                                        String temp = patchGetter(k).substring(3);
+                                        for (int l = start[0]; l <= end[0]; l++) {
+                                            String edtString = edtGetter(l);
+                                            //  System.out.println(edtString);
+                                            if (!temp.equals(edtString)) ;
+                                                //   res.add(edtString);//*************** edt lines*****************
+                                            else isDel = true;
+                                        }
+                                        if (!isDel && temp.length() > 0) {
+                                            System.out.println(" ERROR : The same part have been edited. MISSING: \"" + temp + "\" or more..");
+                                            res.add(" ERROR : The same part have been edited. MISSING: \"" + temp + "\" or more..");
+                                            return res;
+                                        }
                                     }
-                                    if (!isDel && temp.length() > 0) {
-                                        System.out.println(" ERROR : The same part have been edited. MISSING: \"" + temp + "\" or more..");
-                                        res.add(" ERROR : The same part have been edited. MISSING: \"" + temp + "\" or more..");
+
+                                    ///// ADD case
+                                    if (patchGetter(k).startsWith("ADD")) {
+                                        String temp = patchGetter(k).substring(3);
+                                        res.add(temp); //***************ADD
+
+                                    }
+
+                                }
+
+                            }
+                            //    ANCHOR   E N 1 *****************************************************
+                            if (patchGetter(j - 1).startsWith("EN1")) {
+                                frsLinAnk = true;
+                                for (int k = 1; k <= j - 2; k++) {
+                                    String temp = patchGetter(k);
+                                    if (patchGetter(k).startsWith("DEL")) {
+
+
+                                    }
+                                    if (temp.startsWith("AD1")) res.add(temp.substring(3));  ///////*********
+                                }
+                                if (!res.contains(extract(edtTrio(mainI))))
+                                    res.add((extract(edtTrio(mainI)))); //**************************
+
+                            }
+
+                            //    ANCHOR   S T e *****************************************************
+                            if (patchGetter(j - 1).startsWith("STe")) {
+                                if (!res.contains(edtTrio(mainI))) res.add(extract(edtTrio(mainI)));
+                                for (int k = j + 3; k <= patchList.size(); k++) {
+                                    String temp = patchGetter(k);
+                                    if (temp.startsWith("ADe")) res.add(temp.substring(3));
+                                    if (temp.startsWith("DEe")) {  ///удраление
+                                        boolean isDel = false;
+                                        String tempp = patchGetter(k).substring(3);
+                                        for (int l = mainI + 2; l <= edtList.size(); l++) {
+
+                                            String edtString = edtGetter(l);
+                                            //  System.out.println(edtString);
+                                            if (tempp.equals(edtString)) isDel = true;
+                                        }
+                                        if (!isDel) {
+                                            System.out.println(" ERROR : The same part have been edited. MISSING:" + temp);
+                                            res.add(" ERROR : The same part have been edited. MISSING:" + temp);
+                                            return res;
+                                        }
                                         return res;
                                     }
                                 }
 
-                                ///// ADD case
-                                if (patchGetter(k).startsWith("ADD")) {
-                                    String temp = patchGetter(k).substring(3);
-                                    res.add(temp); //***************ADD
-
-                                }
-
                             }
-
-                        }
-                        //    ANCHOR   E N 1 *****************************************************
-                        if (patchGetter(j - 1).startsWith("EN1")) {
-                            frsLinAnk = true;
-                            for (int k = 1; k <= j - 2; k++) {
-                                String temp = patchGetter(k);
-                                if (patchGetter(k).startsWith("DEL")) {
-
-
-                                }
-                                if (temp.startsWith("AD1")) res.add(temp.substring(3));  ///////*********
-                            }
-                            if (!res.contains(extract(edtTrio(mainI))))
-                                res.add((extract(edtTrio(mainI)))); //**************************
-
-                        }
-
-                        //    ANCHOR   S T e *****************************************************
-                        if (patchGetter(j - 1).startsWith("STe")) {
-                            if (!res.contains(edtTrio(mainI))) res.add(extract(edtTrio(mainI)));
-                            for (int k = j + 3; k <= patchList.size(); k++) {
-                                String temp = patchGetter(k);
-                                if (temp.startsWith("ADe")) res.add(temp.substring(3));
-                                if (temp.startsWith("DEe")) {  ///удраление
-                                    boolean isDel = false;
-                                    String tempp = patchGetter(k).substring(3);
-                                    for (int l = mainI + 2; l <= edtList.size(); l++) {
-
-                                        String edtString = edtGetter(l);
-                                        //  System.out.println(edtString);
-                                        if (tempp.equals(edtString)) isDel = true;
-                                    }
-                                    if (!isDel) {
-                                        System.out.println(" ERROR : The same part have been edited. MISSING:" + temp);
-                                        res.add(" ERROR : The same part have been edited. MISSING:" + temp);
-                                        return res;
-                                    }
-                                    return res;
-                                }
-                            }
-
-                        }
 /*
 нужно сделать проверку последних строк в едт и  2
  */
@@ -252,6 +257,32 @@ public class Patch {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    List test() {
+
+        try {
+            for (int j = 1; j <= patchList.size(); j++) {
+                if (patchGetter(j).startsWith("STA") || patchGetter(j).startsWith("STe") ||
+                        patchGetter(j).startsWith("END") || patchGetter(j).startsWith("EN1")) {
+                    boolean iz = false;
+                    for (int k = 1; k <= edtList.size() - 2; k++) {
+                        if (patchTrio(j + 1).equals(edtTrio(k))) {
+                            iz = true;
+                        }
+                    }
+                    if (iz) continue;
+                    else return patchTrio(j + 1);
+
+
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("TESTER ERROR");
+            e.printStackTrace();
+        }
+        return null;
     }
 
     //////////////////////

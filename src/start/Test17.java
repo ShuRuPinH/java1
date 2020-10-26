@@ -14,7 +14,7 @@ public class Test17 {
 
     public static void make ()throws IOException {
 
-            FileWriter fileWriter = new FileWriter("file1.txt");
+            FileWriter fileWriter = new FileWriter("filll.txt");
             fileWriter.write( "Этот файл создан мной.\n");
             fileWriter.write( "Теперь он будет жить на диске\n");
             fileWriter.write( "или на флешке\n");

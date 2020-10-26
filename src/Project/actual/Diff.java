@@ -50,6 +50,7 @@ class Diff {
             this.exmList = Files.readAllLines(exm);
         } catch (Exception e) {
             System.out.println(" ERROR input params ");
+            e.printStackTrace();
         } finally {
 
         }
@@ -208,12 +209,13 @@ class Diff {
         try {
             Files.writeString(ptch, "*** PATCHFILE: " + ptch + " AT " + dtf.format(LocalDateTime.now()) + "\n"
                     + "*** FROM:" + org.toAbsolutePath() + "\n" + "*** AND:" + exm.toAbsolutePath() + "\n", StandardOpenOption.APPEND);
+            Files.writeString(ptch, "***    CHANGES: " + de + "- deleted lines; " + ad + "- added lines.", StandardOpenOption.APPEND);
             for (Object x : complDiff()) {
                 if (((String) x).startsWith("AD") || ((String) x).startsWith("\nAD")) ad++;
                 if (((String) x).startsWith("DE") || ((String) x).startsWith("\nDE")) de++;
                 Files.writeString(ptch, (String) x, StandardOpenOption.APPEND);
             }
-            Files.writeString(ptch, "\n***    CHANGES: " + de + "- deleted lines; " + ad + "- added lines.", StandardOpenOption.APPEND);
+
 
         } catch (Exception e) {
             System.out.println(" WRITER ERROR");
