@@ -317,22 +317,28 @@ public class Patch {
 
         String path1e = "";
         String pathP = "";
+        if (args.length == 2) {
+            args[0] = path1e;
+            args[1] = pathP;
+        } else if (args.length == 0) {
 
-        System.out.println("** Input 1st file (2nd programer edition) path:");
-        try (Scanner in = new Scanner(System.in);) {
-            if (in.hasNext()) {
-                path1e = in.next();
+            System.out.println("** Input 1st file (2nd programer edition) path:");
+            try (Scanner in = new Scanner(System.in);) {
+                if (in.hasNext()) {
+                    path1e = in.next();
+                }
+
+                System.out.println("** Input PATCH file (*.patch) path:");
+                if (in.hasNext()) {
+                    pathP = in.next();
+                }
+
+            } catch (Exception e) {
+                System.out.println("SCANER ERROR");
             }
-
-            System.out.println("** Input PATCH file (*.patch) path:");
-            if (in.hasNext()) {
-                pathP = in.next();
-            }
-
-        } catch (Exception e) {
-            System.out.println("SCANER ERROR");
+        } else {
+            System.out.println("!! INPUT ERROR !!");
         }
-
 
         Patch test = new Patch(path1e, pathP);
         test.patcher();

@@ -228,20 +228,26 @@ class Diff {
     public static void main(String[] args) {
         String path1 = "";
         String path2 = "";
+        if (args.length == 2) {
+            args[0] = path1;
+            args[1] = path2;
+        } else if (args.length == 0) {
+            System.out.println("** Input 1st file (original) path:");
+            try (Scanner in = new Scanner(System.in);) {
+                if (in.hasNext()) {
+                    path1 = in.next();
+                }
 
-        System.out.println("** Input 1st file (original) path:");
-        try (Scanner in = new Scanner(System.in);) {
-            if (in.hasNext()) {
-                path1 = in.next();
+                System.out.println("** Input 2nd file (1st programer edition) path:");
+                if (in.hasNext()) {
+                    path2 = in.next();
+                }
+
+            } catch (Exception e) {
+                System.out.println("SCANER ERROR");
             }
-
-            System.out.println("** Input 2nd file (1st programer edition) path:");
-            if (in.hasNext()) {
-                path2 = in.next();
-            }
-
-        } catch (Exception e) {
-            System.out.println("SCANER ERROR");
+        } else {
+            System.out.println("!! INPUT ERROR !!");
         }
 
 
