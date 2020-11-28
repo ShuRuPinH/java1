@@ -15,7 +15,7 @@ for (int i=0; i<=a.length-1; i++){
     }
 
     public static void main(String[] args) {
-        int[] ar1 = {10, 50, 30, 40,100,1};
+        int[] ar1 = {10, 50, 30, 1, 100, 1};
        sort(ar1);
         System.out.println(Arrays.toString(ar1));
 
