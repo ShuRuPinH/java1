@@ -1,76 +1,73 @@
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import org.apache.commons.codec.binary.StringUtils;
+
+import java.util.*;
 
 public class Task2 {
-    public static void printJava() {
-        String d = "Хорошо идут дела";
-        String ya = "Изучаю Java я!";
-        String n = " ";
-        System.out.println(d);
-        System.out.println(ya);
-        System.out.println(d + n + ya);
-        System.out.println(ya + n + d);
+
+    static Deque<Integer> stack = new ArrayDeque();
+
+    static boolean test(String str) {
+        int rule = 0;
+        for (char x : str.toCharArray()) {
+            if (x == '(') {
+                rule++;
+            } else if (x == ')') {
+                rule--;
+            }
+        }
+        return rule == 0;
     }
 
-    public static int subtraction(int x, int y){
-        System.out.println("Вызвана функция subtraction() с параметрами x = "+x+", y = "+y);
-        return x-y;
+
+    static void strReader(String string) {
+        if (test(string)) {
+
+
+        } else {
+            System.out.println(" \'(\' != \')\' ");
+            return;
+        }
     }
 
-    public static int addition(int x, int y){
-        System.out.println("Вызвана функция addition() с параметрами x = "+x+", y = "+y);
-        return x+y;
+    static int calc(String cal) {
+        char[] strn = cal.toCharArray();
+        for (int i = 0; i < strn.length; i++) {
+            System.out.println("char=" + strn[i]);
+            if (i == 0 && Character.isDigit(strn[i])) stack.addLast(Character.getNumericValue(strn[0]));
+            if (i != 0 && Character.isDigit(strn[i])) {
+
+                switch (strn[i - 1]) {
+                    case '+':
+                        stack.addLast(Character.getNumericValue(strn[i]));
+                        break;
+                    case '-':
+                        stack.addLast(Character.getNumericValue(strn[i]) * (-1));
+                        break;
+                    case '*':
+                        stack.addLast(stack.pollLast() * (Character.getNumericValue(strn[i])));
+                        break;
+                    case '/':
+                        stack.addLast(stack.pollLast() / (Character.getNumericValue(strn[i])));
+                        break;
+
+                }
+            }
+
+        }
+        return sum();
     }
 
-    public static int multiplication(int x, int y){
-        System.out.println("Вызвана функция multiplication() с параметрами x = "+x+", y = "+y);
-        return x*y;
-    }
-
-    public static void calculation(){
-        int a=34;
-        int b=55;
-        int c;
-
-        System.out.println("a = "+a);
-        System.out.println("b = "+b);
-
-        c = addition(a, b);
-        System.out.println("a + b = " + c);
-
-        c = subtraction(a, b);
-        System.out.println("a - b = " + c);
-
-        c = multiplication(a, b);
-        System.out.println("a * b = " + c);
-
-    }
-
-    public static void wSetTest() {
-        String TEXT = "на дворе трава на траве дрова не руби дрова на траве двора";
-        Set<String> wordSet = new HashSet<>(Arrays.asList(TEXT.split(" ")));
-
-        Iterator<String> iter = wordSet.iterator();
-        while (iter.hasNext())
-            if (iter.next().contains("ра"))
-                iter.remove();
-
-        System.out.println(wordSet.size());
+    static Integer sum() {
+        Integer sum = 0;
+        for (Integer x : stack) {
+            System.out.println("s=" + x);
+            sum += x;
+        }
+        return sum;
     }
 
     public static void main(String[] args) {
-        printJava();
-        subtraction(45, 12);
-        subtraction(23, 55);
-        addition(127, 787);
-        addition(582, 387);
-        multiplication(124, 87);
-        multiplication(1528, 3);
-        //calculation();
-
-        wSetTest();
+        System.out.println(calc("-3-2*3-8*6"));
     }
 
 }

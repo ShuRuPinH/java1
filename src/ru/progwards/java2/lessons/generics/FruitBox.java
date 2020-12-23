@@ -9,6 +9,10 @@ public class FruitBox<T extends Fruit> extends ArrayList {
     float APL_WEIGHT = 1.0f;
     float ORG_WEIGHT = 1.5f;
 
+    enum CompareResult {LESS, EQUAL, GREATER}
+
+    ;
+
     public void add(T frt) {
         if (list.size() == 0 || list.get(0).getClass() == frt.getClass()) {
             list.add(frt);
@@ -40,6 +44,32 @@ public class FruitBox<T extends Fruit> extends ArrayList {
         return 10;
     }
 
+    //33///33//////////metods for ModuleTESTS
+    static <M extends Comparable> CompareResult compare(M a, M b) {
+
+        int temp = a.compareTo(b);
+        if (temp < 0) return CompareResult.LESS;
+        if (temp == 0) return CompareResult.EQUAL;
+        if (temp > 0) return CompareResult.GREATER;
+        return null;
+
+    }
+
+    <B> ArrayList from(B[] mas) {
+        ArrayList res = new ArrayList();
+        for (B x : mas) {
+            res.add(x);
+        }
+        return res;
+    }
+
+    <U> void swap(List<U> list, int from, int to) {
+        U temp = list.get(to);
+        list.set(to, list.get(from));
+        list.set(from, temp);
+    }
+
+    ////////////////////// MAIN
     public static void main(String[] args) {
         FruitBox aBox = new FruitBox();
         FruitBox oBox = new FruitBox();
@@ -56,3 +86,4 @@ public class FruitBox<T extends Fruit> extends ArrayList {
         System.out.println(zBox.getWeight());
     }
 }
+
