@@ -6,7 +6,7 @@ import java.util.*;
 public class Сalculator {
 
     static Deque<Integer> stack = new ArrayDeque();
-
+//////////////////()
 /*    static boolean test(String str) {
         int rule = 0;
         for (char x : str.toCharArray()) {
