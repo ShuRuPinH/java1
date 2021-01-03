@@ -1,8 +1,9 @@
-import org.apache.commons.codec.binary.StringUtils;
+package ru.progwards.java2.lessons.calculator;
+
 
 import java.util.*;
 
-public class Task2 {
+public class Сalculator {
 
     static Deque<Integer> stack = new ArrayDeque();
 
@@ -29,6 +30,7 @@ public class Task2 {
         }
     }
 
+    /////////////////////
     static int calc(String cal) {
         char[] strn = cal.toCharArray();
         for (int i = 0; i < strn.length; i++) {
