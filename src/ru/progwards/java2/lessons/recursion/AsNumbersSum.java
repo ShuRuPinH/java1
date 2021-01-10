@@ -61,7 +61,7 @@ public class AsNumbersSum {
         AsNumbersSum test = new AsNumbersSum();
 
 
-        System.out.println(asNumbersSum(8));
+        System.out.println(asNumbersSum(5));
 
 
     }
