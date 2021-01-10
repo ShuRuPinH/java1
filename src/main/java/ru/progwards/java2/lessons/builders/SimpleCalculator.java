@@ -23,6 +23,7 @@ public class SimpleCalculator {
 
     }
 
+
     public int div(int val1, int val2) throws ArithmeticException {
         if (val2 == 0) throw new ArithmeticException(" /0 ! ");
         long rez = (long) val1 / (long) val2;
