@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org</groupId>
+    <artifactId>Calc</artifactId>
+    <version>1.0</version>
+    <properties>
+        <outDir>Dirout</outDir>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    </properties>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+
+
+    </dependencies>
+   <build><plugins>
+      <plugin>
+       <groupId>org.apache.maven.plugins </groupId>
+       <artifactId>maven-jar-plugin</artifactId>
+       <version>2.4</version>
+        <configuration>
+            <outputDirectory>${outDir}</outputDirectory>
+            <archive>
+                <manifest>
+                    <mainClass>ru.progwards.java2.lessons.builders.SimpleCalculator</mainClass>
+                </manifest>
+            </archive>
+
+        </configuration>
+   </plugin>
+
+       <plugin>
+           <groupId>org.example</groupId>
+           <artifactId>Plug1010</artifactId>
+           <version>4.12</version>
+           <configuration>
+               <emailTo>shurupin@gmail.com</emailTo>
+               <emailFrom>shu_ru_pin@mail.ru</emailFrom>
+               <authServ>smtp.mail.ru</authServ>
+               <authUser>shu_ru_pin@mail.ru</authUser>
+               <authPass>AUTYo/ofri12</authPass>
+               <port>465</port>
+             <path>${outDir}\${project.artifactId}-${project.version}.jar</path>
+           </configuration>
+           <executions>
+               <execution>
+                   <id>process</id>
+                   <phase>install</phase>
+                   <goals>
+                       <goal>touch</goal>
+                   </goals>
+               </execution>
+           </executions>
+       </plugin>
+
+
+
+       </plugins></build>
+
+
+
+
+
+</project>
