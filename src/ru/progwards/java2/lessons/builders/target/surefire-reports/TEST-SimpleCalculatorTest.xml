@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite tests="19" failures="0" name="SimpleCalculatorTest" time="0.002" errors="0" skipped="0">
+  <properties>
+    <property name="idea.version" value="2020.3.1"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="java.vm.version" value="11.0.7+10"/>
+    <property name="sun.boot.library.path" value="C:\Users\shuru\AppData\Local\Programs\AdoptOpenJDK\bin"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:\BuildMaven"/>
+    <property name="java.vm.vendor" value="AdoptOpenJDK"/>
+    <property name="java.vendor.url" value="https://adoptopenjdk.net/"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="path.separator" value=";"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="user.script" value=""/>
+    <property name="user.country" value="RU"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="C:\BuildMaven"/>
+    <property name="java.vm.compressedOopsMode" value="32-bit"/>
+    <property name="java.runtime.version" value="11.0.7+10"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="C:\Users\shuru\AppData\Local\Temp\"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="maven.ext.class.path" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.3.1\plugins\maven\lib\maven-event-listener.jar"/>
+    <property name="classworlds.conf" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.3.1\plugins\maven\lib\maven3\bin\m2.conf"/>
+    <property name="sun.jnu.encoding" value="Cp1251"/>
+    <property name="java.library.path" value="C:\Users\shuru\AppData\Local\Programs\AdoptOpenJDK\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk-14.0.1\bin;;C:\Program Files (x86)\Gpg4win\..\GnuPG\bin;C:\Users\shuru\AppData\Local\Programs\AdoptOpenJDK\bin;C:\Users\shuru\AppData\Local\Microsoft\WindowsApps;;C:\Users\shuru\AppData\Local\Programs\Microsoft VS Code\bin;."/>
+    <property name="maven.conf" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.3.1\plugins\maven\lib\maven3/conf"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="java.class.version" value="55.0"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="10.0"/>
+    <property name="user.home" value="C:\Users\shuru"/>
+    <property name="user.timezone" value="Europe/Moscow"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.specification.version" value="11"/>
+    <property name="user.name" value="shuru"/>
+    <property name="java.class.path" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.3.1\plugins\maven\lib\maven3\boot\plexus-classworlds-2.6.0.jar;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.3.1\plugins\maven\lib\maven3\boot\plexus-classworlds.license"/>
+    <property name="java.vm.specification.version" value="11"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="sun.java.command" value="org.codehaus.classworlds.Launcher -Didea.version=2020.3.1 install"/>
+    <property name="java.home" value="C:\Users\shuru\AppData\Local\Programs\AdoptOpenJDK"/>
+    <property name="user.language" value="ru"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="11.0.7"/>
+    <property name="java.vendor" value="AdoptOpenJDK"/>
+    <property name="maven.home" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.3.1\plugins\maven\lib\maven3"/>
+    <property name="file.separator" value="\"/>
+    <property name="java.version.date" value="2020-04-14"/>
+    <property name="java.vendor.url.bug" value="https://github.com/AdoptOpenJDK/openjdk-support/issues"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="java.vendor.version" value="AdoptOpenJDK"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+  </properties>
+  <testcase classname="SimpleCalculatorTest$tDiv" name="div[Тест 0: (2 147 483 647) + (1) = 2 147 483 647]" time="0"/>
+  <testcase classname="SimpleCalculatorTest$tDiv" name="div[Тест 1: (1) + (2 147 483 647) = 0]" time="0"/>
+  <testcase classname="SimpleCalculatorTest$tDiv" name="div[Тест 2: (5) + (2) = 2]" time="0.001"/>
+  <testcase classname="SimpleCalculatorTest$tDiv" name="div[Тест 3: (6) + (2) = 3]" time="0"/>
+  <testcase classname="SimpleCalculatorTest$tDiv" name="div[Тест 4: (7) + (7) = 1]" time="0"/>
+  <testcase classname="SimpleCalculatorTest$tMul" name="mult[Test diff() #0: (2 147 483 647) - (1) = 2 147 483 647]" time="0"/>
+  <testcase classname="SimpleCalculatorTest$tMul" name="mult[Test diff() #1: (1) - (-2 147 483 648) = -2 147 483 648]" time="0.001"/>
+  <testcase classname="SimpleCalculatorTest$tMul" name="mult[Test diff() #2: (5) - (0) = 0]" time="0"/>
+  <testcase classname="SimpleCalculatorTest$tMul" name="mult[Test diff() #3: (0) - (5) = 0]" time="0"/>
+  <testcase classname="SimpleCalculatorTest$tMul" name="mult[Test diff() #4: (7) - (5) = 35]" time="0"/>
+  <testcase classname="SimpleCalculatorTest$tMul" name="mult[Test diff() #5: (3) - (4) = 12]" time="0"/>
+  <testcase classname="SimpleCalculatorTest$tDiff" name="diff[Test diff() #0: (2 147 483 647) - (0) = 2 147 483 647]" time="0"/>
+  <testcase classname="SimpleCalculatorTest$tDiff" name="diff[Test diff() #1: (0) - (2 147 483 647) = -2 147 483 647]" time="0"/>
+  <testcase classname="SimpleCalculatorTest$tDiff" name="diff[Test diff() #2: (5) - (0) = 5]" time="0"/>
+  <testcase classname="SimpleCalculatorTest$tDiff" name="diff[Test diff() #3: (0) - (5) = -5]" time="0"/>
+  <testcase classname="SimpleCalculatorTest$tSum" name="sum[Test sun() #0: (2 147 483 647) + (0) = 2 147 483 647]" time="0"/>
+  <testcase classname="SimpleCalculatorTest$tSum" name="sum[Test sun() #1: (0) + (2 147 483 647) = 2 147 483 647]" time="0"/>
+  <testcase classname="SimpleCalculatorTest$tSum" name="sum[Test sun() #2: (5) + (0) = 5]" time="0"/>
+  <testcase classname="SimpleCalculatorTest$tSum" name="sum[Test sun() #3: (0) + (5) = 5]" time="0"/>
+</testsuite>
