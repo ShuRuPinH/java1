@@ -6,7 +6,7 @@ import java.util.ArrayDeque;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class HeapTest {
-    static final int maxSize = 1_932_735_283; //2 147 483 647
+    static final int maxSize = 1_932_735_283; //1_932_735_283
     static final int maxSmall = 10;
     static final int maxMedium = 100;
     static final int maxBig = 1000;
@@ -79,10 +79,12 @@ public class HeapTest {
             }
         }
         long stop = System.currentTimeMillis();
+
+
         System.out.println("malloc time: " + allocTime + " free time: " + freeTime);
         System.out.println("total time: " + (stop - start) + " count: " + count);
         System.out.println("записей о заполненыех: " + heap.fill.size());
-        System.out.println("записей о свободных: " + heap.vacant.size());
+
         Heap.printMemInfo("a");
     }
 }

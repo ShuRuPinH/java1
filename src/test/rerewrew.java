@@ -1,42 +1,65 @@
 package test;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Consumer;
+import java.util.*;
 
 public class rerewrew {
     static int nu = 0;
+    TreeMap<Integer, Integer> temp = new TreeMap<>();
+
+    String rez = "";
 
     public rerewrew(int i) {
         this.nu = i;
     }
 
-    void runn(Consumer<rerewrew> con) {
+    void ddd() {
+        int start = temp.firstKey();
+        int end = temp.get(start);
 
-        con.accept(this);
+        for (Map.Entry<Integer, Integer> x : temp.entrySet()) {
+            System.out.println("START=" + start + "/" + temp.get(start) + "     x.KEY=" + x.getKey());
+            if (x.getKey() == start) {
+                continue;
+            }
+            if (end + 1 == (int) x.getKey()) {
+                end = x.getValue();
+                System.out.println("   NEAR            START.end=" + (temp.get(start) + "    x.KEY=" + x.getKey()) + "  end=" + end);
 
+                continue;
+            } else {
+                putIn(start, end);
+
+                end = x.getValue();
+            }
+
+            start = x.getKey();
+
+
+        }
+        putIn(start, end);
     }
 
-    String prt() {
-        return String.valueOf(nu);
+    void putIn(int st, int en) {
+        rez += "{" + st + "--" + en + "}";
     }
-
 
     public static void main(String[] args) {
-        rerewrew tttt = new rerewrew(1);
+        ArrayList test = new ArrayList();
+        test.add("12");
+        test.add("34");
 
 
-        ArrayList<rerewrew> test = new ArrayList();
-        tttt.runn(test::add);
+        System.out.println(test);
+        System.out.println(test.get(0));
+        test.remove(0);
+        test.add("56");
+        System.out.println(test.get(0));
 
-        for (rerewrew x : test
-        ) {
-            System.out.println(x.prt());
 
+        try {
+            System.out.println(test);
+        } catch (Exception e) {
+            System.out.println("не должно быть");
         }
 
 

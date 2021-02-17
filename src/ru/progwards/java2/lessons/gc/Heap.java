@@ -1,22 +1,29 @@
 package ru.progwards.java2.lessons.gc;
 
 
-import java.lang.ref.WeakReference;
 import java.util.*;
 
 public class Heap {
     //long lstart, lstop, lstop2;
     static byte[] bytes;
 
-    SortedMap<Integer, Integer> vacant = new TreeMap<>();
+    static TreeMap<Integer, Integer> vacant = new TreeMap();
+    static ArrayList<Integer> list100 = new ArrayList<>();
+    static ArrayList<Integer> list1000 = new ArrayList<>();
+    static ArrayList<Integer> list10000 = new ArrayList<>();
 
-    static HashMap<Integer, Integer> fill = new HashMap<>();
-    boolean outOfMem = false;
-    boolean rDir = false;
-    int right;
-    int left;
+
+    static TreeMap<Integer, Integer> fill = new TreeMap<>();
+
+    static TreeMap<Integer, Integer> newFill = new TreeMap<>();
+
+    static TreeMap<Integer, String> test = new TreeMap<>();
+    int testH = 0;
+
+    boolean once = true;
     int def = 0;
     static int fitSize = 0;
+    int left = 0;
 
 
     Heap(int maxHeapSize) {
@@ -27,8 +34,8 @@ public class Heap {
 
         System.out.println(" create [ms] = " + (stop - start) + "        butes[0]/[last]=" + bytes[0] + "/" + bytes[bytes.length - 1]);
 
-        right = bytes.length - 1;
-        left = 0;
+
+        vacant.put(0, bytes.length - 1);
     }
 
 
@@ -49,86 +56,80 @@ public class Heap {
 
     }
 
-    static void fill(int pos, int size) {
+    static void put(int start, int end, int pos) {
         //System.out.print(pos+"-"+size+" / ");
-        fitSize += size;
-        for (int i = pos; i < pos + size; i++) {
-            bytes[i] = 7;
+        fitSize += end - start + 1;
+        fill.put(start, pos - start);
+        //     test(start,"put/");
 
-        }
+        vacant.remove(start);
+        putIn(pos, end);
+    }
 
-        fill.put(pos, size);
-        // System.out.println(" ADD pos:"+pos+"  size="+size);
 
+    static void test(int ptr, String from) {
+        String temp;
+
+        if (test.containsKey(ptr)) temp = test.get(ptr) + " + " + from;
+        else temp = from;
+
+        test.put(ptr, temp);
     }
 
 
     public int malloc(int size) throws OutOfMemoryException {
-
+        int start;
+        int endSpace;
+        int newPosFreeSpace;
         def++;
-        if (def % 7_000_000 == 0) {
-            System.out.println(" compact 7M");
 
-            compact();
-        }
-        if (left + size >= bytes.length) {
-            //     System.out.print("m  sum="+(size+left));
-          /*  int p = fromList(size);
-            if (p >= 0) return p;*/
-            compact();
+        if (left > bytes.length * 0.5 && once) {
 
-            int p = fromList(size);
-            if (p >= 0) return p;
-            throw new OutOfMemoryException(" Out of mem size / left = " + size + "/" + left);
+            defrag();
 
-
+            once = false;
         }
 
-        int pos = left;
-        left = left + size + 1;
-        fill(pos, size);
-        vacant.remove(pos);
-        vacant.put(left, bytes.length - 1);
-        return pos;
-
-        // System.out.print("O");
-
-
-    }
-
-
-    int fromList(int siz) {
-
-
-        if (def % 30_000 == 0) {
-            compact();
-        }
-        //  System.out.print("+");
-        int pos = -1;
-        int posEnd = -1;
-
-        for (Map.Entry<Integer, Integer> x : vacant.entrySet()) {
-            if (x.getValue() + 1 - x.getKey() >= siz) {
-                pos = x.getKey();
-                posEnd = x.getValue();
-                break;
-            }
-        }
-        if (pos == -1) {
-            compact();
-            try {
-                malloc(siz);
-            } catch (OutOfMemoryException e) {
-                e.printStackTrace();
-            }
+        if (left < bytes.length) {
+            start = left;
+            endSpace = bytes.length;
+            newPosFreeSpace = left + size;
+            left = newPosFreeSpace;
         } else {
-            vacant.put(pos + siz, posEnd);
-            fill(pos, siz);
-            vacant.remove(pos);
+            if (vacant.size() > 1000) defrag();
+            int fL = fromList(size);
+            if (fL >= 0) return fL;
+
+            else {
+                compact();
+                throw new OutOfMemoryException("no space in vacant");
+            }
+
         }
-        //  System.out.println("!!! Fromlist   pos:"+pos);
-        return pos;
+        put(start, endSpace, newPosFreeSpace);
+
+
+        return start;
     }
+
+    int fromList(int size) {
+        int str;
+        int en;
+
+        for (Map.Entry<Integer, Integer> e : vacant.entrySet()) {
+            str = e.getKey();
+            en = e.getValue();
+
+            if (size <= en - str + 1) {
+                put(str, en, str + size);
+                return str;
+            }
+        }
+        return -100;
+
+
+    }
+
 
     /*
 3. Метод public void free(int ptr) - "удаляет", т.е. помечает как свободный блок памяти по "указателю". Проверять валидность
@@ -142,76 +143,71 @@ public class Heap {
         def++;
         if (fill.containsKey(ptr)) {
             int size = fill.get(ptr);
-            vacant.put(ptr, ptr + size - 1);
-            for (int i = ptr; i < ptr + size; i++) {
-                bytes[i] = 0;
-            }
 
-            if ((vacant.size() % 150_000) == 0) {
-                //   System.out.println(vacant.size());
-                long start = System.currentTimeMillis();
-                defrag();
-                long stop = System.currentTimeMillis();
+            putIn(ptr, ptr + size - 1);
 
-                //System.out.println(" defrag = "+(stop-start)+"       vacant.size() ="+vacant.size());
-            }
             fill.remove(ptr);
-            fitSize = fitSize - size;
-        } else throw new InvalidPointerException("InvalidPointerException point:" + ptr);
+            //    test(ptr, "free");
+
+        } else
+            throw new InvalidPointerException("InvalidPointerException point:" + ptr + "     test: " + test.get(ptr));
     }
 
     /*4. Метод public void defrag() - осуществляет дефрагментацию кучи - ищет смежные свободные блоки, границы которых соприкасаются
     и которые можно слить в один.*/
     public void defrag() {
-        // System.out.println("START defrag  vacants="+vacant.size());
-        // System.out.println(vacant.toString());
-        if (vacant.isEmpty()) return;
-        int start = vacant.firstKey();
 
+ /*       System.out.println(" START DEFRAG   " +"\n"+
+                "left="+left+
+                "        vacantH.size()" + vacant.size()+"\n"
+        );*/
+        TreeMap<Integer, Integer> temp = new TreeMap<>();
 
-        Map<Integer, Integer> temp = new TreeMap(vacant);
+        temp.putAll(vacant);
+
+        vacant.clear();
+
+        int start = temp.firstKey();
+        int end = temp.get(start);
+
         for (Map.Entry<Integer, Integer> x : temp.entrySet()) {
-            //  System.out.println("START="+start+"/"+ vacant.get(start)+"     x.KEY="+x.getKey());
-
+            //    System.out.println("START="+start+"/"+ temp.get(start)+"     x.KEY="+x.getKey());
             if (x.getKey() == start) {
                 continue;
-
             }
-            if ((vacant.get(start) + 1) == (int) x.getKey()) {
-                // System.out.println("   NEAR            START.end="+(vacant.get(start)+"    x.KEY="+x.getKey()));
-                vacant.put(start, x.getValue());
-                vacant.remove(x.getKey());
+            if (end + 1 == (int) x.getKey()) {
+                //       System.out.println("   NEAR            START.end="+(temp.get(start)+"    x.KEY="+x.getKey()));
+                end = x.getValue();
                 continue;
+            } else {
+                putIn(start, end);
+
+                end = x.getValue();
             }
+
             start = x.getKey();
 
-        }
 
-        ends();
-        //    System.out.println("END defrag  vacants="+vacant.size());
+        }
+        putIn(start, end);
+/*        System.out.println(" DEFRAG REZULT    " +"\n"+
+                        "left="+left+
+                "        vacantH.size()" + vacant.size()+"\n"
+                 );*/
+
+
+        testH = 0;
+    }
+
+    static void putIn(int st, int end) {
+        int size = end - st + 1;
+        vacant.put(st, end);
+        if (size >= 100) list100.add(st);
+        if (size >= 1000) list1000.add(st);
+        if (size >= 10000) list10000.add(st);
 
     }
 
-    void ends() {
-        int tmp = -1;
-        if (vacant.containsKey(right + 1)) {
-            System.out.println("  END     right");
-            tmp = right + 1;
-            right = vacant.get(tmp);
-
-        }
-
-        for (Map.Entry<Integer, Integer> x : vacant.entrySet()) {
-            if (x.getValue() - 1 == left) {
-                System.out.println("  END     left");
-                tmp = left;
-                left = x.getKey();
-
-            }
-
-        }
-        if (tmp != -1) vacant.remove(tmp);
-    }
 
     /*
 5. Метод public void compact() - компактизация кучи - перенос всех занятых блоков в начало хипа, с копированием самих данных
@@ -223,26 +219,17 @@ public class Heap {
 
         long start = System.currentTimeMillis();
         for (int i = 0; i < bytes.length; i++) {
-            if (bytes[i] > 0) {
-                bytes[count++] = bytes[i];
-            }
+
 
         }
-        long stop = System.currentTimeMillis();
-        //  System.out.println(" all massive & > & copy [ms] = "+(stop-start));
+        for (Map.Entry x : fill.entrySet()) {
+            newFill.put((Integer) x.getKey(), count);
+            count = count + (Integer) x.getValue();
 
-
-        for (int i = count; i < bytes.length; i++) {
-            bytes[i] = -1;
         }
-        vacant.clear();
-        if (count == fitSize) System.out.println("count!=fitSize   " + count + "/" + fitSize);
-        left = count;
-        vacant.put(left, bytes.length);
 
 
         //left=count;
-        right = bytes.length - 1;
 
 
     }
@@ -260,7 +247,12 @@ InvalidPointerException - неверный указатель. Возникае�
      */
 
     public void getBytes(int ptr, byte[] bytes) {
-        //   System.arraycopy(this.bytes, ptr, bytes, 0, size);
+        int point;
+        if (newFill.size() > 0) point = newFill.get(ptr);
+        else point = ptr;
+
+
+        System.arraycopy(this.bytes, point, bytes, 0, fill.get(ptr));
     }
 
     public void setBytes(int ptr, byte[] bytes) {
