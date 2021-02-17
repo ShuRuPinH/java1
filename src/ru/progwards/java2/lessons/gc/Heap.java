@@ -8,9 +8,9 @@ public class Heap {
     static byte[] bytes;
 
     static TreeMap<Integer, Integer> vacant = new TreeMap();
-    static ArrayList<Integer> list100 = new ArrayList<>();
-    static ArrayList<Integer> list1000 = new ArrayList<>();
-    static ArrayList<Integer> list10000 = new ArrayList<>();
+    //  static ArrayList<Integer> list100 = new ArrayList<>();
+    //  static ArrayList<Integer> list1000 = new ArrayList<>();
+    //  static ArrayList<Integer> list10000 = new ArrayList<>();
 
 
     static TreeMap<Integer, Integer> fill = new TreeMap<>();
@@ -96,7 +96,7 @@ public class Heap {
             newPosFreeSpace = left + size;
             left = newPosFreeSpace;
         } else {
-            if (vacant.size() > 1000) defrag();
+            if (vacant.size() > 100) defrag();
             int fL = fromList(size);
             if (fL >= 0) return fL;
 
@@ -202,9 +202,7 @@ public class Heap {
     static void putIn(int st, int end) {
         int size = end - st + 1;
         vacant.put(st, end);
-        if (size >= 100) list100.add(st);
-        if (size >= 1000) list1000.add(st);
-        if (size >= 10000) list10000.add(st);
+
 
     }
 
