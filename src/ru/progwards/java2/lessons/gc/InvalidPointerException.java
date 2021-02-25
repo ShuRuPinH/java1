@@ -5,4 +5,8 @@ public class InvalidPointerException extends Throwable {
         System.out.println(tt);
         Heap.printMemInfo(tt);
     }
+
+    public InvalidPointerException() {
+        System.out.println("tt");
+    }
 }

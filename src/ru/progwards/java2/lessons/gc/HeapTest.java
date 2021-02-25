@@ -38,7 +38,7 @@ public class HeapTest {
     }
 
     public static void main(String[] args) throws InvalidPointerException, OutOfMemoryException {
-        Heap heap = new Heap(maxSize);
+        Heap3 heap = new Heap3(maxSize);
         ArrayDeque<Block> blocks = new ArrayDeque<>();
         int count = 0;
         int allocTime = 0;
@@ -83,7 +83,7 @@ public class HeapTest {
 
         System.out.println("malloc time: " + allocTime + " free time: " + freeTime);
         System.out.println("total time: " + (stop - start) + " count: " + count);
-        System.out.println("записей о заполненыех: " + heap.fill.size());
+
 
         Heap.printMemInfo("a");
     }

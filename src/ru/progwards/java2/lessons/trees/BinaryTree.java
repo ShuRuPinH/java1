@@ -78,7 +78,7 @@ public class BinaryTree<K extends Comparable<K>, V> {
 
     private TreeLeaf<K, V> root;
 
-    public V find(K key) {
+    public V findM(K key) {
         if (root == null)
             return null;
         TreeLeaf found = root.find(key);
