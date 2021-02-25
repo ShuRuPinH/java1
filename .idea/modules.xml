@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/src/ru/progwards/java2/lessons/builders/Calc/Calc.iml" filepath="$PROJECT_DIR$/src/ru/progwards/java2/lessons/builders/Calc/Calc.iml" />
       <module fileurl="file://$PROJECT_DIR$/First.iml" filepath="$PROJECT_DIR$/First.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/ru/progwards/java2/lessons/builders/Plug1010/Plug1010.iml" filepath="$PROJECT_DIR$/src/ru/progwards/java2/lessons/builders/Plug1010/Plug1010.iml" />
     </modules>
   </component>
 </project>

@@ -30,6 +30,14 @@
     <option name="Skip Tests" value="false" />
     <pom-list />
   </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/src/ru/progwards/java2/lessons/builders/Plug1010/pom.xml" />
+        <option value="$PROJECT_DIR$/src/ru/progwards/java2/lessons/builders/Calc/pom.xml" />
+      </list>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_14" default="true" project-jdk-name="14" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
