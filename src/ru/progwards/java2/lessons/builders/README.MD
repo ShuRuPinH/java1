@@ -4,11 +4,12 @@
 
 В pom указываем необходимые настройки почтового сервиса и
 
+```html
 <emailTo>shurupin@gmail.com</emailTo>
 <emailFrom>shu_ru_pin@mail.ru</emailFrom>
 <authServ>smtp.mail.ru</authServ>
 <authUser>shu_ru_pin@mail.ru</authUser>
 <authPass>****</authPass>
-
+```
 
 
