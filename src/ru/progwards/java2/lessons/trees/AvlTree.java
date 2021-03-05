@@ -5,10 +5,11 @@ import java.util.function.Consumer;
 
 public class AvlTree {
     static private AvlTreeLeaf root;
-
+    int countR = 0;
 
     public class AvlTreeLeaf<K extends Comparable<K>, V> {
         K key;
+
 
         @Override
         public String toString() {
@@ -246,20 +247,22 @@ public class AvlTree {
                     if (lr <= ll) {
                         //  System.out.println("!!! small Right   key="+tmpL.getKey());
                         tmpL = smallRight(tmpL);
+                        countR++;
 
                     } else {
                         // System.out.println("!!! big Right   key="+tmpL.getKey());
                         tmpL = bigRight(tmpL);
-
+                        countR++;
                     }
                 } else {
                     if (rl <= rr) {
                         // System.out.println("!!! small Left   key="+tmpL.getKey());
                         tmpL = smallLeft(tmpL);
-
+                        countR++;
                     } else {
                         //  System.out.println("!!! big Left   key="+tmpL.getKey());
                         tmpL = bigLeft(tmpL);
+                        countR++;
                     }
 
 
