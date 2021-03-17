@@ -6,21 +6,21 @@ class Person {
     private boolean sex;
     int other;
 
-    public String getName() {
-        return name;
+    public static String getName() {
+        return "name";
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public int getAge(int t) {
+        return t;
+    }
+
+    private void setName(String name) {
     }
 
     public boolean getSex() {
         return sex;
     }
 
-    int getAge(int t) {
-        return 0;
-    }
 
 }
 

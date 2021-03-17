@@ -42,5 +42,25 @@ public class TreeIterator<K extends Comparable<K>, V> implements Iterator {
         }
 
     }
+
+
+ /*   public static void main(String[] args) {
+        BinaryTree<Integer, String> test = new BinaryTree<>();
+
+        for (int i = 0; i < 10; i++) {
+            Integer tt=(int)(Math.random()*100);
+            try {
+                test.add(tt,"gfgdf//"+tt);
+            } catch (TreeException e) {
+                e.printStackTrace();
+            }
+        }
+        Iterator it= test.getIterator();
+
+        while (it.hasNext()){
+            System.out.println(it.next().toString());
+        }
+
+    }*/
 }
 

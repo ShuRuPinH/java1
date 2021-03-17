@@ -35,7 +35,11 @@ public class GettersAndSetters {
 
             for (Method m : met) {
                 Type[] typz = new Type[2];
-                if (Modifier.toString(m.getModifiers()).equals("static")) continue;
+
+                System.out.println((Modifier.toString(m.getModifiers())));
+
+                if ((Modifier.toString(m.getModifiers())).contains("static")) continue;
+                if (!(Modifier.toString(m.getModifiers())).contains("public")) continue;
                 if (m.getName().startsWith("set") || m.getName().startsWith("get")) {
                     var par = m.getGenericParameterTypes();
                     if (par.length > 1) continue;
@@ -44,10 +48,11 @@ public class GettersAndSetters {
 
                     privM.put(m.getName(), typz);
                 }
-
-
             }
 
+            for (Map.Entry x : privM.entrySet()) {
+                System.out.println(x.toString());
+            }
 
             for (Map.Entry<String, Type> s : privF.entrySet()) {
                 //   System.out.println("CHECK : "+s);
@@ -58,8 +63,9 @@ public class GettersAndSetters {
                 for (Map.Entry<String, Type[]> m : privM.entrySet()) {
                     Type[] t = m.getValue();
                     if ((("get" + s.getKey()).toLowerCase()).equals(m.getKey().toLowerCase()) && t[1].equals(s.getValue())) {
+                        if (t[0] == null) get = true;
                         // System.out.println("have getter " +s.getKey());
-                        get = true;
+
                     }
                     //  System.out.println("!!!!    "+m.getKey() + "  Param=" + t[0] + "  Return=" + t[1]);
                     if ((("set" + s.getKey()).toLowerCase()).equals(m.getKey().toLowerCase()) && t[0].equals(s.getValue())) {
