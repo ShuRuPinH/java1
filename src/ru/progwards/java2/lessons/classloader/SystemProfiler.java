@@ -7,7 +7,7 @@ public class SystemProfiler {
 
     public static void premain(String agentArgument, Instrumentation instrumentation) {
         System.out.println("SystemProfiler: premain стартовал");
-        System.out.println("SystemProfiler  args2: " + agentArgument);
+        System.out.println("SystemProfiler  args: " + agentArgument);
         instrumentation.addTransformer(new ProfilerTrans(agentArgument));
 
     }

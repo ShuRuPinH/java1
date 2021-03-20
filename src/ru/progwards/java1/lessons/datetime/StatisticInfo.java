@@ -1,7 +1,9 @@
 package ru.progwards.java1.lessons.datetime;
 
 
-public class StatisticInfo implements Comparable<StatisticInfo> {
+import java.io.Serializable;
+
+public class StatisticInfo implements Comparable<StatisticInfo>, Serializable {
 
     public String sectionName;
     public int fullTime;
@@ -10,12 +12,12 @@ public class StatisticInfo implements Comparable<StatisticInfo> {
 
     @Override
     public String toString() {
-        return "StatisticInfo{" +
+        return "Info {" +
                 "sectionName='" + sectionName + '\'' +
-                ", fullTime=" + fullTime +
+                ": fullTime=" + fullTime +
                 ", selfTime=" + selfTime +
                 ", count=" + count +
-                '}';
+                "};";
     }
 
     public StatisticInfo(String sectionName, int fullTime, int selfTime, int count) {

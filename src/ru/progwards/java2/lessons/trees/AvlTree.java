@@ -447,16 +447,12 @@ public class AvlTree {
 
     public static void main(String[] args) {
         AvlTree test = new AvlTree();
-
-
         ArrayList<AvlTreeLeaf> sorted = new ArrayList<AvlTree.AvlTreeLeaf>();
 
-
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 1000000; i++) {
             test.put("fdf" + (Math.random() * 100000), "*");
 
         }
-
 
         viewALL(getRoot());
 
