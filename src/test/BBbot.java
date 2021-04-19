@@ -1,4 +1,3 @@
-/*
 package test;
 
 
@@ -114,4 +113,3 @@ public class BBbot extends ProgwardsTelegramBot {
         return jokes[(int) (Math.random() * 10)];
     }
 }
-*/

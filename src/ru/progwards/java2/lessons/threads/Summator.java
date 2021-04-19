@@ -73,6 +73,7 @@ number - число, до которого надо просуммировать
                     //   System.out.println(Thread.currentThread().getId()+" **** "+threadName);
                     synchronized (x) {
                         x.notify();
+                        
                     }
 
                 }
