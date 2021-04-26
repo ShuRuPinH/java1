@@ -1,28 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/src/file2.txt" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/ru/progwards/java1/SeaBattle/shurupin/SeaBattleAlg.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/ru/progwards/java1/lessons/datetime/Insurance.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/ru/progwards/java1/lessons/maps/FiboMapCache.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/ru/progwards/java1/lessons/maps/SalesInfo.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/ru/progwards/java1/lessons/maps/UsageFrequency.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/ru/progwards/java1/lessons/queues/Calculate.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/ru/progwards/java1/lessons/queues/CollectionsSort.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/ru/progwards/java1/lessons/queues/Order.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/ru/progwards/java1/lessons/queues/OrderQueue.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/ru/progwards/java1/lessons/queues/StackCalc.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/ru/progwards/java1/lessons/sets/LettersInFile.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/ru/progwards/java1/lessons/sets/ProductAnalytics.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/ru/progwards/java2/lessons/builders/Calc/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/ru/progwards/java2/lessons/builders/Calc/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/ru/progwards/java2/lessons/builders/Plug1010/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/ru/progwards/java2/lessons/builders/Plug1010/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/test/BBbot.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/test/Collection.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/test/Figure.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/test/MapTest.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/t/file1.txt" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

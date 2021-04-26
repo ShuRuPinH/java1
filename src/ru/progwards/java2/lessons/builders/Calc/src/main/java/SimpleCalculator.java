@@ -51,28 +51,24 @@ public class SimpleCalculator {
 
 
         if (args[0].equals("sum")) {
-            System.out.println(a+"+"+b+"="+tt.sum(a, b));
+            System.out.println(a + "+" + b + "=" + tt.sum(a, b));
             return;
 
-        }
-        else   if (args[0].equals("diff")) {
-            System.out.println(a+"-"+b+"="+tt.diff(a, b));
+        } else if (args[0].equals("diff")) {
+            System.out.println(a + "-" + b + "=" + tt.diff(a, b));
             return;
 
-        }
-        else   if (args[0].equals("mult")) {
-            System.out.println(a+"*"+b+"="+tt.mult(a, b));
+        } else if (args[0].equals("mult")) {
+            System.out.println(a + "*" + b + "=" + tt.mult(a, b));
             return;
 
-        }
-        else   if (args[0].equals("div")) {
-            System.out.println(a+"/"+b+"="+tt.div(a, b));
+        } else if (args[0].equals("div")) {
+            System.out.println(a + "/" + b + "=" + tt.div(a, b));
             return;
 
+        } else {
+            System.out.println("Invalid command");
+            return;
         }
-    else {
-        System.out.println("Invalid command");
-        return;
     }
-}
 }

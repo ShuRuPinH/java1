@@ -11,6 +11,18 @@ public class Philosopher extends Thread {
     long reflectSum = 0;// - суммарное время, которое философ размышлял в мс
     long eatSum = 0;// - суммарное время, которое философ ел в мс
 
+    boolean doing = false;
+    boolean stop = false;
+
+    public void setDoing(boolean d) {
+        doing = d;
+
+    }
+
+    public boolean checkDone() {
+        return stop;
+    }
+
     void setName() {
         switch (number) {
             case 1:
@@ -53,6 +65,7 @@ public class Philosopher extends Thread {
         this.reflectTime = reflectTime;
         this.eatTime = eatTime;
 
+        System.out.println("Филосов инициализирован.");
 
 
     }
@@ -62,59 +75,90 @@ public class Philosopher extends Thread {
         left = Simposion.forks[n];
         right = Simposion.forks[n == 1 ? Simposion.PandF : n - 1];
         setName();
-        doing();
+        System.out.println("Филосов " + name + " сняряжен:");
+        System.out.println("#" + number + "   вилка слева - " + left.pos + " вилка справа - " + right.pos);
+
+
     }
 // void reflect() - размышлять. Выводит "размышляет "+ name на консоль с периодичностью 0.5 сек
 
     void reflect() {
-        left.setFree(true);
-        right.setFree(true);
 
-        while (true) {
-            System.out.println("размышляет " + name);
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
+        System.out.println("размышляет " + name);
+
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+
         }
+
 
     }
 
 // void eat() - есть. Выводит "ест "+ name на консоль с периодичностью 0.5 сек
 
     void eat() {
-        left.setFree(false);
-        right.setFree(false);
-        while (true) {
-            System.out.println("ест " + name);
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
+
+        System.out.println("ест " + name);
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+
         }
+
 
     }
 
     void doing() {
-        while (true) {
-            try {
-                if (left.isFree() && right.isFree()) {
+
+        stop = false;
+
+        while (doing) {
+
+            if (left.isFree() && right.isFree()) {
+                putUp();
+                for (long i = 0; i < eatTime / 500; i++) {
+                    if (!doing) break;
                     eat();
-                    Thread.sleep(eatTime);
-                    eatSum += eatTime;
                 }
-                reflect();
-                Thread.sleep(reflectTime);
-                reflectSum+=reflectTime;
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                eatSum += (eatTime / 500) * 500;
+                putDown();
             }
+            for (long i = 0; i < reflectTime / 500; i++) {
+                if (!doing) break;
+                reflect();
+            }
+
+
+            reflectSum += ((reflectTime / 500) * 500);
+
+
         }
+
+        stop = true;
     }
 
-    /*
+    void putDown() {
+        left.setFree(true);
+        right.setFree(true);
+    }
+
+    void putUp() {
+        left.setFree(false);
+        right.setFree(false);
+    }
+
+    @Override
+    public void run() {
+        System.out.println(name + " начал думать");
+        doing();
+    }
+
+  /*
     Задача 2. Задача об обедающих философах
 
 Решить задачу об обедающих философах

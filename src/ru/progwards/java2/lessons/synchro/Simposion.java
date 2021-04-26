@@ -4,80 +4,121 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Simposion {
-   static int  PandF=5;
-   public static Fork [] forks ;
-   public static Philosopher [] philos;
+    static int PandF = 5;
+    public static Fork[] forks;
+    public static Philosopher[] philos;
     long reflectTime;
     long eatTime;
-    List<Long> threads= new ArrayList<>();
-
+    List<Thread> threads = new ArrayList<>();
 
 
     public Simposion(long reflectTime, long eatTime) {
         this.reflectTime = reflectTime;
         this.eatTime = eatTime;
-        forks =new Fork[PandF];
-
-
+        forks = new Fork[PandF + 1];
+        philos = new Philosopher[PandF + 1];
 
         for (int i = 1; i <= PandF; i++) {
-            forks [i]= new Fork(i);
-            philos [i]= new Philosopher(reflectTime,eatTime);
-            philos [i].setNumber(i);
-            try {
-                philos [i].wait();
-                threads.add(philos[i].getId());
+            forks[i] = new Fork(i);
+            forks[i].setFree(true);
+        }
 
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        for (int i = 1; i <= PandF; i++) {
+            System.out.println("Thread  make  i=" + i);
 
+
+            Thread tp = new Philosopher(reflectTime, eatTime);
+
+            philos[i] = (Philosopher) tp;
+            (philos[i]).setNumber(i);
+
+            threads.add(philos[i]);
+            philos[i].start();
+
+
+           /* String thrdName = philos[i].getName();
+            System.out.println("thrdID : " + thrdID + "           thrdNabe : " + thrdName);*/
 
 
         }
     }
-  /*
-    2.3 Создать class Simposion - философская беседа с методами:
 
-- конструктор Simposion(long reflectTime, long eatTime), который инициализирует необходимое количество философов и вилок.
-Каждый философ выполняется в отдельном потоке. reflectTime задает время в мс,
- через которое философ проголодается, eatTime задает время в мс,
- через которое получив 2 вилки философ наестся и положит вилки на место
+    /*
+      2.3 Создать class Simposion - философская беседа с методами:
 
--  метод start() который запускает философскую беседу
+  - конструктор Simposion(long reflectTime, long eatTime), который инициализирует необходимое количество философов и вилок.
+  Каждый философ выполняется в отдельном потоке. reflectTime задает время в мс,
+   через которое философ проголодается, eatTime задает время в мс,
+   через которое получив 2 вилки философ наестся и положит вилки на место
 
-- метод stop() который завершает философскую беседу
+  -  метод start() который запускает философскую беседу
 
-- метод print() который печатает результаты беседы в формате
-Философ name, ел ххх, размышлял xxx
-где ххх время в мс
+  - метод stop() который завершает философскую беседу
 
-- метод main который реализует тест для философской беседы. Проверить варианты, когда ресурсов (вилок) достаточно
-(философы долго размышляют и мало едят) и вариант когда не хватает (философы много едят и мало размышляют)
+  - метод print() который печатает результаты беседы в формате
+  Философ name, ел ххх, размышлял xxx
+  где ххх время в мс
 
-     */
-   void start(){
-       notifyAll();
+  - метод main который реализует тест для философской беседы. Проверить варианты, когда ресурсов (вилок) достаточно
+  (философы долго размышляют и мало едят) и вариант когда не хватает (философы много едят и мало размышляют)
+
+       */
+    void start() {
+        System.out.println(" --- S T A R T ---");
+
+        System.out.println("threads.size =" + threads.size());
+        for (Thread thread : threads) {
+            ((Philosopher) thread).setDoing(true);
+
+
+        }
     }
 
-    void stop(){
-       var ts = Thread.getAllStackTraces().keySet();
-       for (Thread t: ts){
-           if (threads.contains(t.getId())){
-               t.interrupt();
-           }
-       }
+    void stop() {
+        System.out.println(" --- S T O P ---");
+
+        for (Thread thread : threads) {
+            ((Philosopher) thread).setDoing(false);
+
+        }
+
+
     }
 
-    void print(){
-        for ( Philosopher p: philos
-             ) {
-            System.out.println("Философ "+p.name+", ел "+p.eatSum+", размышлял "+p.reflectSum);
+    void print() {
+
+
+        for (Philosopher p : philos
+        ) {
+            if (p != null) {
+                while (!p.checkDone()) {
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                System.out.println("Философ " + p.name + ", ел " + p.eatSum + ", размышлял " + p.reflectSum);
+            }
         }
     }
 
     public static void main(String[] args) {
-        Simposion test = new Simposion(2000,500);
+        Simposion test = new Simposion(2000, 3000);
+        test.start();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        test.stop();
+        test.print();
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         test.start();
     }
 
