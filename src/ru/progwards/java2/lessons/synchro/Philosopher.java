@@ -11,7 +11,11 @@ public class Philosopher extends Thread {
     long reflectSum = 0;// - суммарное время, которое философ размышлял в мс
     long eatSum = 0;// - суммарное время, которое философ ел в мс
 
-    boolean doing = false;
+    int factorE;
+    int factorR;
+
+
+    volatile boolean doing = false;
     boolean stop = false;
 
     public void setDoing(boolean d) {
@@ -19,7 +23,7 @@ public class Philosopher extends Thread {
 
     }
 
-    public boolean checkDone() {
+    public boolean checkDone() {    // проверям завершили ли философы действия
         return stop;
     }
 
@@ -65,9 +69,10 @@ public class Philosopher extends Thread {
         this.reflectTime = reflectTime;
         this.eatTime = eatTime;
 
-        System.out.println("Филосов инициализирован.");
-
-
+        //    System.out.println("Филосов инициализирован.");
+        int tmp = (int) (eatTime / 500l);
+        factorE = tmp == 0 ? 1 : tmp;
+        factorR = 1;
     }
 
     void setNumber(int n) {
@@ -75,8 +80,8 @@ public class Philosopher extends Thread {
         left = Simposion.forks[n];
         right = Simposion.forks[n == 1 ? Simposion.PandF : n - 1];
         setName();
-        System.out.println("Филосов " + name + " сняряжен:");
-        System.out.println("#" + number + "   вилка слева - " + left.pos + " вилка справа - " + right.pos);
+        //  System.out.println("Филосов " + name + " сняряжен:");
+        //   System.out.println("#" + number + "   вилка слева - " + left.pos + " вилка справа - " + right.pos);
 
 
     }
@@ -85,7 +90,7 @@ public class Philosopher extends Thread {
     void reflect() {
 
 
-        System.out.println("размышляет " + name);
+        //  System.out.println("размышляет " + name);
 
         try {
             Thread.sleep(500);
@@ -94,6 +99,8 @@ public class Philosopher extends Thread {
 
         }
 
+        reflectSum += 500;
+        if (!doing) return;
 
     }
 
@@ -102,44 +109,49 @@ public class Philosopher extends Thread {
     void eat() {
 
 
-        System.out.println("ест " + name);
+        //    System.out.println("ест " + name);
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
 
         }
-
+        eatSum += 500;
+        if (!doing) return;
 
     }
 
     void doing() {
-
-        stop = false;
-
-        while (doing) {
-
-            if (left.isFree() && right.isFree()) {
-                putUp();
-                for (long i = 0; i < eatTime / 500; i++) {
-                    if (!doing) break;
-                    eat();
-                }
-                eatSum += (eatTime / 500) * 500;
-                putDown();
-            }
-            for (long i = 0; i < reflectTime / 500; i++) {
-                if (!doing) break;
-                reflect();
-            }
-
-
-            reflectSum += ((reflectTime / 500) * 500);
-
+        while (!doing) {
 
         }
 
+        stop = false;
+        while (doing) {
+            if (left.isFree() && right.isFree() && hanger()) {
+                putUp();
+                for (long i = 0; i < factorE; i++) {
+                    if (!doing) break;
+                    eat();
+                }
+
+                putDown();
+            }
+            for (long i = 0; i <= factorR; i++) {
+                if (!doing) break;
+                reflect();
+            }
+        }
         stop = true;
+    }
+
+    boolean hanger() {
+        double needs = (double) eatTime / reflectTime;
+        if (reflectSum == 0) return true; //
+        double haved = (double) eatSum / reflectSum;
+        if (needs > haved) return true;
+        else return false;
+
     }
 
     void putDown() {
@@ -154,7 +166,7 @@ public class Philosopher extends Thread {
 
     @Override
     public void run() {
-        System.out.println(name + " начал думать");
+        // System.out.println(name + " начал думать");
         doing();
     }
 

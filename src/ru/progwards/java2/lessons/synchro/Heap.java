@@ -1,5 +1,4 @@
-package ru.progwards.java2.lessons.gc;
-
+package ru.progwards.java2.lessons.synchro;
 
 import com.sun.source.tree.BinaryTree;
 
@@ -11,13 +10,13 @@ public class Heap {
     //long lstart, lstop, lstop2;
     static byte[] bytes;
 
-    static ConcurrentSkipListMap<Integer, Integer> vacant = new ConcurrentSkipListMap();
+    static volatile ConcurrentSkipListMap<Integer, Integer> vacant = new ConcurrentSkipListMap();
     //  static ArrayList<Integer> list100 = new ArrayList<>();
     //  static ArrayList<Integer> list1000 = new ArrayList<>();
     //  static ArrayList<Integer> list10000 = new ArrayList<>();
 
 
-    static ConcurrentSkipListMap<Integer, Integer> fill = new ConcurrentSkipListMap();
+    static volatile ConcurrentSkipListMap<Integer, Integer> fill = new ConcurrentSkipListMap();
 
     static TreeMap<Integer, Integer> newFill = new TreeMap<>();
 
@@ -40,6 +39,10 @@ public class Heap {
 
 
         vacant.put(0, bytes.length - 1);
+
+        ThreadDefrg treadD = new ThreadDefrg(this);
+        treadD.start();
+
     }
 
 
@@ -260,4 +263,6 @@ InvalidPointerException - неверный указатель. Возникае�
     public void setBytes(int ptr, byte[] bytes) {
         //  System.arraycopy(bytes, 0, this.bytes, ptr, size);
     }
+
+
 }

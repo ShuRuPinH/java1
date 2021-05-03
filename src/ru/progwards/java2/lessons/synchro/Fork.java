@@ -11,7 +11,7 @@ public class Fork {
 
     public Fork(int pos) {
         this.pos = pos;
-        System.out.println("создана вилка - " + pos);
+      //  System.out.println("создана вилка - " + pos);
     }
 
     //2.2 Создать класс Fork - вилка, которая имеет 2 состояния : может быть свободна или занята

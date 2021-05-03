@@ -2,6 +2,8 @@ package ru.progwards.java2.lessons.synchro;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Simposion {
     static int PandF = 5;
@@ -23,8 +25,17 @@ public class Simposion {
             forks[i].setFree(true);
         }
 
+
+        threadsStart();
+
+
+    }
+
+
+    void threadsStart() {
+        threads.clear();
+
         for (int i = 1; i <= PandF; i++) {
-            System.out.println("Thread  make  i=" + i);
 
 
             Thread tp = new Philosopher(reflectTime, eatTime);
@@ -33,7 +44,7 @@ public class Simposion {
             (philos[i]).setNumber(i);
 
             threads.add(philos[i]);
-            philos[i].start();
+            philos[i].start();                // отстановка в цикле, через флаг
 
 
            /* String thrdName = philos[i].getName();
@@ -66,8 +77,11 @@ public class Simposion {
     void start() {
         System.out.println(" --- S T A R T ---");
 
-        System.out.println("threads.size =" + threads.size());
+        //  System.out.println("threads.size =" + threads.size());
+
         for (Thread thread : threads) {
+            //     System.out.println("thread name=" + thread.getName() + " state: "+ thread.getState());
+
             ((Philosopher) thread).setDoing(true);
 
 
@@ -79,11 +93,22 @@ public class Simposion {
 
         for (Thread thread : threads) {
             ((Philosopher) thread).setDoing(false);
+            while (!((Philosopher) thread).checkDone()) {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            thread.interrupt();
+
 
         }
 
+        print();
 
     }
+
 
     void print() {
 
@@ -104,22 +129,52 @@ public class Simposion {
     }
 
     public static void main(String[] args) {
-        Simposion test = new Simposion(2000, 3000);
+        Simposion test = new Simposion(5000, 1000);
         test.start();
         try {
-            Thread.sleep(5000);
+            Thread.sleep(20_000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        System.out.println("Много филосовствуют (5 сек) , мало едят (1 сек):");
         test.stop();
-        test.print();
-
         try {
-            Thread.sleep(1000);
+            Thread.sleep(1_000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        test.start();
+
+        Simposion test2 = new Simposion(2000, 2000);
+        test2.start();
+        try {
+            Thread.sleep(20_000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println();
+
+        System.out.println("Одиннаково филосовствуют и едят ( 2 сек):");
+
+        test2.stop();
+        try {
+            Thread.sleep(1_000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        Simposion test3 = new Simposion(1000, 2000);
+        test3.start();
+        try {
+            Thread.sleep(20_000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println();
+        System.out.println("Мало филосовствуют (1 сек), много едят (2 сек):");
+        test3.stop();
+
+
     }
 
 }
