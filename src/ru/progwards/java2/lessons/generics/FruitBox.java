@@ -4,10 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class FruitBox<T extends Fruit> extends ArrayList {
+public class FruitBox<T extends Fruit> extends ArrayList implements Comparable {
     List<T> list = new ArrayList();
     float APL_WEIGHT = 1.0f;
     float ORG_WEIGHT = 1.5f;
+
+    @Override
+    public int compareTo(Object o) {
+        FruitBox tmp = (FruitBox) o;
+        if (this.getWeight() > tmp.getWeight()) return 1;
+        else if (this.getWeight() < tmp.getWeight()) return -1;
+        else if (this.getWeight() == tmp.getWeight()) return 0;
+        return 10;
+    }
+
 
     enum CompareResult {LESS, EQUAL, GREATER}
 
@@ -37,12 +47,12 @@ public class FruitBox<T extends Fruit> extends ArrayList {
         } else throw new UnsupportedOperationException();
     }
 
-    public int compareTo(FruitBox box) {
+/*    public int compareTo(FruitBox box) {
         if (this.getWeight() > box.getWeight()) return 1;
         else if (this.getWeight() < box.getWeight()) return -1;
         else if (this.getWeight() == box.getWeight()) return 0;
         return 10;
-    }
+    }*/
 
     //33///33//////////metods for ModuleTESTS
     static <M extends Comparable> CompareResult compare(M a, M b) {
@@ -55,7 +65,7 @@ public class FruitBox<T extends Fruit> extends ArrayList {
 
     }
 
-    <B> ArrayList from(B[] mas) {
+    static <B> ArrayList from(B[] mas) {
         ArrayList res = new ArrayList();
         for (B x : mas) {
             res.add(x);
@@ -79,11 +89,17 @@ public class FruitBox<T extends Fruit> extends ArrayList {
             oBox.add(new Orange());
             aBox.add(new Apple());
         }
+        System.out.println(compare(aBox, oBox));
+
         System.out.println(oBox.getWeight());
         oBox.moveTo(zBox);
         System.out.println(oBox.getWeight());
         zBox.add(new Apple());
         System.out.println(zBox.getWeight());
+
+
     }
+
+
 }
 
