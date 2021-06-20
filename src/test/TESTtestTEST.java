@@ -13,23 +13,11 @@ public class TESTtestTEST {
 
     public static void main(String[] args) {
 
+        Integer[] arr = new Integer[5];
 
-        CountDownLatch cDl = new CountDownLatch(20);
+        for (Integer i : arr) {
+            System.out.println(i);
+        }
 
-        for (int i = 0; i < 20; i++) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    cDl.countDown();
-                    if (cDl.getCount() % 2 == 0) TESTtestTEST.sum(2, 3);
-                    else TESTtestTEST.sum(3, 4);
-                }
-            }).start();
-        }
-        try {
-            cDl.await();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 }
