@@ -38,7 +38,6 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/ru/progwards/java2/lessons/builders/Plug1010/pom.xml" />
         <option value="$PROJECT_DIR$/src/ru/progwards/java2/lessons/builders/Calc/pom.xml" />
       </list>
     </option>

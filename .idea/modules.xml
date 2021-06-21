@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/src/ru/progwards/java2/lessons/builders/Calc/Calc.iml" filepath="$PROJECT_DIR$/src/ru/progwards/java2/lessons/builders/Calc/Calc.iml" />
       <module fileurl="file://$PROJECT_DIR$/First.iml" filepath="$PROJECT_DIR$/First.iml" />
-      <module fileurl="file://$PROJECT_DIR$/src/ru/progwards/java2/lessons/builders/Plug1010/Plug1010.iml" filepath="$PROJECT_DIR$/src/ru/progwards/java2/lessons/builders/Plug1010/Plug1010.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/ru/progwards/java2/lessons/builders/Plug1010/Plug10101.iml" filepath="$PROJECT_DIR$/src/ru/progwards/java2/lessons/builders/Plug1010/Plug10101.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/ru/progwards/java2/lessons/synchro/bankomat/bankomat.iml" filepath="$PROJECT_DIR$/src/ru/progwards/java2/lessons/synchro/bankomat/bankomat.iml" />
     </modules>
   </component>

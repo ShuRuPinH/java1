@@ -1,4 +1,4 @@
-package org.example;
+package src.main.java.org.example;
 
 
 import org.apache.maven.plugin.AbstractMojo;
