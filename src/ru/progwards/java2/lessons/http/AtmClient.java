@@ -3,6 +3,7 @@ package ru.progwards.java2.lessons.http;
 
 import ru.progwards.java2.lessons.ATM.bankomat.src.app.model.Account;
 import ru.progwards.java2.lessons.ATM.bankomat.src.app.service.AccountService;
+import ru.progwards.java2.lessons.ATM.bankomat.src.app.service.impl.FileStoreService;
 
 
 import java.net.*;
@@ -16,22 +17,25 @@ import java.util.Scanner;
 public class AtmClient implements AccountService {
     @Override
     public double balance(Account account) {
+        send("balance",account.getId(),"null","null");
+
+
         return 0;
     }
 
     @Override
     public void deposit(Account account, double amount) {
-
+        send("deposit",String.valueOf(amount),account.getId(),account.getId());
     }
 
     @Override
     public void withdraw(Account account, double amount) {
-
+        send("withdraw",String.valueOf(amount),account.getId(),account.getId());
     }
 
     @Override
     public void transfer(Account from, Account to, double amount) {
-
+        send("transfer",String.valueOf(amount),from.getId(),to.getId());
     }
 
     static String serverName = "192.168.0.145";  //  SERVER IP
@@ -76,7 +80,15 @@ public class AtmClient implements AccountService {
     }
 
     public static void main(String[] args) {
-        send("transfer", "478288.35431955743d", "56702b2e-4a67-4fbc-b90f-a177ce21a437", "a7674132-f472-4e3c-ab2e-5dd79d6b2b5b");
+        FileStoreService tt = new FileStoreService();
+        AtmClient atmClient = new AtmClient();
+
+        atmClient.transfer(tt.get("56702b2e-4a67-4fbc-b90f-a177ce21a437"),tt.get("a7674132-f472-4e3c-ab2e-5dd79d6b2b5b"),25000);
+
+      //  send("transfer", "478288.35431955743d", "56702b2e-4a67-4fbc-b90f-a177ce21a437",
+       //         "a7674132-f472-4e3c-ab2e-5dd79d6b2b5b");
+
+
     }
 
 
